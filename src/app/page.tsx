@@ -28,8 +28,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/shadcn
 
 // UI 라이브러리 컴포넌트
 import { Button as AceternityButton } from "@/components/ui/aceternity/stateful-button";
+import { MovingBorder } from "@/components/ui/aceternity/moving-border";
+import { HoverBorderGradient } from "@/components/ui/aceternity/hover-border-gradient";
 import { ShimmerButton as MagicButton } from "@/components/ui/magicui/shimmer-button";
-import { Button as OriginButton } from "@/components/ui/originui/button";
+import { RainbowButton } from "@/components/ui/magicui/rainbow-button";
 
 export default function UIMatrix() {
   return (
@@ -41,7 +43,6 @@ export default function UIMatrix() {
 
       {/* Buttons: Gallery / Compare */}
       <section className="component-catalog__section">
-        <h2 className="component-catalog__title">Buttons</h2>
         <Tabs defaultValue="gallery" className="component-catalog__tabs">
           <TabsList>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
@@ -59,15 +60,6 @@ export default function UIMatrix() {
                 </div>
               </article>
 
-              <article className="component-card">
-                <div className="component-card__header">
-                  <div className="component-card__title">Aceternity</div>
-                  <div className="component-card__meta">Button</div>
-                </div>
-                <div className="component-card__body">
-                  <AceternityButton>Click</AceternityButton>
-                </div>
-              </article>
 
               <article className="component-card">
                 <div className="component-card__header">
@@ -79,15 +71,6 @@ export default function UIMatrix() {
                 </div>
               </article>
 
-              <article className="component-card">
-                <div className="component-card__header">
-                  <div className="component-card__title">Origin UI</div>
-                  <div className="component-card__meta">Button</div>
-                </div>
-                <div className="component-card__body">
-                  <OriginButton>Click</OriginButton>
-                </div>
-              </article>
             </div>
           </TabsContent>
           <TabsContent value="compare">
@@ -95,11 +78,9 @@ export default function UIMatrix() {
               <table className="table-auto border-collapse border w-full">
                 <thead>
                   <tr className="bg-muted">
-                    <th className="border px-4 py-2">Components</th>
+                    <th className="border px-4 py-2">Component</th>
                     <th className="border px-4 py-2">shadcn</th>
-                    <th className="border px-4 py-2">Aceternity</th>
-                    <th className="border px-4 py-2">Magic</th>
-                    <th className="border px-4 py-2">Origin</th>
+                    <th className="border px-4 py-2">Magic UI</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,18 +92,69 @@ export default function UIMatrix() {
                       </div>
                     </td>
                     <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center gap-2">
+                        <MagicButton className="shadow-sm">Shimmer</MagicButton>
+                        <RainbowButton>Rainbow</RainbowButton>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Input</td>
+                    <td className="border px-4 py-3">
                       <div className="flex justify-center items-center">
-                        <AceternityButton>Click</AceternityButton>
+                        <Input placeholder="Type here..." className="max-w-[200px]" />
                       </div>
                     </td>
                     <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Select</td>
+                    <td className="border px-4 py-3">
                       <div className="flex justify-center items-center">
-                        <MagicButton>Click</MagicButton>
+                        <Select>
+                          <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="option1">Option 1</SelectItem>
+                            <SelectItem value="option2">Option 2</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </td>
                     <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Checkbox</td>
+                    <td className="border px-4 py-3">
                       <div className="flex justify-center items-center">
-                        <OriginButton>Click</OriginButton>
+                        <Checkbox id="shadcn-check" />
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Badge</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <Badge>New</Badge>
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
                       </div>
                     </td>
                   </tr>
@@ -131,6 +163,43 @@ export default function UIMatrix() {
             </div>
           </TabsContent>
         </Tabs>
+      </section>
+
+      {/* Aceternity UI - Special Effects */}
+      <section className="component-catalog__section">
+        <h2 className="component-catalog__title">Aceternity UI - Special Effects</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Stateful Button</CardTitle>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <AceternityButton>Click Me</AceternityButton>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Moving Border</CardTitle>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <MovingBorder duration={3000} className="p-4 border-neutral-200 dark:border-slate-800">
+                <span>Animated Border</span>
+              </MovingBorder>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Hover Border Gradient</CardTitle>
+            </CardHeader>
+            <CardContent className="flex justify-center">
+              <HoverBorderGradient>
+                <span>Hover Me</span>
+              </HoverBorderGradient>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       {/* shadcn */}

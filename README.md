@@ -1,6 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UI Matrix
 
-## Getting Started
+여러 UI 라이브러리의 컴포넌트를 한 곳에서 비교하고 사용할 수 있는 Next.js 프로젝트입니다.
+
+## 🎨 지원 UI 라이브러리
+
+- **shadcn/ui** - https://ui.shadcn.com
+- **Aceternity UI** - https://ui.aceternity.com
+- **Magic UI** - https://magicui.design
+- **Origin UI** - https://originui.com
+
+## 📦 컴포넌트 설치
+
+각 라이브러리의 컴포넌트는 독립된 폴더에 설치되어 이름 충돌을 방지합니다.
+
+```bash
+# shadcn/ui 컴포넌트 설치
+npm run add:shadcn button
+
+# Aceternity UI 컴포넌트 설치
+npm run add:aceternity moving-border
+
+# Magic UI 컴포넌트 설치
+npm run add:magicui button
+
+# Origin UI 컴포넌트 설치 (comp-XX 형식)
+npm run add:originui comp-01
+```
+
+**자세한 설치 가이드:** [COMPONENT_INSTALLATION.md](./COMPONENT_INSTALLATION.md)
+
+## 🚀 Getting Started
 
 First, run the development server:
 

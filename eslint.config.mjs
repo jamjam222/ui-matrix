@@ -19,6 +19,11 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    settings: {
+      "import/resolver": {
+        typescript: true, // <-- 이 줄
+      },
+    },
   },
 ];
 

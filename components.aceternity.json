@@ -12,13 +12,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@/components/ui/shadcn",
+    "components": "@/components/ui/aceternity",
     "utils": "@/lib/utils",
-    "ui": "@/components/ui/shadcn",
+    "ui": "@/components/ui/aceternity",
     "lib": "@/lib",
     "hooks": "@/hooks"
-  },
-  "registries": {
-    "@magicui": "https://magicui.design/r/{name}.json"
   }
 }

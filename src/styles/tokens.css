@@ -1,0 +1,18 @@
+/* Design Tokens */
+:root {
+  /* radii */
+  --card-radius: 12px;
+
+  /* colors (subtle, dark-first) */
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(10, 10, 10, 0.9);
+  --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+  }
+}

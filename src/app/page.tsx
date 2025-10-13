@@ -1,10 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
 import { Badge } from "@/components/ui/shadcn/badge";
 import { Input } from "@/components/ui/shadcn/input";
+import { Input as OriginInput } from "@/components/ui/originui/input";
 import { Textarea } from "@/components/ui/shadcn/textarea";
 import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/shadcn/radio-group";
@@ -64,6 +66,35 @@ import { BentoGrid as MagicBentoGrid, BentoCard } from "@/components/ui/magicui/
 import { BorderBeam } from "@/components/ui/magicui/border-beam";
 
 export default function UIMatrix() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldBeDark = savedTheme === "dark" || (!savedTheme && prefersDark);
+    
+    setIsDark(shouldBeDark);
+    if (shouldBeDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    
+    if (newIsDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
     <main className="component-catalog container mx-auto px-6 py-12 space-y-16">
       <header className="flex items-center justify-between mb-8">
@@ -75,6 +106,23 @@ export default function UIMatrix() {
             라이브러리 컴포넌트 비교 갤러리
           </p>
         </div>
+        
+        {/* Dark Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-lg border-2 border-border bg-background hover:bg-muted transition-all duration-200 shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] hover:shadow-[5px_5px_0_0_hsl(var(--foreground)/0.15)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.1)]"
+          aria-label="Toggle dark mode"
+        >
+          {isDark ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )}
+        </button>
       </header>
 
       {/* Buttons: Gallery / Compare */}
@@ -1078,61 +1126,100 @@ export default function UIMatrix() {
                   </article> */}
                 </div>
               </section>
+
+              {/* Origin UI Section */}
+              <section>
+                <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                  <h3 className="text-2xl font-extrabold tracking-tight">
+                    Origin UI
+                  </h3>
+                  <Link 
+                    href="https://originui.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
+                  >
+                    <span>Official Site</span>
+                    <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </Link>
+                </div>
+                <div className="component-catalog__grid">
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://originui.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Simple Input</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="w-full max-w-[280px]">
+                        <OriginInput placeholder="Enter email..." type="email" />
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
             </div>
           </TabsContent>
           <TabsContent value="compare">
             <div className="overflow-x-auto rounded-2xl border-2 border-border shadow-[5px_5px_0_0_hsl(var(--foreground)/0.1)]">
               <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="bg-muted/50 backdrop-blur-sm">
-                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-left font-bold">Component</th>
-                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-center font-bold">shadcn</th>
-                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-center font-bold">Aceternity</th>
-                    <th className="border-b-2 border-border px-6 py-4 text-center font-bold">Magic UI</th>
+                  <tr>
+                    <th>Component</th>
+                    <th>shadcn</th>
+                    <th>Aceternity</th>
+                    <th>Magic UI</th>
+                    <th>Origin UI</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="hover:bg-muted/30 transition-colors">
-                    <td className="border-b border-r-2 border-border px-6 py-4 font-semibold">Button</td>
-                    <td className="border-b border-r-2 border-border px-6 py-4">
-                      <div className="flex justify-center items-center">
-                        <ShadcnButton>Click</ShadcnButton>
-                      </div>
+                  <tr>
+                    <td>Button</td>
+                    <td>
+                      <ShadcnButton>Click</ShadcnButton>
                     </td>
-                    <td className="border-b border-r-2 border-border px-6 py-4">
-                      <div className="flex justify-center items-center">
-                        <AceternityButton>Click</AceternityButton>
-                      </div>
+                    <td>
+                      <AceternityButton>Click</AceternityButton>
                     </td>
-                    <td className="border-b border-border px-6 py-4">
+                    <td>
                       <div className="flex justify-center items-center gap-2">
                         <MagicButton className="shadow-sm text-xs px-2">Shimmer</MagicButton>
                         <RainbowButton className="text-xs px-2">Rainbow</RainbowButton>
                         <ShinyButton className="text-xs px-2">Shiny</ShinyButton>
                       </div>
                     </td>
-                  </tr>
-                  <tr className="hover:bg-muted/30 transition-colors">
-                    <td className="border-b border-r-2 border-border px-6 py-4 font-semibold">Input</td>
-                    <td className="border-b border-r-2 border-border px-6 py-4">
-                      <div className="flex justify-center items-center">
-                        <Input placeholder="Type here..." className="max-w-[200px]" />
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Select</td>
-                    <td className="border px-4 py-3">
+                    <td>Input</td>
+                    <td>
+                      <Input placeholder="Type here..." className="max-w-[200px]" />
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <OriginInput placeholder="Email..." type="email" className="max-w-[200px]" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Select</td>
+                    <td>
                       <div className="flex justify-center items-center">
                         <Select>
                           <SelectTrigger className="w-[180px]">
@@ -1145,378 +1232,325 @@ export default function UIMatrix() {
                         </Select>
                       </div>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Checkbox</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Checkbox id="shadcn-check" />
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Badge</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Badge>New</Badge>
-                      </div>
+                    <td>Checkbox</td>
+                    <td>
+                      <Checkbox id="shadcn-check" />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Textarea</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Textarea placeholder="Type here..." className="max-w-[200px]" />
-                      </div>
+                    <td>Badge</td>
+                    <td>
+                      <Badge>New</Badge>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Radio</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <RadioGroup defaultValue="option1">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option1" id="r1" />
-                          </div>
-                        </RadioGroup>
-                      </div>
+                    <td>Textarea</td>
+                    <td>
+                      <Textarea placeholder="Type here..." className="max-w-[200px]" />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Switch</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Switch />
-                      </div>
+                    <td>Radio</td>
+                    <td>
+                      <RadioGroup defaultValue="option1">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="option1" id="r1" />
+                        </div>
+                      </RadioGroup>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Slider</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Slider defaultValue={[50]} max={100} step={1} className="w-[160px]" />
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Avatar</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
-                      </div>
+                    <td>Switch</td>
+                    <td>
+                      <Switch />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <AvatarCircles numPeople={3} avatarUrls={[]} />
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Alert</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Alert className="max-w-[200px]">
-                          <AlertDescription>Alert message</AlertDescription>
-                        </Alert>
-                      </div>
+                    <td>Slider</td>
+                    <td>
+                      <Slider defaultValue={[50]} max={100} step={1} className="w-[160px]" />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Progress</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Progress value={60} className="w-[160px]" />
-                      </div>
+                    <td>Avatar</td>
+                    <td>
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <AvatarCircles numPeople={3} avatarUrls={[]} />
                     </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Separator</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Separator className="w-[160px]" />
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Accordion</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Accordion type="single" collapsible className="w-[200px]">
-                          <AccordionItem value="item-1">
-                            <AccordionTrigger>Item 1</AccordionTrigger>
-                            <AccordionContent>Content</AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                      </div>
+                    <td>Alert</td>
+                    <td>
+                      <Alert className="max-w-[200px]">
+                        <AlertDescription>Alert message</AlertDescription>
+                      </Alert>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Table</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Table className="w-[200px]">
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead>Name</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            <TableRow>
-                              <TableCell>Item</TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </div>
+                    <td>Progress</td>
+                    <td>
+                      <Progress value={60} className="w-[160px]" />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Dialog</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <ShadcnButton variant="outline">Open</ShadcnButton>
-                          </DialogTrigger>
-                          <DialogContent>Dialog Content</DialogContent>
-                        </Dialog>
-                      </div>
+                    <td>Separator</td>
+                    <td>
+                      <Separator className="w-[160px]" />
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Modal ✓
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Tooltip</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <ShadcnButton variant="outline">Hover</ShadcnButton>
-                            </TooltipTrigger>
-                            <TooltipContent>Tooltip</TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
+                    <td>Accordion</td>
+                    <td>
+                      <Accordion type="single" collapsible className="w-[200px]">
+                        <AccordionItem value="item-1">
+                          <AccordionTrigger>Item 1</AccordionTrigger>
+                          <AccordionContent>Content</AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <AnimatedTooltip
-                          items={[
-                            {
-                              id: 1,
-                              name: "Hover Me",
-                              designation: "Animated",
-                              image: "https://github.com/shadcn.png"
-                            }
-                          ]}
-                        />
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Tabs</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <span className="text-sm">Current Tab ✓</span>
-                      </div>
+                    <td>Table</td>
+                    <td>
+                      <Table className="w-[200px]">
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Name</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell>Item</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <AceternityTabs
-                          tabs={[
-                            { title: "Tab 1", value: "tab1", content: "Content 1" },
-                            { title: "Tab 2", value: "tab2", content: "Content 2" }
-                          ]}
-                          containerClassName="w-[200px]"
-                          contentClassName="hidden"
-                        />
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Dropdown</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <ShadcnButton variant="outline">Menu</ShadcnButton>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent>
-                            <DropdownMenuItem>Item 1</DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Animated Text</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>Dialog</td>
+                    <td>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <ShadcnButton variant="outline">Open</ShadcnButton>
+                        </DialogTrigger>
+                        <DialogContent>Dialog Content</DialogContent>
+                      </Dialog>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Modal ✓</span>
                     </td>
-                    <td className="border px-4 py-3">
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tooltip</td>
+                    <td>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <ShadcnButton variant="outline">Hover</ShadcnButton>
+                          </TooltipTrigger>
+                          <TooltipContent>Tooltip</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </td>
+                    <td>
+                      <AnimatedTooltip
+                        items={[
+                          {
+                            id: 1,
+                            name: "Hover Me",
+                            designation: "Animated",
+                            image: "https://github.com/shadcn.png"
+                          }
+                        ]}
+                      />
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tabs</td>
+                    <td>
+                      <span className="text-sm">Current Tab ✓</span>
+                    </td>
+                    <td>
+                      <AceternityTabs
+                        tabs={[
+                          { title: "Tab 1", value: "tab1", content: "Content 1" },
+                          { title: "Tab 2", value: "tab2", content: "Content 2" }
+                        ]}
+                        containerClassName="w-[200px]"
+                        contentClassName="hidden"
+                      />
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dropdown</td>
+                    <td>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <ShadcnButton variant="outline">Menu</ShadcnButton>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuItem>Item 1</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Animated Text</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
                       <div className="flex justify-center items-center gap-2">
                         <AnimatedGradientText>Gradient</AnimatedGradientText>
                         <SparklesText>✨ Sparkles</SparklesText>
@@ -1524,387 +1558,285 @@ export default function UIMatrix() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Bento Grid</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>Bento Grid</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Layout ✓
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Layout ✓</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Layout ✓
+                    <td>
+                      <span className="text-muted-foreground text-sm">Layout ✓</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Background Effects</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Beams ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Particles/Meteors ✓</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moving Border</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <MovingBorderButton duration={3000} className="text-sm px-3 py-1">
+                        Border
+                      </MovingBorderButton>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Border Beam ✓</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hover Border Gradient</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <HoverBorderGradient containerClassName="rounded-md" className="text-sm px-3 py-1">
+                        Hover
+                      </HoverBorderGradient>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ripple Effect</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <div className="relative w-32 h-32 flex items-center justify-center">
+                        <Ripple />
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Background Effects</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>Marquee</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Beams ✓
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Particles/Meteors ✓
+                    <td>
+                      <Marquee className="max-w-[200px]">
+                        <span className="text-sm">Scrolling Text</span>
+                      </Marquee>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Number Animation</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <NumberTicker value={100} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Timeline</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Animated ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Animated List</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Animated ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Floating Dock</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Dock ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Dock ✓</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Floating Navbar</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Floating Navbar ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sidebar</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Sidebar ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Text Reveal</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Text Reveal ✓</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Animated Beam</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">Animated Beam ✓</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Blur Fade</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <BlurFade delay={0.1} inView>
+                        <div className="text-sm">Fade In</div>
+                      </BlurFade>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Confetti</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <ConfettiButton className="text-xs px-3 py-1">
+                        🎉 Click
+                      </ConfettiButton>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cool Mode</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <CoolMode>
+                        <ShadcnButton size="sm" className="text-xs">✨ Click</ShadcnButton>
+                      </CoolMode>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Globe</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
+                    </td>
+                    <td>
+                      <div className="w-32 h-32 relative">
+                        <Globe />
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Moving Border</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>Icon Cloud</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <MovingBorderButton duration={3000} className="text-sm px-3 py-1">
-                          Border
-                        </MovingBorderButton>
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Border Beam ✓
+                    <td>
+                      <div className="w-32 h-32">
+                        <IconCloud width={128} height={128} />
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Hover Border Gradient</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
+                    <td>Orbiting Circles</td>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <HoverBorderGradient containerClassName="rounded-md" className="text-sm px-3 py-1">
-                          Hover
-                        </HoverBorderGradient>
-                      </div>
+                    <td>
+                      <span className="text-muted-foreground text-sm">-</span>
                     </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Ripple Effect</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <div className="relative w-32 h-32 flex items-center justify-center">
-                          <Ripple />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Marquee</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <Marquee className="max-w-[200px]">
-                          <span className="text-sm">Scrolling Text</span>
-                        </Marquee>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Number Animation</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <NumberTicker value={100} />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Timeline</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Animated ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Animated List</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Animated ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Floating Dock</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Dock ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Dock ✓
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Floating Navbar</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Floating Navbar ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Sidebar</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Sidebar ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Text Reveal</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Text Reveal ✓
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Animated Beam</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Animated Beam ✓
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Blur Fade</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <BlurFade delay={0.1} inView>
-                          <div className="text-sm">Fade In</div>
-                        </BlurFade>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Confetti</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <ConfettiButton className="text-xs px-3 py-1">
-                          🎉 Click
-                        </ConfettiButton>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Cool Mode</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <CoolMode>
-                          <ShadcnButton size="sm" className="text-xs">✨ Click</ShadcnButton>
-                        </CoolMode>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Globe</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <div className="w-32 h-32 relative">
-                          <Globe />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Icon Cloud</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <div className="w-32 h-32">
-                          <IconCloud width={128} height={128} />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Orbiting Circles</td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        -
-                      </div>
-                    </td>
-                    <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center">
-                        <div className="relative w-32 h-32 flex items-center justify-center">
-                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={40}>
-                            <div className="h-2 w-2 rounded-full bg-primary"></div>
-                          </OrbitingCircles>
-                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={40}>
-                            <div className="h-2 w-2 rounded-full bg-primary"></div>
-                          </OrbitingCircles>
-                        </div>
+                    <td>
+                      <div className="relative w-32 h-32 flex items-center justify-center">
+                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={40}>
+                          <div className="h-2 w-2 rounded-full bg-primary"></div>
+                        </OrbitingCircles>
+                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={40}>
+                          <div className="h-2 w-2 rounded-full bg-primary"></div>
+                        </OrbitingCircles>
                       </div>
                     </td>
                   </tr>

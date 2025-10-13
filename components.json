@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
+  "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -12,10 +12,13 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@/components/ui/aceternity",
+    "components": "@/components/ui/magicui",
     "utils": "@/lib/utils",
-    "ui": "@/components/ui/aceternity",
+    "ui": "@/components/ui/magicui",
     "lib": "@/lib",
     "hooks": "@/hooks"
+  },
+  "registries": {
+    "@magicui": "https://magicui.design/r/{name}.json"
   }
 }

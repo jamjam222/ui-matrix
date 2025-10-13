@@ -1,4 +1,4 @@
-/* BEM components for UI Matrix */
+/* BEM components for UI Matrix - Neobrutalism Light + Modern Glass */
 @import "./tokens.css";
 
 /* Page: component-catalog */
@@ -11,54 +11,111 @@
 }
 
 .component-catalog__title {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .component-catalog__tabs {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .component-catalog__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
-/* Card: component-card */
+/* Card: component-card - Neobrutalism + Glass */
 .component-card {
   position: relative;
-  border: 1px solid var(--card-border);
+  border: var(--card-border-width) solid var(--card-border);
   border-radius: var(--card-radius);
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
-  padding: 14px;
-  backdrop-filter: saturate(1.1) blur(2px);
+  padding: 20px;
+  backdrop-filter: saturate(1.15) blur(var(--glass-blur));
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow, background;
+}
+
+.component-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  background: var(--card-bg-hover);
+}
+
+/* Inner glass border effect */
+.component-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--card-radius) - var(--card-border-width));
+  padding: 1px;
+  background: var(--glass-border);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 .component-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid hsl(var(--border) / 0.3);
 }
 
 .component-card__title {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
 }
 
 .component-card__meta {
   font-size: 0.75rem;
-  opacity: 0.7;
+  opacity: 0.65;
+  font-weight: 500;
 }
 
 .component-card__body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 16px;
+  min-height: 80px;
+}
+
+/* Compare Table Styles - Neobrutalism */
+.component-catalog table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.component-catalog table tbody tr:hover {
+  background-color: hsl(var(--muted) / 0.3);
+}
+
+.component-catalog table tbody td {
+  border-bottom: 1px solid hsl(var(--border));
+  padding: 1rem 1.5rem;
+}
+
+.component-catalog table tbody td:not(:last-child) {
+  border-right: 2px solid hsl(var(--border));
+}
+
+.component-catalog table tbody td:first-child {
+  font-weight: 600;
 }

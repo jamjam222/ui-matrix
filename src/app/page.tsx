@@ -65,9 +65,16 @@ import { BorderBeam } from "@/components/ui/magicui/border-beam";
 
 export default function UIMatrix() {
   return (
-    <main className="component-catalog container mx-auto p-8 space-y-12">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">UI 라이브러리 컴포넌트 비교</h1>
+    <main className="component-catalog container mx-auto px-6 py-12 space-y-16">
+      <header className="flex items-center justify-between mb-8">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            UI Matrix
+          </h1>
+          <p className="text-base text-muted-foreground font-medium">
+            라이브러리 컴포넌트 비교 갤러리
+          </p>
+        </div>
       </header>
 
       {/* Buttons: Gallery / Compare */}
@@ -78,15 +85,25 @@ export default function UIMatrix() {
             <TabsTrigger value="compare">Compare</TabsTrigger>
           </TabsList>
           <TabsContent value="gallery">
-            <div className="space-y-12">
+            <div className="space-y-16">
               {/* shadcn/ui Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
-                  shadcn/ui
-                  <Link href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    →
+                <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                  <h3 className="text-2xl font-extrabold tracking-tight">
+                    shadcn/ui
+                  </h3>
+                  <Link 
+                    href="https://ui.shadcn.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
+                  >
+                    <span>공식 사이트</span>
+                    <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </Link>
-                </h3>
+                </div>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
@@ -538,12 +555,22 @@ export default function UIMatrix() {
 
               {/* Aceternity UI Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
-                  Aceternity UI
-                  <Link href="https://ui.aceternity.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    →
+                <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                  <h3 className="text-2xl font-extrabold tracking-tight">
+                    Aceternity UI
+                  </h3>
+                  <Link 
+                    href="https://ui.aceternity.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
+                  >
+                    <span>공식 사이트</span>
+                    <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </Link>
-                </h3>
+                </div>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
@@ -688,12 +715,22 @@ export default function UIMatrix() {
 
               {/* Magic UI Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
-                  Magic UI
-                  <Link href="https://magicui.design/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    →
+                <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                  <h3 className="text-2xl font-extrabold tracking-tight">
+                    Magic UI
+                  </h3>
+                  <Link 
+                    href="https://magicui.design/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
+                  >
+                    <span>공식 사이트</span>
+                    <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </Link>
-                </h3>
+                </div>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
@@ -1044,30 +1081,30 @@ export default function UIMatrix() {
             </div>
           </TabsContent>
           <TabsContent value="compare">
-            <div>
-              <table className="table-auto border-collapse border w-full">
+            <div className="overflow-x-auto rounded-2xl border-2 border-border shadow-[5px_5px_0_0_hsl(var(--foreground)/0.1)]">
+              <table className="table-auto border-collapse w-full">
                 <thead>
-                  <tr className="bg-muted">
-                    <th className="border px-4 py-2">Component</th>
-                    <th className="border px-4 py-2">shadcn</th>
-                    <th className="border px-4 py-2">Aceternity</th>
-                    <th className="border px-4 py-2">Magic UI</th>
+                  <tr className="bg-muted/50 backdrop-blur-sm">
+                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-left font-bold">Component</th>
+                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-center font-bold">shadcn</th>
+                    <th className="border-b-2 border-r-2 border-border px-6 py-4 text-center font-bold">Aceternity</th>
+                    <th className="border-b-2 border-border px-6 py-4 text-center font-bold">Magic UI</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Button</td>
-                    <td className="border px-4 py-3">
+                  <tr className="hover:bg-muted/30 transition-colors">
+                    <td className="border-b border-r-2 border-border px-6 py-4 font-semibold">Button</td>
+                    <td className="border-b border-r-2 border-border px-6 py-4">
                       <div className="flex justify-center items-center">
                         <ShadcnButton>Click</ShadcnButton>
                       </div>
                     </td>
-                    <td className="border px-4 py-3">
+                    <td className="border-b border-r-2 border-border px-6 py-4">
                       <div className="flex justify-center items-center">
                         <AceternityButton>Click</AceternityButton>
                       </div>
                     </td>
-                    <td className="border px-4 py-3">
+                    <td className="border-b border-border px-6 py-4">
                       <div className="flex justify-center items-center gap-2">
                         <MagicButton className="shadow-sm text-xs px-2">Shimmer</MagicButton>
                         <RainbowButton className="text-xs px-2">Rainbow</RainbowButton>
@@ -1075,9 +1112,9 @@ export default function UIMatrix() {
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Input</td>
-                    <td className="border px-4 py-3">
+                  <tr className="hover:bg-muted/30 transition-colors">
+                    <td className="border-b border-r-2 border-border px-6 py-4 font-semibold">Input</td>
+                    <td className="border-b border-r-2 border-border px-6 py-4">
                       <div className="flex justify-center items-center">
                         <Input placeholder="Type here..." className="max-w-[200px]" />
                       </div>

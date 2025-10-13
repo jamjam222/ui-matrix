@@ -15,16 +15,17 @@ interface Icon {
 interface IconCloudProps {
   icons?: React.ReactNode[]
   images?: string[]
+  width?: number
+  height?: number
 }
 
 function easeOutCubic(t: number): number {
   return 1 - Math.pow(1 - t, 3)
 }
 
-export function IconCloud({ icons, images }: IconCloudProps) {
+export function IconCloud({ icons, images, width = 400, height = 400 }: IconCloudProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [iconPositions, setIconPositions] = useState<Icon[]>([])
-  const [rotation, setRotation] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 })
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
@@ -38,7 +39,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     duration: number
   } | null>(null)
   const animationFrameRef = useRef<number>(0)
-  const rotationRef = useRef(rotation)
+  const rotationRef = useRef({ x: 0, y: 0 })
   const iconCanvasesRef = useRef<HTMLCanvasElement[]>([])
   const imagesLoadedRef = useRef<boolean[]>([])
 
@@ -307,13 +308,13 @@ export function IconCloud({ icons, images }: IconCloudProps) {
   return (
     <canvas
       ref={canvasRef}
-      width={400}
-      height={400}
+      width={width}
+      height={height}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      className="rounded-lg"
+      className="rounded-lg w-full h-full"
       aria-label="Interactive 3D Icon Cloud"
       role="img"
     />

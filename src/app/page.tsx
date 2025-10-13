@@ -52,13 +52,21 @@ import { Marquee } from "@/components/ui/magicui/marquee";
 import { NumberTicker } from "@/components/ui/magicui/number-ticker";
 import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";
 import { AnimatedTooltip } from "@/components/ui/aceternity/animated-tooltip";
+import { BlurFade } from "@/components/ui/magicui/blur-fade";
+import { OrbitingCircles } from "@/components/ui/magicui/orbiting-circles";
+import { ConfettiButton } from "@/components/ui/magicui/confetti";
+import { CoolMode } from "@/components/ui/magicui/cool-mode";
+import { Globe } from "@/components/ui/magicui/globe";
+import { IconCloud } from "@/components/ui/magicui/icon-cloud";
+import { BentoGrid, BentoGridItem } from "@/components/ui/aceternity/bento-grid";
+import { BentoGrid as MagicBentoGrid, BentoCard } from "@/components/ui/magicui/bento-grid";
+import { BorderBeam } from "@/components/ui/magicui/border-beam";
 
 export default function UIMatrix() {
   return (
     <main className="component-catalog container mx-auto p-8 space-y-12">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">UI 라이브러리 컴포넌트 비교</h1>
-        <Badge>demo</Badge>
       </header>
 
       {/* Buttons: Gallery / Compare */}
@@ -256,6 +264,129 @@ export default function UIMatrix() {
                       </TooltipProvider>
                     </div>
                   </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Accordion</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="item-1">
+                          <AccordionTrigger>Section 1</AccordionTrigger>
+                          <AccordionContent>Content for section 1</AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2">
+                          <AccordionTrigger>Section 2</AccordionTrigger>
+                          <AccordionContent>Content for section 2</AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Alert</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Alert>
+                        <AlertDescription>This is an alert message</AlertDescription>
+                      </Alert>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Card</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Card Title</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground">Card content goes here</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Dialog</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <ShadcnButton variant="outline">Open Dialog</ShadcnButton>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <p>Dialog content</p>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Separator</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="space-y-2">
+                        <div className="text-sm">Above</div>
+                        <Separator />
+                        <div className="text-sm">Below</div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Table</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Status</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell>Item 1</TableCell>
+                            <TableCell>Active</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>Item 2</TableCell>
+                            <TableCell>Inactive</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Textarea</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Textarea placeholder="Type your message here..." />
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Tabs (shadcn)</div>
+                    </div>
+                    <div className="component-card__body">
+                      <Tabs defaultValue="tab1" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2">
+                          <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+                          <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    </div>
+                  </article>
                 </div>
               </section>
 
@@ -346,6 +477,26 @@ export default function UIMatrix() {
                       />
                     </div>
                   </article>
+
+                  {/* <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Bento Grid</div>
+                    </div>
+                    <div className="component-card__body">
+                      <BentoGrid className="max-w-full">
+                        <BentoGridItem
+                          title="Item 1"
+                          description="Grid item"
+                          className="bg-muted"
+                        />
+                        <BentoGridItem
+                          title="Item 2"
+                          description="Grid item"
+                          className="bg-muted"
+                        />
+                      </BentoGrid>
+                    </div>
+                  </article> */}
                 </div>
               </section>
 
@@ -458,6 +609,123 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Blur Fade</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="flex flex-col gap-2 items-center">
+                        <BlurFade delay={0} inView>
+                          <div className="text-sm">First</div>
+                        </BlurFade>
+                        <BlurFade delay={0.2} inView>
+                          <div className="text-sm">Second</div>
+                        </BlurFade>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Confetti Button</div>
+                    </div>
+                    <div className="component-card__body">
+                      <ConfettiButton className="text-sm px-3 py-1">
+                        🎉 Celebrate
+                      </ConfettiButton>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Cool Mode</div>
+                    </div>
+                    <div className="component-card__body">
+                      <CoolMode>
+                        <ShadcnButton size="sm">✨ Click Me</ShadcnButton>
+                      </CoolMode>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Globe</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="w-40 h-40 mx-auto relative">
+                        <Globe />
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Icon Cloud</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="w-40 h-40 mx-auto">
+                        <IconCloud width={160} height={160} />
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Orbiting Circles</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
+                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={50}>
+                          <div className="h-3 w-3 rounded-full bg-primary"></div>
+                        </OrbitingCircles>
+                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={50}>
+                          <div className="h-3 w-3 rounded-full bg-primary"></div>
+                        </OrbitingCircles>
+                        <div className="h-4 w-4 rounded-full bg-primary/50"></div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Border Beam</div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="relative w-full h-24 rounded-lg border bg-muted flex items-center justify-center">
+                        <BorderBeam />
+                        <span className="text-sm">Animated Border</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">Bento Grid (Magic)</div>
+                    </div>
+                    <div className="component-card__body">
+                      <MagicBentoGrid className="max-w-full">
+                        <BentoCard
+                          name="Feature 1"
+                          className="bg-muted"
+                          background={<div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />}
+                          Icon={() => <div className="h-4 w-4 rounded-full bg-primary" />}
+                          description="Grid feature"
+                          href="#"
+                          cta="Learn more"
+                        />
+                        <BentoCard
+                          name="Feature 2"
+                          className="bg-muted"
+                          background={<div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent" />}
+                          Icon={() => <div className="h-4 w-4 rounded-full bg-secondary" />}
+                          description="Grid feature"
+                          href="#"
+                          cta="Learn more"
+                        />
+                      </MagicBentoGrid>
+                    </div>
+                  </article> */}
                 </div>
               </section>
             </div>
@@ -942,20 +1210,42 @@ export default function UIMatrix() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="border px-4 py-3 font-medium text-center">Border Effects</td>
+                    <td className="border px-4 py-3 font-medium text-center">Moving Border</td>
                     <td className="border px-4 py-3">
                       <div className="flex justify-center items-center text-muted-foreground text-sm">
                         -
                       </div>
                     </td>
                     <td className="border px-4 py-3">
-                      <div className="flex justify-center items-center text-muted-foreground text-sm">
-                        Moving Border ✓
+                      <div className="flex justify-center items-center">
+                        <MovingBorderButton duration={3000} className="text-sm px-3 py-1">
+                          Border
+                        </MovingBorderButton>
                       </div>
                     </td>
                     <td className="border px-4 py-3">
                       <div className="flex justify-center items-center text-muted-foreground text-sm">
                         Border Beam ✓
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Hover Border Gradient</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <HoverBorderGradient containerClassName="rounded-md" className="text-sm px-3 py-1">
+                          Hover
+                        </HoverBorderGradient>
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
                       </div>
                     </td>
                   </tr>
@@ -1032,6 +1322,239 @@ export default function UIMatrix() {
                     <td className="border px-4 py-3">
                       <div className="flex justify-center items-center text-muted-foreground text-sm">
                         -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Animated List</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Animated ✓
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Floating Dock</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Dock ✓
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Dock ✓
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Floating Navbar</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Floating Navbar ✓
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Sidebar</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Sidebar ✓
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Text Reveal</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Text Reveal ✓
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Animated Beam</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        Animated Beam ✓
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Blur Fade</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <BlurFade delay={0.1} inView>
+                          <div className="text-sm">Fade In</div>
+                        </BlurFade>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Confetti</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <ConfettiButton className="text-xs px-3 py-1">
+                          🎉 Click
+                        </ConfettiButton>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Cool Mode</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <CoolMode>
+                          <ShadcnButton size="sm" className="text-xs">✨ Click</ShadcnButton>
+                        </CoolMode>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Globe</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <div className="w-32 h-32 relative">
+                          <Globe />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Icon Cloud</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <div className="w-32 h-32">
+                          <IconCloud width={128} height={128} />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border px-4 py-3 font-medium text-center">Orbiting Circles</td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center text-muted-foreground text-sm">
+                        -
+                      </div>
+                    </td>
+                    <td className="border px-4 py-3">
+                      <div className="flex justify-center items-center">
+                        <div className="relative w-32 h-32 flex items-center justify-center">
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={40}>
+                            <div className="h-2 w-2 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={40}>
+                            <div className="h-2 w-2 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                        </div>
                       </div>
                     </td>
                   </tr>

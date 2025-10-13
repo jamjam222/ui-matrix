@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
@@ -55,18 +55,31 @@ import { Marquee } from "@/components/ui/magicui/marquee";
 import { NumberTicker } from "@/components/ui/magicui/number-ticker";
 import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";
 import { AnimatedTooltip } from "@/components/ui/aceternity/animated-tooltip";
-import { BlurFade } from "@/components/ui/magicui/blur-fade";
-import { OrbitingCircles } from "@/components/ui/magicui/orbiting-circles";
-import { ConfettiButton } from "@/components/ui/magicui/confetti";
-import { CoolMode } from "@/components/ui/magicui/cool-mode";
-import { Globe } from "@/components/ui/magicui/globe";
-import { IconCloud } from "@/components/ui/magicui/icon-cloud";
-import { BentoGrid, BentoGridItem } from "@/components/ui/aceternity/bento-grid";
-import { BentoGrid as MagicBentoGrid, BentoCard } from "@/components/ui/magicui/bento-grid";
-import { BorderBeam } from "@/components/ui/magicui/border-beam";
+
+// Lazy loaded components for performance
+const BlurFade = lazy(() => import("@/components/ui/magicui/blur-fade").then(mod => ({ default: mod.BlurFade })));
+const OrbitingCircles = lazy(() => import("@/components/ui/magicui/orbiting-circles").then(mod => ({ default: mod.OrbitingCircles })));
+const ConfettiButton = lazy(() => import("@/components/ui/magicui/confetti").then(mod => ({ default: mod.ConfettiButton })));
+const CoolMode = lazy(() => import("@/components/ui/magicui/cool-mode").then(mod => ({ default: mod.CoolMode })));
+const Globe = lazy(() => import("@/components/ui/magicui/globe").then(mod => ({ default: mod.Globe })));
+const IconCloud = lazy(() => import("@/components/ui/magicui/icon-cloud").then(mod => ({ default: mod.IconCloud })));
+const BorderBeam = lazy(() => import("@/components/ui/magicui/border-beam").then(mod => ({ default: mod.BorderBeam })));
+
+// Loading fallback component
+function ComponentLoader() {
+  return (
+    <div className="flex items-center justify-center p-8">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  );
+}
 
 export default function UIMatrix() {
   const [isDark, setIsDark] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLibrary, setSelectedLibrary] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     // Load theme from localStorage
@@ -80,6 +93,12 @@ export default function UIMatrix() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    // Load favorites from localStorage
+    const savedFavorites = localStorage.getItem("ui-matrix-favorites");
+    if (savedFavorites) {
+      setFavorites(new Set(JSON.parse(savedFavorites)));
+    }
   }, []);
 
   const toggleTheme = () => {
@@ -92,6 +111,48 @@ export default function UIMatrix() {
     } else {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
+    }
+  };
+
+  // Filter libraries based on selection
+  const libraries = ["all", "shadcn", "aceternity", "magicui", "originui"];
+  const categories = ["all", "button", "input", "layout", "animation", "navigation", "feedback"];
+  
+  const shouldShowLibrary = (library: string) => {
+    return selectedLibrary === "all" || selectedLibrary === library;
+  };
+
+  // Search filter: check if component name matches query
+  const matchesSearch = (componentName: string) => {
+    if (!searchQuery.trim()) return true;
+    return componentName.toLowerCase().includes(searchQuery.toLowerCase().trim());
+  };
+
+  // Category filter - if no category specified, show all
+  const matchesCategory = (componentCategory?: string) => {
+    if (!componentCategory) return true; // Show components without category
+    return selectedCategory === "all" || selectedCategory === componentCategory;
+  };
+
+  // Toggle favorite
+  const toggleFavorite = (componentId: string) => {
+    const newFavorites = new Set(favorites);
+    if (newFavorites.has(componentId)) {
+      newFavorites.delete(componentId);
+    } else {
+      newFavorites.add(componentId);
+    }
+    setFavorites(newFavorites);
+    localStorage.setItem("ui-matrix-favorites", JSON.stringify(Array.from(newFavorites)));
+  };
+
+  // Copy code to clipboard
+  const copyCode = async (code: string, componentName: string) => {
+    try {
+      await navigator.clipboard.writeText(code);
+      alert(`✅ ${componentName} 코드가 복사되었습니다!`);
+    } catch {
+      alert("❌ 코드 복사에 실패했습니다.");
     }
   };
 
@@ -132,9 +193,70 @@ export default function UIMatrix() {
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="compare">Compare</TabsTrigger>
           </TabsList>
+
+          {/* Search & Filter Bar */}
+          <div className="mt-6 mb-8 space-y-4">
+            {/* Search Input */}
+            <div className="flex-1 relative">
+              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <Input
+                type="text"
+                placeholder="컴포넌트 검색... (예: Button, Input)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 border-2 border-border shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] focus:shadow-[4px_4px_0_0_hsl(var(--foreground)/0.15)] transition-shadow"
+              />
+            </div>
+
+            {/* Library Filter */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1">
+                <div className="text-xs font-semibold text-muted-foreground mb-2">라이브러리</div>
+                <div className="flex gap-2 flex-wrap">
+                  {libraries.map((lib) => (
+                    <button
+                      key={lib}
+                      onClick={() => setSelectedLibrary(lib)}
+                      className={`px-3 py-1.5 rounded-md border-2 border-border font-semibold text-xs transition-all duration-200 ${
+                        selectedLibrary === lib
+                          ? "bg-primary text-primary-foreground shadow-[2px_2px_0_0_hsl(var(--foreground)/0.2)]"
+                          : "bg-background hover:bg-muted shadow-[1px_1px_0_0_hsl(var(--foreground)/0.1)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.15)]"
+                      }`}
+                    >
+                      {lib === "all" ? "전체" : lib.charAt(0).toUpperCase() + lib.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category Filter */}
+              <div className="flex-1">
+                <div className="text-xs font-semibold text-muted-foreground mb-2">카테고리</div>
+                <div className="flex gap-2 flex-wrap">
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`px-3 py-1.5 rounded-md border-2 border-border font-semibold text-xs transition-all duration-200 ${
+                        selectedCategory === cat
+                          ? "bg-secondary text-secondary-foreground shadow-[2px_2px_0_0_hsl(var(--foreground)/0.2)]"
+                          : "bg-background hover:bg-muted shadow-[1px_1px_0_0_hsl(var(--foreground)/0.1)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.15)]"
+                      }`}
+                    >
+                      {cat === "all" ? "전체" : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <TabsContent value="gallery">
             <div className="space-y-16">
               {/* shadcn/ui Section */}
+              {shouldShowLibrary("shadcn") && (
               <section>
                 <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
                   <h3 className="text-2xl font-extrabold tracking-tight">
@@ -153,7 +275,8 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
-                  <article className="component-card">
+                  {matchesSearch("Button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="shadcn-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -163,6 +286,22 @@ export default function UIMatrix() {
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-button") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Button>Default</Button>\n<Button variant="outline">Outline</Button>', "Button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -171,8 +310,10 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
-                  <article className="component-card">
+                  {matchesSearch("Input") && matchesCategory("input") && (
+                  <article className="component-card" data-component="shadcn-input">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/input" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -182,6 +323,22 @@ export default function UIMatrix() {
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-input")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-input") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Input placeholder="Default" />\n<Input placeholder="Disabled" disabled />', "Input")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-2 w-full max-w-[200px]">
@@ -190,7 +347,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Select") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -215,7 +374,9 @@ export default function UIMatrix() {
                       </Select>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Checkbox") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -240,7 +401,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Radio") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -265,7 +428,9 @@ export default function UIMatrix() {
                       </RadioGroup>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Switch") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -290,7 +455,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Slider") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -309,7 +476,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Avatar") && matchesCategory("feedback") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -333,7 +502,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Badge") && matchesCategory("feedback") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -352,7 +523,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Progress") && matchesCategory() && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -561,7 +734,9 @@ export default function UIMatrix() {
                       </Table>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Textarea") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -600,8 +775,10 @@ export default function UIMatrix() {
                   </article>
                 </div>
               </section>
+              )}
 
               {/* Aceternity UI Section */}
+              {shouldShowLibrary("aceternity") && (
               <section>
                 <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
                   <h3 className="text-2xl font-extrabold tracking-tight">
@@ -760,8 +937,10 @@ export default function UIMatrix() {
                   </article> */}
                 </div>
               </section>
+              )}
 
               {/* Magic UI Section */}
+              {shouldShowLibrary("magicui") && (
               <section>
                 <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
                   <h3 className="text-2xl font-extrabold tracking-tight">
@@ -972,12 +1151,14 @@ export default function UIMatrix() {
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-2 items-center">
-                        <BlurFade delay={0} inView>
-                          <div className="text-sm">First</div>
-                        </BlurFade>
-                        <BlurFade delay={0.2} inView>
-                          <div className="text-sm">Second</div>
-                        </BlurFade>
+                        <Suspense fallback={<ComponentLoader />}>
+                          <BlurFade delay={0} inView>
+                            <div className="text-sm">First</div>
+                          </BlurFade>
+                          <BlurFade delay={0.2} inView>
+                            <div className="text-sm">Second</div>
+                          </BlurFade>
+                        </Suspense>
                       </div>
                     </div>
                   </article>
@@ -994,9 +1175,11 @@ export default function UIMatrix() {
                       </div>
                     </div>
                     <div className="component-card__body">
-                      <ConfettiButton className="text-sm px-3 py-1">
-                        🎉 Celebrate
-                      </ConfettiButton>
+                      <Suspense fallback={<ComponentLoader />}>
+                        <ConfettiButton className="text-sm px-3 py-1">
+                          🎉 Celebrate
+                        </ConfettiButton>
+                      </Suspense>
                     </div>
                   </article>
 
@@ -1012,9 +1195,11 @@ export default function UIMatrix() {
                       </div>
                     </div>
                     <div className="component-card__body">
-                      <CoolMode>
-                        <ShadcnButton size="sm">✨ Click Me</ShadcnButton>
-                      </CoolMode>
+                      <Suspense fallback={<ComponentLoader />}>
+                        <CoolMode>
+                          <ShadcnButton size="sm">✨ Click Me</ShadcnButton>
+                        </CoolMode>
+                      </Suspense>
                     </div>
                   </article>
 
@@ -1031,7 +1216,9 @@ export default function UIMatrix() {
                     </div>
                     <div className="component-card__body">
                       <div className="w-40 h-40 mx-auto relative">
-                        <Globe />
+                        <Suspense fallback={<ComponentLoader />}>
+                          <Globe />
+                        </Suspense>
                       </div>
                     </div>
                   </article>
@@ -1049,7 +1236,9 @@ export default function UIMatrix() {
                     </div>
                     <div className="component-card__body">
                       <div className="w-40 h-40 mx-auto">
-                        <IconCloud width={160} height={160} />
+                        <Suspense fallback={<ComponentLoader />}>
+                          <IconCloud />
+                        </Suspense>
                       </div>
                     </div>
                   </article>
@@ -1067,13 +1256,14 @@ export default function UIMatrix() {
                     </div>
                     <div className="component-card__body">
                       <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
-                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={50}>
-                          <div className="h-3 w-3 rounded-full bg-primary"></div>
-                        </OrbitingCircles>
-                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={50}>
-                          <div className="h-3 w-3 rounded-full bg-primary"></div>
-                        </OrbitingCircles>
-                        <div className="h-4 w-4 rounded-full bg-primary/50"></div>
+                        <Suspense fallback={<ComponentLoader />}>
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={50}>
+                            <div className="h-3 w-3 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={50}>
+                            <div className="h-3 w-3 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                        </Suspense>
                       </div>
                     </div>
                   </article>
@@ -1126,8 +1316,10 @@ export default function UIMatrix() {
                   </article> */}
                 </div>
               </section>
+              )}
 
               {/* Origin UI Section */}
+              {shouldShowLibrary("originui") && (
               <section>
                 <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
                   <h3 className="text-2xl font-extrabold tracking-tight">
@@ -1165,6 +1357,7 @@ export default function UIMatrix() {
                   </article>
                 </div>
               </section>
+              )}
             </div>
           </TabsContent>
           <TabsContent value="compare">
@@ -1774,9 +1967,11 @@ export default function UIMatrix() {
                       <span className="text-muted-foreground text-sm">-</span>
                     </td>
                     <td>
-                      <ConfettiButton className="text-xs px-3 py-1">
-                        🎉 Click
-                      </ConfettiButton>
+                      <Suspense fallback={<ComponentLoader />}>
+                        <ConfettiButton className="text-xs px-3 py-1">
+                          🎉 Click
+                        </ConfettiButton>
+                      </Suspense>
                     </td>
                   </tr>
                   <tr>
@@ -1788,9 +1983,11 @@ export default function UIMatrix() {
                       <span className="text-muted-foreground text-sm">-</span>
                     </td>
                     <td>
-                      <CoolMode>
-                        <ShadcnButton size="sm" className="text-xs">✨ Click</ShadcnButton>
-                      </CoolMode>
+                      <Suspense fallback={<ComponentLoader />}>
+                        <CoolMode>
+                          <ShadcnButton size="sm" className="text-xs">✨ Click</ShadcnButton>
+                        </CoolMode>
+                      </Suspense>
                     </td>
                   </tr>
                   <tr>
@@ -1803,7 +2000,9 @@ export default function UIMatrix() {
                     </td>
                     <td>
                       <div className="w-32 h-32 relative">
-                        <Globe />
+                        <Suspense fallback={<ComponentLoader />}>
+                          <Globe />
+                        </Suspense>
                       </div>
                     </td>
                   </tr>
@@ -1817,7 +2016,9 @@ export default function UIMatrix() {
                     </td>
                     <td>
                       <div className="w-32 h-32">
-                        <IconCloud width={128} height={128} />
+                        <Suspense fallback={<ComponentLoader />}>
+                          <IconCloud width={128} height={128} />
+                        </Suspense>
                       </div>
                     </td>
                   </tr>
@@ -1831,12 +2032,14 @@ export default function UIMatrix() {
                     </td>
                     <td>
                       <div className="relative w-32 h-32 flex items-center justify-center">
-                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={40}>
-                          <div className="h-2 w-2 rounded-full bg-primary"></div>
-                        </OrbitingCircles>
-                        <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={40}>
-                          <div className="h-2 w-2 rounded-full bg-primary"></div>
-                        </OrbitingCircles>
+                        <Suspense fallback={<ComponentLoader />}>
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={0} radius={40}>
+                            <div className="h-2 w-2 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                          <OrbitingCircles className="h-8 w-8 border-none bg-transparent" duration={20} delay={10} radius={40}>
+                            <div className="h-2 w-2 rounded-full bg-primary"></div>
+                          </OrbitingCircles>
+                        </Suspense>
                       </div>
                     </td>
                   </tr>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -80,11 +81,23 @@ export default function UIMatrix() {
             <div className="space-y-12">
               {/* shadcn/ui Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b">shadcn/ui</h3>
+                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
+                  shadcn/ui
+                  <Link href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    →
+                  </Link>
+                </h3>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -96,7 +109,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Input</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/input" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Input</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-2 w-full max-w-[200px]">
@@ -108,7 +128,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Select</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/select" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Select</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Select>
@@ -126,7 +153,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Checkbox</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/checkbox" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Checkbox</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-4">
@@ -144,7 +178,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Radio</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/radio-group" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Radio</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <RadioGroup defaultValue="option1">
@@ -162,7 +203,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Switch</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/switch" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Switch</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-4">
@@ -180,7 +228,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Slider</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/slider" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Slider</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="space-y-3 w-full max-w-[200px]">
@@ -192,7 +247,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Avatar</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/avatar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Avatar</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2">
@@ -209,7 +271,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Badge</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/badge" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Badge</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2">
@@ -221,7 +290,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Progress</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/progress" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Progress</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="space-y-2 w-full max-w-[200px]">
@@ -233,7 +309,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Dropdown</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/dropdown-menu" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Dropdown</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <DropdownMenu>
@@ -251,7 +334,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Tooltip</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Tooltip</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <TooltipProvider>
@@ -267,7 +357,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Accordion</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/accordion" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Accordion</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Accordion type="single" collapsible className="w-full">
@@ -285,7 +382,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Alert</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/alert" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Alert</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Alert>
@@ -296,7 +400,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Card</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Card</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Card>
@@ -312,7 +423,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Dialog</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/dialog" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Dialog</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Dialog>
@@ -328,7 +446,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Separator</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/separator" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Separator</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="space-y-2">
@@ -341,7 +466,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Table</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/table" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Table</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Table>
@@ -367,7 +499,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Textarea</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/textarea" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Textarea</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Textarea placeholder="Type your message here..." />
@@ -376,7 +515,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Tabs (shadcn)</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Tabs (shadcn)</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <Tabs defaultValue="tab1" className="w-full">
@@ -392,11 +538,23 @@ export default function UIMatrix() {
 
               {/* Aceternity UI Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b">Aceternity UI</h3>
+                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
+                  Aceternity UI
+                  <Link href="https://ui.aceternity.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    →
+                  </Link>
+                </h3>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Stateful Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/tailwindcss-buttons" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Stateful Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -408,7 +566,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Animated Tooltip</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/animated-tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Animated Tooltip</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <AnimatedTooltip
@@ -432,7 +597,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Moving Border</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/moving-border" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Moving Border</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-wrap gap-2 justify-center">
@@ -448,7 +620,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Hover Border Gradient</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/hover-border-gradient" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Hover Border Gradient</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-wrap gap-2 justify-center">
@@ -464,7 +643,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Animated Tabs</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Animated Tabs</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <AceternityTabs
@@ -502,11 +688,23 @@ export default function UIMatrix() {
 
               {/* Magic UI Section */}
               <section>
-                <h3 className="text-xl font-bold mb-6 pb-2 border-b">Magic UI</h3>
+                <h3 className="text-xl font-bold mb-6 pb-2 border-b flex items-center gap-2">
+                  Magic UI
+                  <Link href="https://magicui.design/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    →
+                  </Link>
+                </h3>
                 <div className="component-catalog__grid">
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Shimmer Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/shimmer-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Shimmer Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -518,7 +716,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Rainbow Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/rainbow-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Rainbow Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-wrap gap-2 justify-center">
@@ -530,7 +735,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Shiny Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/shiny-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Shiny Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-wrap gap-2 justify-center">
@@ -542,7 +754,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Avatar Circles</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/avatar-circles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Avatar Circles</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-3 items-center">
@@ -554,11 +773,35 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Animated Text</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/animated-gradient-text" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Animated Text</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-2 items-center">
                         <AnimatedGradientText className="text-sm">Gradient Text</AnimatedGradientText>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="component-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/sparkles-text" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Sparkles Text</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="flex flex-col gap-2 items-center">
                         <SparklesText className="text-sm">✨ Sparkles</SparklesText>
                       </div>
                     </div>
@@ -566,7 +809,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Ripple Effect</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/ripple" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Ripple Effect</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2">
@@ -582,7 +832,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Marquee</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/marquee" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Marquee</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="space-y-2">
@@ -600,7 +857,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Number Animation</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/number-ticker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Number Animation</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-4 text-2xl font-bold">
@@ -612,7 +876,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Blur Fade</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/blur-fade" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Blur Fade</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-col gap-2 items-center">
@@ -628,7 +899,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Confetti Button</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/confetti" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Confetti Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <ConfettiButton className="text-sm px-3 py-1">
@@ -639,7 +917,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Cool Mode</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/cool-mode" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Cool Mode</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <CoolMode>
@@ -650,7 +935,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Globe</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/globe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Globe</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="w-40 h-40 mx-auto relative">
@@ -661,7 +953,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Icon Cloud</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/icon-cloud" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Icon Cloud</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="w-40 h-40 mx-auto">
@@ -672,7 +971,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Orbiting Circles</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/orbiting-circles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Orbiting Circles</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
@@ -689,7 +995,14 @@ export default function UIMatrix() {
 
                   <article className="component-card">
                     <div className="component-card__header">
-                      <div className="component-card__title">Border Beam</div>
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/border-beam" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Border Beam</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="relative w-full h-24 rounded-lg border bg-muted flex items-center justify-center">

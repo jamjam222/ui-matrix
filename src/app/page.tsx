@@ -7,6 +7,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn
 import { Badge } from "@/components/ui/shadcn/badge";
 import { Input } from "@/components/ui/shadcn/input";
 import { Input as OriginInput } from "@/components/ui/originui/input";
+import OriginButtonExample from "@/components/ui/originui/button-01";
+import OriginCheckboxExample from "@/components/ui/originui/checkbox-01";
+import OriginRadioExample from "@/components/ui/originui/radio-01";
+import OriginSelectExample from "@/components/ui/originui/select-01";
+import OriginSliderExample from "@/components/ui/originui/slider-01";
+import OriginSwitchExample from "@/components/ui/originui/switch-01";
+import OriginAccordionExample from "@/components/ui/originui/accordion-01";
+import OriginAvatarExample from "@/components/ui/originui/avatar-01";
+import OriginBadgeExample from "@/components/ui/originui/badge-01";
+import OriginDialogExample from "@/components/ui/originui/dialog-01";
+import OriginDropdownExample from "@/components/ui/originui/dropdown-01";
+import OriginPopoverExample from "@/components/ui/originui/popover-01";
+import OriginTooltipExample from "@/components/ui/originui/tooltip-01";
+import OriginTabsExample from "@/components/ui/originui/tabs-01";
+import OriginTextareaExample from "@/components/ui/originui/textarea-01";
 import { Textarea } from "@/components/ui/shadcn/textarea";
 import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/shadcn/radio-group";
@@ -1875,22 +1890,372 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
-                  {matchesSearch("Input") && matchesCategory("input") && (
-                  <article className="component-card">
+                  {matchesSearch("OTP Button", "origin-button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="origin-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
-                        <Link href="https://originui.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                        <Link href="https://coss.com/origin/button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>OTP Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-button")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-button") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginButtonExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Input", "origin-input") && matchesCategory("input") && (
+                  <article className="component-card" data-component="origin-input">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/input" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
                           <span>Simple Input</span>
                           <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-input")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-input") ? "⭐" : "☆"}
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="w-full max-w-[280px]">
                         <OriginInput placeholder="Enter email..." type="email" />
                       </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Checkbox", "origin-checkbox") && matchesCategory("button") && (
+                  <article className="component-card" data-component="origin-checkbox">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/checkbox" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Checkbox</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-checkbox")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-checkbox") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginCheckboxExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Radio", "origin-radio") && matchesCategory("button") && (
+                  <article className="component-card" data-component="origin-radio">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/radio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Radio</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-radio")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-radio") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginRadioExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Select", "origin-select") && matchesCategory("input") && (
+                  <article className="component-card" data-component="origin-select">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/select" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Select</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-select")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-select") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginSelectExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Slider", "origin-slider") && matchesCategory("input") && (
+                  <article className="component-card" data-component="origin-slider">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/slider" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Slider</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-slider")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-slider") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginSliderExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Switch", "origin-switch") && matchesCategory("button") && (
+                  <article className="component-card" data-component="origin-switch">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/switch" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Switch</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-switch")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-switch") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginSwitchExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Accordion", "origin-accordion") && matchesCategory("layout") && (
+                  <article className="component-card" data-component="origin-accordion">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/accordion" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Accordion</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-accordion")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-accordion") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginAccordionExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Avatar", "origin-avatar") && matchesCategory("layout") && (
+                  <article className="component-card" data-component="origin-avatar">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/avatar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Avatar</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-avatar")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-avatar") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginAvatarExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Badge", "origin-badge") && matchesCategory("layout") && (
+                  <article className="component-card" data-component="origin-badge">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/badge" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Badge</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-badge")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-badge") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginBadgeExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Dialog", "origin-dialog") && matchesCategory("feedback") && (
+                  <article className="component-card" data-component="origin-dialog">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/dialog" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Dialog</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-dialog")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-dialog") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginDialogExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Dropdown", "origin-dropdown") && matchesCategory("navigation") && (
+                  <article className="component-card" data-component="origin-dropdown">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/dropdown" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Dropdown</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-dropdown")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-dropdown") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginDropdownExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Popover", "origin-popover") && matchesCategory("feedback") && (
+                  <article className="component-card col-span-2" data-component="origin-popover">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/popover" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Popover</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-popover")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-popover") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginPopoverExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Tooltip", "origin-tooltip") && matchesCategory("feedback") && (
+                  <article className="component-card col-span-2" data-component="origin-tooltip">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Tooltip</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-tooltip")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-tooltip") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginTooltipExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Tabs", "origin-tabs") && matchesCategory("navigation") && (
+                  <article className="component-card col-span-2" data-component="origin-tabs">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Tabs</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-tabs")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-tabs") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginTabsExample />
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Textarea", "origin-textarea") && matchesCategory("input") && (
+                  <article className="component-card col-span-2" data-component="origin-textarea">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://coss.com/origin/textarea" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Textarea</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button onClick={() => toggleFavorite("origin-textarea")} className="p-1 hover:bg-muted rounded transition-colors" title="즐겨찾기">
+                          {favorites.has("origin-textarea") ? "⭐" : "☆"}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <OriginTextareaExample />
                     </div>
                   </article>
                   )}

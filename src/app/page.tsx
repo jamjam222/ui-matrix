@@ -39,18 +39,27 @@ import {
   TooltipTrigger,
 } from "@/components/ui/shadcn/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/shadcn/tabs";
+import { Skeleton } from "@/components/ui/shadcn/skeleton";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/shadcn/drawer";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/shadcn/command";
 
 // UI 라이브러리 컴포넌트
 import { Button as AceternityButton } from "@/components/ui/aceternity/stateful-button";
 import { Button as MovingBorderButton } from "@/components/ui/aceternity/moving-border";
 import { HoverBorderGradient } from "@/components/ui/aceternity/hover-border-gradient";
+import { FloatingDock } from "@/components/ui/aceternity/floating-dock";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/aceternity/card-3d";
 import { ShimmerButton as MagicButton } from "@/components/ui/magicui/shimmer-button";
 import { RainbowButton } from "@/components/ui/magicui/rainbow-button";
 import { ShinyButton } from "@/components/ui/magicui/shiny-button";
 import { AvatarCircles } from "@/components/ui/magicui/avatar-circles";
 import { AnimatedGradientText } from "@/components/ui/magicui/animated-gradient-text";
-import { SparklesText } from "@/components/ui/magicui/sparkles-text";
+import { Meteors } from "@/components/ui/magicui/meteors";
+import { Particles } from "@/components/ui/magicui/particles";
 import { Ripple } from "@/components/ui/magicui/ripple";
+import { SparklesText } from "@/components/ui/magicui/sparkles-text";
+import PulsatingButton from "@/components/ui/magicui/pulsating-button";
+import { MagicCard } from "@/components/ui/magicui/magic-card";
 import { Marquee } from "@/components/ui/magicui/marquee";
 import { NumberTicker } from "@/components/ui/magicui/number-ticker";
 import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";
@@ -115,15 +124,23 @@ export default function UIMatrix() {
   };
 
   // Filter libraries based on selection
-  const libraries = ["all", "shadcn", "aceternity", "magicui", "originui"];
+  const libraries = ["all", "favorites", "shadcn", "aceternity", "magicui", "originui"];
   const categories = ["all", "button", "input", "layout", "animation", "navigation", "feedback"];
   
   const shouldShowLibrary = (library: string) => {
+    if (selectedLibrary === "favorites") {
+      // When favorites is selected, show all libraries but components will be filtered by favorites
+      return true;
+    }
     return selectedLibrary === "all" || selectedLibrary === library;
   };
 
   // Search filter: check if component name matches query
-  const matchesSearch = (componentName: string) => {
+  const matchesSearch = (componentName: string, componentId?: string) => {
+    // If favorites filter is active, only show favorited components
+    if (selectedLibrary === "favorites" && componentId && !favorites.has(componentId)) {
+      return false;
+    }
     if (!searchQuery.trim()) return true;
     return componentName.toLowerCase().includes(searchQuery.toLowerCase().trim());
   };
@@ -225,7 +242,7 @@ export default function UIMatrix() {
                           : "bg-background hover:bg-muted shadow-[1px_1px_0_0_hsl(var(--foreground)/0.1)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.15)]"
                       }`}
                     >
-                      {lib === "all" ? "전체" : lib.charAt(0).toUpperCase() + lib.slice(1)}
+                      {lib === "all" ? "전체" : lib === "favorites" ? "⭐ 즐겨찾기" : lib.charAt(0).toUpperCase() + lib.slice(1)}
                     </button>
                   ))}
                 </div>
@@ -275,7 +292,7 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
-                  {matchesSearch("Button") && matchesCategory("button") && (
+                  {matchesSearch("Button", "shadcn-button") && matchesCategory("button") && (
                   <article className="component-card" data-component="shadcn-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -312,7 +329,7 @@ export default function UIMatrix() {
                   </article>
                   )}
 
-                  {matchesSearch("Input") && matchesCategory("input") && (
+                  {matchesSearch("Input", "shadcn-input") && matchesCategory("input") && (
                   <article className="component-card" data-component="shadcn-input">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -544,7 +561,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Dropdown") && matchesCategory("navigation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -569,7 +588,9 @@ export default function UIMatrix() {
                       </DropdownMenu>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Tooltip") && matchesCategory("feedback") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -592,7 +613,9 @@ export default function UIMatrix() {
                       </TooltipProvider>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Accordion") && matchesCategory("layout") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -617,7 +640,9 @@ export default function UIMatrix() {
                       </Accordion>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Alert") && matchesCategory("feedback") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -635,7 +660,9 @@ export default function UIMatrix() {
                       </Alert>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Card") && matchesCategory("layout") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -658,7 +685,9 @@ export default function UIMatrix() {
                       </Card>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Dialog") && matchesCategory("feedback") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -681,7 +710,9 @@ export default function UIMatrix() {
                       </Dialog>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Separator") && matchesCategory("layout") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -701,7 +732,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Table") && matchesCategory("layout") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -752,8 +785,10 @@ export default function UIMatrix() {
                       <Textarea placeholder="Type your message here..." />
                     </div>
                   </article>
+                  )}
 
-                  <article className="component-card">
+                  {matchesSearch("Tabs", "shadcn-tabs") && matchesCategory("navigation") && (
+                  <article className="component-card" data-component="shadcn-tabs">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -762,6 +797,22 @@ export default function UIMatrix() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-tabs")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-tabs") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Tabs defaultValue="tab1">\n  <TabsList>\n    <TabsTrigger value="tab1">Tab 1</TabsTrigger>\n    <TabsTrigger value="tab2">Tab 2</TabsTrigger>\n  </TabsList>\n</Tabs>', "Tabs")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
                       </div>
                     </div>
                     <div className="component-card__body">
@@ -773,6 +824,177 @@ export default function UIMatrix() {
                       </Tabs>
                     </div>
                   </article>
+                  )}
+
+                  {matchesSearch("Toggle", "shadcn-toggle") && matchesCategory("input") && (
+                  <article className="component-card" data-component="shadcn-toggle">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/toggle" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Toggle</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-toggle")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-toggle") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Toggle>Toggle Me</Toggle>', "Toggle")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="flex gap-2 justify-center">
+                        <ShadcnButton variant="outline" size="sm">Bold</ShadcnButton>
+                        <ShadcnButton variant="outline" size="sm">Italic</ShadcnButton>
+                      </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Skeleton", "shadcn-skeleton") && matchesCategory("feedback") && (
+                  <article className="component-card" data-component="shadcn-skeleton">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/skeleton" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Skeleton</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-skeleton")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-skeleton") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Skeleton className="w-[200px] h-[20px]" />', "Skeleton")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="flex flex-col gap-2 w-full max-w-[200px]">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                      </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Command", "shadcn-command") && matchesCategory("navigation") && (
+                  <article className="component-card" data-component="shadcn-command">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/command" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Command</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-command")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-command") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Command>\n  <CommandInput placeholder="Search..." />\n  <CommandList>\n    <CommandItem>Item</CommandItem>\n  </CommandList>\n</Command>', "Command")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <Command className="rounded-lg border w-full max-w-[280px]">
+                        <CommandInput placeholder="Search..." />
+                        <CommandList>
+                          <CommandEmpty>No results</CommandEmpty>
+                          <CommandGroup heading="Suggestions">
+                            <CommandItem>Calendar</CommandItem>
+                            <CommandItem>Settings</CommandItem>
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Drawer", "shadcn-drawer") && matchesCategory("feedback") && (
+                  <article className="component-card" data-component="shadcn-drawer">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://ui.shadcn.com/docs/components/drawer" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Drawer</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("shadcn-drawer")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("shadcn-drawer") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Drawer>\n  <DrawerTrigger>Open</DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Title</DrawerTitle>\n    </DrawerHeader>\n  </DrawerContent>\n</Drawer>', "Drawer")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <Drawer>
+                        <DrawerTrigger asChild>
+                          <ShadcnButton variant="outline">Open Drawer</ShadcnButton>
+                        </DrawerTrigger>
+                        <DrawerContent>
+                          <DrawerHeader>
+                            <DrawerTitle>Drawer Title</DrawerTitle>
+                            <DrawerDescription>This is a drawer component</DrawerDescription>
+                          </DrawerHeader>
+                          <div className="p-4">
+                            <p className="text-sm text-muted-foreground">Drawer content goes here...</p>
+                          </div>
+                          <DrawerFooter>
+                            <DrawerClose asChild>
+                              <ShadcnButton variant="outline">Close</ShadcnButton>
+                            </DrawerClose>
+                          </DrawerFooter>
+                        </DrawerContent>
+                      </Drawer>
+                    </div>
+                  </article>
+                  )}
                 </div>
               </section>
               )}
@@ -797,7 +1019,8 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
-                  <article className="component-card">
+                  {matchesSearch("Stateful Button", "aceternity-button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="aceternity-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/tailwindcss-buttons" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -807,6 +1030,22 @@ export default function UIMatrix() {
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("aceternity-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("aceternity-button") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<AceternityButton>Click Me</AceternityButton>', "Stateful Button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -815,7 +1054,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Animated Tooltip") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -846,7 +1087,9 @@ export default function UIMatrix() {
                       />
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Moving Border") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -869,7 +1112,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Hover Border") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -892,7 +1137,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Tabs") && matchesCategory("navigation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -915,26 +1162,92 @@ export default function UIMatrix() {
                       />
                     </div>
                   </article>
+                  )}
 
-                  {/* <article className="component-card">
+                  {matchesSearch("Floating Dock", "aceternity-floating-dock") && matchesCategory("navigation") && (
+                  <article className="component-card" data-component="aceternity-floating-dock">
                     <div className="component-card__header">
-                      <div className="component-card__title">Bento Grid</div>
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/floating-dock" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Floating Dock</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("aceternity-floating-dock")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("aceternity-floating-dock") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<FloatingDock items={[...]} />', "Floating Dock")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
-                      <BentoGrid className="max-w-full">
-                        <BentoGridItem
-                          title="Item 1"
-                          description="Grid item"
-                          className="bg-muted"
+                      <div className="flex justify-center py-4">
+                        <FloatingDock
+                          items={[
+                            { title: "Home", icon: "🏠", href: "#" },
+                            { title: "Search", icon: "🔍", href: "#" },
+                            { title: "Settings", icon: "⚙️", href: "#" }
+                          ]}
                         />
-                        <BentoGridItem
-                          title="Item 2"
-                          description="Grid item"
-                          className="bg-muted"
-                        />
-                      </BentoGrid>
+                      </div>
                     </div>
-                  </article> */}
+                  </article>
+                  )}
+
+                  {matchesSearch("3D Card", "aceternity-3d-card") && matchesCategory("animation") && (
+                  <article className="component-card" data-component="aceternity-3d-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://ui.aceternity.com/components/3d-card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>3D Card Effect</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("aceternity-3d-card")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("aceternity-3d-card") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<CardContainer>\n  <CardBody>\n    <CardItem translateZ="50">\n      Content\n    </CardItem>\n  </CardBody>\n</CardContainer>', "3D Card")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <CardContainer className="w-full">
+                        <CardBody className="bg-gray-50 dark:bg-black/[0.8] relative group/card border-black/[0.1] w-auto h-auto rounded-xl p-6">
+                          <CardItem translateZ="50" className="text-xl font-bold text-neutral-600 dark:text-white">
+                            3D Card
+                          </CardItem>
+                          <CardItem translateZ="100" className="text-sm text-neutral-500 dark:text-neutral-300 mt-2">
+                            Hover to see the effect
+                          </CardItem>
+                        </CardBody>
+                      </CardContainer>
+                    </div>
+                  </article>
+                  )}
                 </div>
               </section>
               )}
@@ -959,7 +1272,8 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
-                  <article className="component-card">
+                  {matchesSearch("Shimmer Button", "magic-shimmer-button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="magic-shimmer-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/shimmer-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -969,6 +1283,22 @@ export default function UIMatrix() {
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-shimmer-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-shimmer-button") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<MagicButton>Shimmer</MagicButton>', "Shimmer Button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex gap-2 justify-center">
@@ -977,8 +1307,10 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
-                  <article className="component-card">
+                  {matchesSearch("Rainbow Button", "magic-rainbow-button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="magic-rainbow-button">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/rainbow-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -988,6 +1320,22 @@ export default function UIMatrix() {
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-rainbow-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-rainbow-button") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<RainbowButton>Rainbow</RainbowButton>', "Rainbow Button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
                       <div className="flex flex-wrap gap-2 justify-center">
@@ -996,7 +1344,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Shiny Button") && matchesCategory("button") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1015,7 +1365,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Avatar Circles") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1034,7 +1386,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Animated Gradient Text") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1052,7 +1406,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Sparkles Text") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1070,30 +1426,194 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
-                  <article className="component-card">
+                  {matchesSearch("Meteors", "magic-meteors") && matchesCategory("animation") && (
+                  <article className="component-card" data-component="magic-meteors">
                     <div className="component-card__header">
                       <div className="component-card__title">
-                        <Link href="https://magicui.design/docs/components/ripple" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
-                          <span>Ripple Effect</span>
+                        <Link href="https://magicui.design/docs/components/meteors" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Meteors</span>
                           <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </Link>
                       </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-meteors")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-meteors") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Meteors number={20} />', "Meteors")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
                     </div>
                     <div className="component-card__body">
-                      <div className="flex gap-2">
-                        <div className="relative w-20 h-20 flex items-center justify-center bg-muted rounded-lg">
-                          <Ripple />
-                        </div>
-                        <div className="relative w-20 h-20 flex items-center justify-center bg-muted rounded-full">
-                          <Ripple />
-                        </div>
+                      <div className="relative h-32 w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-900 to-slate-800">
+                        <Meteors number={20} />
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Particles", "magic-particles") && matchesCategory("animation") && (
+                  <article className="component-card" data-component="magic-particles">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/particles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Particles</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-particles")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-particles") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Particles className="..." />', "Particles")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="relative h-32 w-full overflow-hidden rounded-lg bg-gradient-to-br from-blue-900 to-purple-900">
+                        <Particles className="absolute inset-0" quantity={50} />
+                      </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Ripple", "magic-ripple") && matchesCategory("animation") && (
+                  <article className="component-card" data-component="magic-ripple">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/ripple" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Ripple</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-ripple")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-ripple") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<Ripple />', "Ripple")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="relative flex h-32 w-full items-center justify-center overflow-hidden rounded-lg border bg-background">
+                        <Ripple />
+                      </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Pulsating Button", "magic-pulsating-button") && matchesCategory("button") && (
+                  <article className="component-card" data-component="magic-pulsating-button">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/pulsating-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Pulsating Button</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-pulsating-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-pulsating-button") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<PulsatingButton>Click Me</PulsatingButton>', "Pulsating Button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <div className="flex gap-2 justify-center">
+                        <PulsatingButton>Pulsating</PulsatingButton>
+                      </div>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Magic Card", "magic-card") && matchesCategory("animation") && (
+                  <article className="component-card" data-component="magic-card">
+                    <div className="component-card__header">
+                      <div className="component-card__title">
+                        <Link href="https://magicui.design/docs/components/magic-card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
+                          <span>Magic Card</span>
+                          <svg className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </Link>
+                      </div>
+                      <div className="flex gap-1">
+                        <button
+                          onClick={() => toggleFavorite("magic-card")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="즐겨찾기"
+                        >
+                          {favorites.has("magic-card") ? "⭐" : "☆"}
+                        </button>
+                        <button
+                          onClick={() => copyCode('<MagicCard>\n  <div>Content</div>\n</MagicCard>', "Magic Card")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="코드 복사"
+                        >
+                          📋
+                        </button>
+                      </div>
+                    </div>
+                    <div className="component-card__body">
+                      <MagicCard className="cursor-pointer flex-col items-center justify-center p-6 shadow-2xl w-full h-32">
+                        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                          Magic Card
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          Hover to see the magic
+                        </p>
+                      </MagicCard>
+                    </div>
+                  </article>
+                  )}
+
+                  {matchesSearch("Marquee") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1118,7 +1638,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Number Ticker") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1137,7 +1659,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Blur Fade") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1162,7 +1686,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Confetti") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1182,7 +1708,9 @@ export default function UIMatrix() {
                       </Suspense>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Cool Mode") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1202,7 +1730,9 @@ export default function UIMatrix() {
                       </Suspense>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Globe") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1222,7 +1752,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Icon Cloud") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1242,7 +1774,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Orbiting Circles") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1267,7 +1801,9 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
+                  {matchesSearch("Border Beam") && matchesCategory("animation") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1286,6 +1822,7 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
 
                   {/* <article className="component-card">
                     <div className="component-card__header">
@@ -1338,6 +1875,7 @@ export default function UIMatrix() {
                   </Link>
                 </div>
                 <div className="component-catalog__grid">
+                  {matchesSearch("Input") && matchesCategory("input") && (
                   <article className="component-card">
                     <div className="component-card__header">
                       <div className="component-card__title">
@@ -1355,6 +1893,7 @@ export default function UIMatrix() {
                       </div>
                     </div>
                   </article>
+                  )}
                 </div>
               </section>
               )}

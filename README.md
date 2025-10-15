@@ -59,7 +59,7 @@ npm run add:originui comp-01
 ### 1. 저장소 클론
 
 ```bash
-git clone https://github.com/<your-username>/ui-matrix.git
+git clone https://github.com/jamjam222/ui-matrix.git
 cd ui-matrix
 ```
 

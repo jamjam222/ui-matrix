@@ -9,7 +9,7 @@
 
 ## 🌐 Live Demo
 
-**🚀 [https://ui-matrix.vercel.app](https://ui-matrix.vercel.app)** _(배포 후 업데이트)_
+**🚀 [https://ui-matrix-k1p6k48s8-jamjam222s-projects.vercel.app](https://ui-matrix-k1p6k48s8-jamjam222s-projects.vercel.app)**
 
 ## ✨ 주요 기능
 

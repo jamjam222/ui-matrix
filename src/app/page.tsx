@@ -2,7 +2,9 @@
 
 import { useEffect, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useDebounce } from "@/hooks/use-debounce";
 import { ToastContainer } from "@/components/ui/toast";
+import { PageLoadingSkeleton, ComponentLoader } from "@/components/loading-skeleton";
 import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
@@ -91,26 +93,18 @@ const Globe = lazy(() => import("@/components/ui/magicui/globe").then(mod => ({ 
 const IconCloud = lazy(() => import("@/components/ui/magicui/icon-cloud").then(mod => ({ default: mod.IconCloud })));
 const BorderBeam = lazy(() => import("@/components/ui/magicui/border-beam").then(mod => ({ default: mod.BorderBeam })));
 
-// Loading fallback component with skeleton
-function ComponentLoader() {
-  return (
-    <div className="flex flex-col gap-3 p-4 animate-pulse">
-      <div className="h-4 bg-muted rounded w-3/4"></div>
-      <div className="h-4 bg-muted rounded w-full"></div>
-      <div className="h-4 bg-muted rounded w-2/3"></div>
-      <div className="h-20 bg-muted rounded w-full mt-2"></div>
-    </div>
-  );
-}
-
 export default function UIMatrix() {
   const [isDark, setIsDark] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLibrary, setSelectedLibrary] = useState<string>("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    // Simulate initial loading
+    setIsLoading(true);
+    
     // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -128,6 +122,9 @@ export default function UIMatrix() {
     if (savedFavorites) {
       setFavorites(new Set(JSON.parse(savedFavorites)));
     }
+    
+    // End loading after initialization
+    setTimeout(() => setIsLoading(false), 500);
   }, []);
 
   const toggleTheme = () => {
@@ -155,10 +152,13 @@ export default function UIMatrix() {
     return selectedLibrary === "all" || selectedLibrary === library;
   };
 
+  // Debounce search query for better performance (300ms delay)
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
   // Memoize normalized search query
   const normalizedSearchQuery = useMemo(() => {
-    return searchQuery.toLowerCase().trim();
-  }, [searchQuery]);
+    return debouncedSearchQuery.toLowerCase().trim();
+  }, [debouncedSearchQuery]);
 
   // Search filter: check if component name matches query (memoized)
   const matchesSearch = useCallback((componentName: string, componentId?: string) => {
@@ -335,9 +335,20 @@ export default function UIMatrix() {
     },
   ];
 
+  // Show loading skeleton on initial load
+  if (isLoading) {
+    return <PageLoadingSkeleton />;
+  }
+
   return (
-    <main className="component-catalog container mx-auto px-6 py-12 space-y-16">
-      <header className="flex items-center justify-between mb-8">
+    <>
+      {/* Skip to main content for keyboard navigation */}
+      <a href="#main-content" className="skip-to-content">
+        메인 콘텐츠로 건너뛰기
+      </a>
+
+      <main id="main-content" className="component-catalog container mx-auto px-6 py-12 space-y-16">
+        <header className="flex items-center justify-between mb-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             UI Matrix
@@ -3201,5 +3212,6 @@ export default function UIMatrix() {
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onRemove={removeToast} />
     </main>
+    </>
   );
 }

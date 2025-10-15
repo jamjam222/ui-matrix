@@ -443,7 +443,7 @@ export default function UIMatrix() {
                 </div>
                 <div className="component-catalog__grid">
                   {matchesSearch("Button", "shadcn-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="shadcn-button">
+                  <article className="component-card animate-fade-in-up" data-component="shadcn-button" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -480,7 +480,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Input", "shadcn-input") && matchesCategory("input") && (
-                  <article className="component-card" data-component="shadcn-input">
+                  <article className="component-card animate-fade-in-up" data-component="shadcn-input" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/input" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -517,7 +517,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Select") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/select" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -544,7 +544,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Checkbox") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/checkbox" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -571,7 +571,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Radio") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/radio-group" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -598,7 +598,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Switch") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/switch" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -625,7 +625,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Slider") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/slider" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -646,7 +646,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Avatar") && matchesCategory("feedback") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/avatar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -672,7 +672,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Badge") && matchesCategory("feedback") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/badge" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -693,7 +693,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Progress") && matchesCategory() && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/progress" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -714,7 +714,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Dropdown") && matchesCategory("navigation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/dropdown-menu" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -741,7 +741,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Tooltip") && matchesCategory("feedback") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -766,7 +766,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Accordion") && matchesCategory("layout") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/accordion" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -793,7 +793,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Alert") && matchesCategory("feedback") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/alert" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -813,7 +813,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Card") && matchesCategory("layout") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -838,7 +838,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Dialog") && matchesCategory("feedback") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/dialog" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -863,7 +863,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Separator") && matchesCategory("layout") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/separator" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -885,7 +885,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Table") && matchesCategory("layout") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/table" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -920,7 +920,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Textarea") && matchesCategory("input") && (
-                  <article className="component-card">
+                  <article className="component-card" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/textarea" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -938,7 +938,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Tabs", "shadcn-tabs") && matchesCategory("navigation") && (
-                  <article className="component-card" data-component="shadcn-tabs">
+                  <article className="component-card" data-component="shadcn-tabs" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -977,7 +977,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Toggle", "shadcn-toggle") && matchesCategory("input") && (
-                  <article className="component-card" data-component="shadcn-toggle">
+                  <article className="component-card" data-component="shadcn-toggle" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/toggle" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1014,7 +1014,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Skeleton", "shadcn-skeleton") && matchesCategory("feedback") && (
-                  <article className="component-card" data-component="shadcn-skeleton">
+                  <article className="component-card" data-component="shadcn-skeleton" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/skeleton" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1052,7 +1052,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Command", "shadcn-command") && matchesCategory("navigation") && (
-                  <article className="component-card" data-component="shadcn-command">
+                  <article className="component-card" data-component="shadcn-command" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/command" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1095,7 +1095,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Drawer", "shadcn-drawer") && matchesCategory("feedback") && (
-                  <article className="component-card" data-component="shadcn-drawer">
+                  <article className="component-card" data-component="shadcn-drawer" data-library="shadcn">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.shadcn.com/docs/components/drawer" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1170,7 +1170,7 @@ export default function UIMatrix() {
                 </div>
                 <div className="component-catalog__grid">
                   {matchesSearch("Stateful Button", "aceternity-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="aceternity-button">
+                  <article className="component-card animate-fade-in-up" data-component="aceternity-button" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/tailwindcss-buttons" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1207,7 +1207,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Animated Tooltip") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/animated-tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1240,7 +1240,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Moving Border") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/moving-border" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1265,7 +1265,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Hover Border") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/hover-border-gradient" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1290,7 +1290,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Tabs") && matchesCategory("navigation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1315,7 +1315,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Floating Dock", "aceternity-floating-dock") && matchesCategory("navigation") && (
-                  <article className="component-card" data-component="aceternity-floating-dock">
+                  <article className="component-card animate-fade-in-up" data-component="aceternity-floating-dock" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/floating-dock" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1357,7 +1357,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("3D Card", "aceternity-3d-card") && matchesCategory("animation") && (
-                  <article className="component-card" data-component="aceternity-3d-card">
+                  <article className="component-card animate-fade-in-up" data-component="aceternity-3d-card" data-library="aceternity">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://ui.aceternity.com/components/3d-card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1423,7 +1423,7 @@ export default function UIMatrix() {
                 </div>
                 <div className="component-catalog__grid">
                   {matchesSearch("Shimmer Button", "magic-shimmer-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="magic-shimmer-button">
+                  <article className="component-card animate-fade-in-up" data-component="magic-shimmer-button" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/shimmer-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1460,7 +1460,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Rainbow Button", "magic-rainbow-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="magic-rainbow-button">
+                  <article className="component-card animate-fade-in-up" data-component="magic-rainbow-button" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/rainbow-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1497,7 +1497,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Shiny Button") && matchesCategory("button") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/shiny-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1518,7 +1518,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Avatar Circles") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/avatar-circles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1539,7 +1539,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Animated Gradient Text") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/animated-gradient-text" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1559,7 +1559,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Sparkles Text") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/sparkles-text" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1579,7 +1579,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Meteors", "magic-meteors") && matchesCategory("animation") && (
-                  <article className="component-card" data-component="magic-meteors">
+                  <article className="component-card animate-fade-in-up" data-component="magic-meteors" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/meteors" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1615,7 +1615,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Particles", "magic-particles") && matchesCategory("animation") && (
-                  <article className="component-card" data-component="magic-particles">
+                  <article className="component-card animate-fade-in-up" data-component="magic-particles" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/particles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1651,7 +1651,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Ripple", "magic-ripple") && matchesCategory("animation") && (
-                  <article className="component-card" data-component="magic-ripple">
+                  <article className="component-card animate-fade-in-up" data-component="magic-ripple" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/ripple" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1687,7 +1687,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Pulsating Button", "magic-pulsating-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="magic-pulsating-button">
+                  <article className="component-card animate-fade-in-up" data-component="magic-pulsating-button" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/pulsating-button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1723,7 +1723,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Magic Card", "magic-card") && matchesCategory("animation") && (
-                  <article className="component-card" data-component="magic-card">
+                  <article className="component-card animate-fade-in-up" data-component="magic-card" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/magic-card" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1764,7 +1764,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Marquee") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/marquee" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1791,7 +1791,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Number Ticker") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/number-ticker" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1812,7 +1812,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Blur Fade") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/blur-fade" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1839,7 +1839,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Confetti") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/confetti" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1861,7 +1861,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Cool Mode") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card animate-fade-in-up" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/cool-mode" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1883,7 +1883,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Globe") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/globe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1905,7 +1905,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Icon Cloud") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/icon-cloud" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1927,7 +1927,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Orbiting Circles") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/orbiting-circles" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -1954,7 +1954,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Border Beam") && matchesCategory("animation") && (
-                  <article className="component-card">
+                  <article className="component-card" data-library="magicui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://magicui.design/docs/components/border-beam" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2026,7 +2026,7 @@ export default function UIMatrix() {
                 </div>
                 <div className="component-catalog__grid">
                   {matchesSearch("OTP Button", "origin-button") && matchesCategory("button") && (
-                  <article className="component-card" data-component="origin-button">
+                  <article className="component-card animate-fade-in-up" data-component="origin-button" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/button" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2049,7 +2049,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Input", "origin-input") && matchesCategory("input") && (
-                  <article className="component-card" data-component="origin-input">
+                  <article className="component-card animate-fade-in-up" data-component="origin-input" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/input" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2074,7 +2074,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Checkbox", "origin-checkbox") && matchesCategory("button") && (
-                  <article className="component-card" data-component="origin-checkbox">
+                  <article className="component-card animate-fade-in-up" data-component="origin-checkbox" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/checkbox" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2097,7 +2097,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Radio", "origin-radio") && matchesCategory("button") && (
-                  <article className="component-card" data-component="origin-radio">
+                  <article className="component-card animate-fade-in-up" data-component="origin-radio" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/radio" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2120,7 +2120,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Select", "origin-select") && matchesCategory("input") && (
-                  <article className="component-card" data-component="origin-select">
+                  <article className="component-card animate-fade-in-up" data-component="origin-select" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/select" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2143,7 +2143,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Slider", "origin-slider") && matchesCategory("input") && (
-                  <article className="component-card" data-component="origin-slider">
+                  <article className="component-card animate-fade-in-up" data-component="origin-slider" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/slider" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2166,7 +2166,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Switch", "origin-switch") && matchesCategory("button") && (
-                  <article className="component-card" data-component="origin-switch">
+                  <article className="component-card animate-fade-in-up" data-component="origin-switch" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/switch" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2189,7 +2189,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Accordion", "origin-accordion") && matchesCategory("layout") && (
-                  <article className="component-card" data-component="origin-accordion">
+                  <article className="component-card animate-fade-in-up" data-component="origin-accordion" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/accordion" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2212,7 +2212,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Avatar", "origin-avatar") && matchesCategory("layout") && (
-                  <article className="component-card" data-component="origin-avatar">
+                  <article className="component-card" data-component="origin-avatar" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/avatar" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2235,7 +2235,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Badge", "origin-badge") && matchesCategory("layout") && (
-                  <article className="component-card" data-component="origin-badge">
+                  <article className="component-card" data-component="origin-badge" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/badge" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2258,7 +2258,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Dialog", "origin-dialog") && matchesCategory("feedback") && (
-                  <article className="component-card" data-component="origin-dialog">
+                  <article className="component-card" data-component="origin-dialog" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/dialog" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2281,7 +2281,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Dropdown", "origin-dropdown") && matchesCategory("navigation") && (
-                  <article className="component-card" data-component="origin-dropdown">
+                  <article className="component-card" data-component="origin-dropdown" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/dropdown" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2304,7 +2304,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Popover", "origin-popover") && matchesCategory("feedback") && (
-                  <article className="component-card col-span-2" data-component="origin-popover">
+                  <article className="component-card col-span-2" data-component="origin-popover" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/popover" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2327,7 +2327,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Tooltip", "origin-tooltip") && matchesCategory("feedback") && (
-                  <article className="component-card col-span-2" data-component="origin-tooltip">
+                  <article className="component-card col-span-2" data-component="origin-tooltip" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/tooltip" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2350,7 +2350,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Tabs", "origin-tabs") && matchesCategory("navigation") && (
-                  <article className="component-card col-span-2" data-component="origin-tabs">
+                  <article className="component-card col-span-2" data-component="origin-tabs" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/tabs" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">
@@ -2373,7 +2373,7 @@ export default function UIMatrix() {
                   )}
 
                   {matchesSearch("Textarea", "origin-textarea") && matchesCategory("input") && (
-                  <article className="component-card col-span-2" data-component="origin-textarea">
+                  <article className="component-card col-span-2" data-component="origin-textarea" data-library="originui">
                     <div className="component-card__header">
                       <div className="component-card__title">
                         <Link href="https://coss.com/origin/textarea" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group">

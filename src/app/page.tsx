@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ToastContainer } from "@/components/ui/toast";
 import Link from "next/link";
@@ -155,24 +155,29 @@ export default function UIMatrix() {
     return selectedLibrary === "all" || selectedLibrary === library;
   };
 
-  // Search filter: check if component name matches query
-  const matchesSearch = (componentName: string, componentId?: string) => {
+  // Memoize normalized search query
+  const normalizedSearchQuery = useMemo(() => {
+    return searchQuery.toLowerCase().trim();
+  }, [searchQuery]);
+
+  // Search filter: check if component name matches query (memoized)
+  const matchesSearch = useCallback((componentName: string, componentId?: string) => {
     // If favorites filter is active, only show favorited components
     if (selectedLibrary === "favorites" && componentId && !favorites.has(componentId)) {
       return false;
     }
-    if (!searchQuery.trim()) return true;
-    return componentName.toLowerCase().includes(searchQuery.toLowerCase().trim());
-  };
+    if (!normalizedSearchQuery) return true;
+    return componentName.toLowerCase().includes(normalizedSearchQuery);
+  }, [selectedLibrary, favorites, normalizedSearchQuery]);
 
-  // Category filter - if no category specified, show all
-  const matchesCategory = (componentCategory?: string) => {
+  // Category filter - if no category specified, show all (memoized)
+  const matchesCategory = useCallback((componentCategory?: string) => {
     if (!componentCategory) return true; // Show components without category
     return selectedCategory === "all" || selectedCategory === componentCategory;
-  };
+  }, [selectedCategory]);
 
-  // Toggle favorite
-  const toggleFavorite = (componentId: string) => {
+  // Toggle favorite (memoized)
+  const toggleFavorite = useCallback((componentId: string) => {
     const newFavorites = new Set(favorites);
     if (newFavorites.has(componentId)) {
       newFavorites.delete(componentId);
@@ -181,20 +186,20 @@ export default function UIMatrix() {
     }
     setFavorites(newFavorites);
     localStorage.setItem("ui-matrix-favorites", JSON.stringify(Array.from(newFavorites)));
-  };
+  }, [favorites]);
 
   // Toast notifications
   const { toasts, success, error, removeToast } = useToast();
 
-  // Copy code to clipboard
-  const copyCode = async (code: string, componentName: string) => {
+  // Copy code to clipboard (memoized)
+  const copyCode = useCallback(async (code: string, componentName: string) => {
     try {
       await navigator.clipboard.writeText(code);
       success(`${componentName} 코드가 복사되었습니다!`);
     } catch {
       error("코드 복사에 실패했습니다.");
     }
-  };
+  }, [success, error]);
 
   // Component groups for "By Component" tab
   const componentGroups = [

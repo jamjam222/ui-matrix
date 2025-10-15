@@ -321,6 +321,40 @@
     border: 2px solid rgb(154 52 18) !important; /* orange-800 */
   }
   
+  /* Ripple Effect - Apply to all interactive buttons */
+  .component-card button,
+  button[title="즐겨찾기"],
+  button[title="코드 복사"] {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .component-card button::after,
+  button[title="즐겨찾기"]::after,
+  button[title="코드 복사"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(var(--primary-rgb, 59 130 246), 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s, opacity 0.6s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .component-card button:active::after,
+  button[title="즐겨찾기"]:active::after,
+  button[title="코드 복사"]:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: width 0s, height 0s, opacity 0.3s;
+  }
+  
   /* Card variants */
   .component-card--glass {
     @apply bg-background/60 backdrop-blur-md border-white/20 dark:border-white/10;

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, lazy, Suspense } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { ToastContainer } from "@/components/ui/toast";
 import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
@@ -89,11 +91,14 @@ const Globe = lazy(() => import("@/components/ui/magicui/globe").then(mod => ({ 
 const IconCloud = lazy(() => import("@/components/ui/magicui/icon-cloud").then(mod => ({ default: mod.IconCloud })));
 const BorderBeam = lazy(() => import("@/components/ui/magicui/border-beam").then(mod => ({ default: mod.BorderBeam })));
 
-// Loading fallback component
+// Loading fallback component with skeleton
 function ComponentLoader() {
   return (
-    <div className="flex items-center justify-center p-8">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    <div className="flex flex-col gap-3 p-4 animate-pulse">
+      <div className="h-4 bg-muted rounded w-3/4"></div>
+      <div className="h-4 bg-muted rounded w-full"></div>
+      <div className="h-4 bg-muted rounded w-2/3"></div>
+      <div className="h-20 bg-muted rounded w-full mt-2"></div>
     </div>
   );
 }
@@ -178,13 +183,16 @@ export default function UIMatrix() {
     localStorage.setItem("ui-matrix-favorites", JSON.stringify(Array.from(newFavorites)));
   };
 
+  // Toast notifications
+  const { toasts, success, error, removeToast } = useToast();
+
   // Copy code to clipboard
   const copyCode = async (code: string, componentName: string) => {
     try {
       await navigator.clipboard.writeText(code);
-      alert(`✅ ${componentName} 코드가 복사되었습니다!`);
+      success(`${componentName} 코드가 복사되었습니다!`);
     } catch {
-      alert("❌ 코드 복사에 실패했습니다.");
+      error("코드 복사에 실패했습니다.");
     }
   };
 
@@ -3179,6 +3187,9 @@ export default function UIMatrix() {
           </TabsContent>
         </Tabs>
       </section>
+
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </main>
   );
 }

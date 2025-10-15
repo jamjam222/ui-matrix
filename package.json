@@ -1,6 +1,25 @@
 {
   "name": "ui-matrix",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "여러 UI 라이브러리의 컴포넌트를 한 곳에서 비교하고 탐색할 수 있는 인터랙티브 갤러리",
+  "author": "jamjam222",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamjam222/ui-matrix.git"
+  },
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "ui-library",
+    "component-library",
+    "shadcn-ui",
+    "aceternity-ui",
+    "magic-ui",
+    "origin-ui",
+    "portfolio"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

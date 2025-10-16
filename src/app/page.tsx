@@ -800,9 +800,9 @@ export default function UIMatrix() {
         className="component-catalog container mx-auto px-6 py-12 space-y-16"
         tabIndex={-1}
       >
-        <header className="flex items-center justify-between mb-8 p-6 rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+        <header className="flex items-center justify-between mb-8 p-6 rounded-2xl" style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
           <div className="space-y-2">
-            <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent drop-shadow-sm">
+            <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               UI Matrix
             </h1>
             <p className="text-base text-muted-foreground font-medium">
@@ -813,7 +813,8 @@ export default function UIMatrix() {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-3 rounded-xl bg-background/70 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 transition-all duration-300 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] hover:shadow-[0_6px_20px_0_rgba(31,38,135,0.2)] hover:-translate-y-0.5 active:translate-y-0"
+            className="p-3 rounded-xl transition-all duration-300 hover:-translate-y-1"
+            style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}
             aria-label={isDark ? "라이트 모드로 전환" : "다크 모드로 전환"}
           >
             {isDark ? (
@@ -851,7 +852,7 @@ export default function UIMatrix() {
         {/* Buttons: Gallery / Compare */}
         <section className="component-catalog__section">
           <Tabs defaultValue="gallery" className="component-catalog__tabs">
-            <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
               <TabsTrigger value="compare">Compare</TabsTrigger>
               <TabsTrigger value="by-component">By Component</TabsTrigger>
@@ -878,7 +879,8 @@ export default function UIMatrix() {
                   placeholder="컴포넌트 검색... (예: Button, Input)"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background/70 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] focus:shadow-[0_6px_20px_0_rgba(31,38,135,0.2)] focus:bg-background/80 transition-all duration-300"
+                  className="pl-10 rounded-xl transition-all"
+                  style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 20px 0 rgba(31, 38, 135, 0.1)' }}
                   aria-label="컴포넌트 검색"
                   autoComplete="off"
                   spellCheck="false"
@@ -896,11 +898,21 @@ export default function UIMatrix() {
                       <button
                         key={lib}
                         onClick={() => setSelectedLibrary(lib)}
-                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                          selectedLibrary === lib
-                            ? "bg-primary/90 text-primary-foreground backdrop-blur-lg border border-primary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
-                            : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
-                        }`}
+                        className="px-4 py-2 rounded-xl font-semibold text-xs transition-all duration-300 hover:-translate-y-0.5"
+                        style={selectedLibrary === lib ? {
+                          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8))',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          color: 'white',
+                          boxShadow: '0 4px 20px 0 rgba(99, 102, 241, 0.3)'
+                        } : {
+                          background: 'rgba(255, 255, 255, 0.5)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: '0 2px 10px 0 rgba(31, 38, 135, 0.1)'
+                        }}
                       >
                         {lib === "all"
                           ? "전체"
@@ -922,11 +934,21 @@ export default function UIMatrix() {
                       <button
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
-                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                          selectedCategory === cat
-                            ? "bg-secondary/90 text-secondary-foreground backdrop-blur-lg border border-secondary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
-                            : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
-                        }`}
+                        className="px-4 py-2 rounded-xl font-semibold text-xs transition-all duration-300 hover:-translate-y-0.5"
+                        style={selectedCategory === cat ? {
+                          background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.8), rgba(244, 114, 182, 0.8))',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          color: 'white',
+                          boxShadow: '0 4px 20px 0 rgba(236, 72, 153, 0.3)'
+                        } : {
+                          background: 'rgba(255, 255, 255, 0.5)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: '0 2px 10px 0 rgba(31, 38, 135, 0.1)'
+                        }}
                       >
                         {cat === "all"
                           ? "전체"
@@ -943,8 +965,8 @@ export default function UIMatrix() {
                 {/* shadcn/ui Section */}
                 {shouldShowLibrary("shadcn") && (
                   <section>
-                    <div className="flex items-center gap-3 mb-8 pb-4 px-4 py-3 rounded-xl bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8">
-                      <h3 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+                    <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                      <h3 className="text-2xl font-extrabold tracking-tight">
                         shadcn/ui
                       </h3>
                       <Link
@@ -2435,8 +2457,8 @@ export default function UIMatrix() {
                 {/* Aceternity UI Section */}
                 {shouldShowLibrary("aceternity") && (
                   <section>
-                    <div className="flex items-center gap-3 mb-8 pb-4 px-4 py-3 rounded-xl bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8">
-                      <h3 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-400 dark:to-purple-300 bg-clip-text text-transparent">
+                    <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                      <h3 className="text-2xl font-extrabold tracking-tight">
                         Aceternity UI
                       </h3>
                       <Link
@@ -2894,8 +2916,8 @@ export default function UIMatrix() {
                 {/* Magic UI Section */}
                 {shouldShowLibrary("magicui") && (
                   <section>
-                    <div className="flex items-center gap-3 mb-8 pb-4 px-4 py-3 rounded-xl bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8">
-                      <h3 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-pink-600 to-pink-400 dark:from-pink-400 dark:to-pink-300 bg-clip-text text-transparent">
+                    <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                      <h3 className="text-2xl font-extrabold tracking-tight">
                         Magic UI
                       </h3>
                       <Link
@@ -3984,8 +4006,8 @@ export default function UIMatrix() {
                 {/* Origin UI Section */}
                 {shouldShowLibrary("originui") && (
                   <section>
-                    <div className="flex items-center gap-3 mb-8 pb-4 px-4 py-3 rounded-xl bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8">
-                      <h3 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-orange-600 to-orange-400 dark:from-orange-400 dark:to-orange-300 bg-clip-text text-transparent">
+                    <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-border/50">
+                      <h3 className="text-2xl font-extrabold tracking-tight">
                         Origin UI
                       </h3>
                       <Link
@@ -4805,7 +4827,7 @@ export default function UIMatrix() {
               </div>
             </TabsContent>
             <TabsContent value="compare">
-              <div className="overflow-x-auto rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+              <div className="overflow-x-auto rounded-2xl border-2 border-border shadow-[5px_5px_0_0_hsl(var(--foreground)/0.1)]">
                 <table className="table-auto border-collapse w-full">
                   <thead>
                     <tr>
@@ -5590,9 +5612,9 @@ export default function UIMatrix() {
                       <AccordionItem
                         key={group.name}
                         value={group.name}
-                        className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]"
+                        className="border-2 border-border rounded-xl overflow-hidden shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)]"
                       >
-                        <AccordionTrigger className="px-6 py-4 hover:bg-background/70 transition-all duration-300 hover:no-underline">
+                        <AccordionTrigger className="px-6 py-4 hover:bg-muted/50 transition-colors hover:no-underline">
                           <div className="flex items-center gap-3 w-full">
                             <span className="text-lg font-bold">
                               {group.name}
@@ -5606,7 +5628,7 @@ export default function UIMatrix() {
                         <AccordionContent className="px-6 pb-6 pt-2">
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
                             {/* shadcn/ui */}
-                            <Card className="bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30">
+                            <Card className="border-2 border-blue-200 dark:border-blue-800">
                               <CardHeader className="pb-3">
                                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                                   <span className="text-blue-600 dark:text-blue-400">
@@ -5625,7 +5647,7 @@ export default function UIMatrix() {
                             </Card>
 
                             {/* Aceternity */}
-                            <Card className="bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30">
+                            <Card className="border-2 border-purple-200 dark:border-purple-800">
                               <CardHeader className="pb-3">
                                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                                   <span className="text-purple-600 dark:text-purple-400">
@@ -5644,7 +5666,7 @@ export default function UIMatrix() {
                             </Card>
 
                             {/* Magic UI */}
-                            <Card className="bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30">
+                            <Card className="border-2 border-pink-200 dark:border-pink-800">
                               <CardHeader className="pb-3">
                                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                                   <span className="text-pink-600 dark:text-pink-400">
@@ -5663,7 +5685,7 @@ export default function UIMatrix() {
                             </Card>
 
                             {/* Origin UI */}
-                            <Card className="bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30">
+                            <Card className="border-2 border-orange-200 dark:border-orange-800">
                               <CardHeader className="pb-3">
                                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                                   <span className="text-orange-600 dark:text-orange-400">
@@ -5693,13 +5715,13 @@ export default function UIMatrix() {
             <TabsContent value="stats">
               <div className="mt-8 space-y-6">
                 {/* 전체 통계 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+                <Card className="rounded-2xl" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
                   <CardHeader>
                     <CardTitle>전체 통계</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
+                      <div className="text-center p-4 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-3xl font-bold">
                           {favorites.size}
                         </div>
@@ -5707,13 +5729,13 @@ export default function UIMatrix() {
                           ⭐ 즐겨찾기
                         </div>
                       </div>
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
+                      <div className="text-center p-4 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-3xl font-bold">4</div>
                         <div className="text-sm text-muted-foreground mt-2">
                           📚 라이브러리
                         </div>
                       </div>
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
+                      <div className="text-center p-4 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-3xl font-bold">6</div>
                         <div className="text-sm text-muted-foreground mt-2">
                           🏷️ 카테고리
@@ -5724,13 +5746,13 @@ export default function UIMatrix() {
                 </Card>
 
                 {/* 라이브러리별 분포 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+                <Card className="rounded-2xl" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
                   <CardHeader>
                     <CardTitle>라이브러리별 컴포넌트</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30 rounded-lg">
+                      <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(59, 130, 246, 0.1)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(59, 130, 246, 0.3)', boxShadow: '0 4px 16px 0 rgba(59, 130, 246, 0.15)' }}>
                         <div className="flex items-center gap-2">
                           <span className="text-blue-600 dark:text-blue-400">
                             🎨
@@ -5739,7 +5761,7 @@ export default function UIMatrix() {
                         </div>
                         <Badge variant="secondary">20+ 컴포넌트</Badge>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30 rounded-lg">
+                      <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(168, 85, 247, 0.1)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(168, 85, 247, 0.3)', boxShadow: '0 4px 16px 0 rgba(168, 85, 247, 0.15)' }}>
                         <div className="flex items-center gap-2">
                           <span className="text-purple-600 dark:text-purple-400">
                             ⚡
@@ -5748,7 +5770,7 @@ export default function UIMatrix() {
                         </div>
                         <Badge variant="secondary">10+ 컴포넌트</Badge>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30 rounded-lg">
+                      <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(236, 72, 153, 0.1)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(236, 72, 153, 0.3)', boxShadow: '0 4px 16px 0 rgba(236, 72, 153, 0.15)' }}>
                         <div className="flex items-center gap-2">
                           <span className="text-pink-600 dark:text-pink-400">
                             ✨
@@ -5757,7 +5779,7 @@ export default function UIMatrix() {
                         </div>
                         <Badge variant="secondary">15+ 컴포넌트</Badge>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30 rounded-lg">
+                      <div className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(251, 146, 60, 0.1)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(251, 146, 60, 0.3)', boxShadow: '0 4px 16px 0 rgba(251, 146, 60, 0.15)' }}>
                         <div className="flex items-center gap-2">
                           <span className="text-orange-600 dark:text-orange-400">
                             🎯
@@ -5771,48 +5793,48 @@ export default function UIMatrix() {
                 </Card>
 
                 {/* 카테고리별 분포 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+                <Card className="rounded-2xl" style={{ background: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}>
                   <CardHeader>
                     <CardTitle>카테고리별 컴포넌트</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">🔘</div>
                         <div className="font-semibold text-sm">Button</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           5개
                         </div>
                       </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">📝</div>
                         <div className="font-semibold text-sm">Input</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           8개
                         </div>
                       </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">📐</div>
                         <div className="font-semibold text-sm">Layout</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           6개
                         </div>
                       </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">✨</div>
                         <div className="font-semibold text-sm">Animation</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           12개
                         </div>
                       </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">🧭</div>
                         <div className="font-semibold text-sm">Navigation</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           4개
                         </div>
                       </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
+                      <div className="p-3 rounded-xl text-center" style={{ background: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 4px 16px 0 rgba(31, 38, 135, 0.1)' }}>
                         <div className="text-2xl mb-1">💬</div>
                         <div className="font-semibold text-sm">Feedback</div>
                         <div className="text-xs text-muted-foreground mt-1">
@@ -5829,11 +5851,11 @@ export default function UIMatrix() {
 
         {/* 컴포넌트 상세 모달 - 2025 Glassmorphism UI */}
         <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
-          <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background/95 via-background/98 to-muted/95 backdrop-blur-xl border-2 border-border/50 shadow-2xl">
+          <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 rounded-2xl" style={{ background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(30px)', WebkitBackdropFilter: 'blur(30px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 20px 60px 0 rgba(31, 38, 135, 0.3)' }}>
             {/* 헤더 - 그라데이션 글래스 효과 */}
-            <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 backdrop-blur-md border-b border-border/50 relative">
+            <div className="px-8 pt-8 pb-6 rounded-t-2xl relative" style={{ background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15))', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
               {/* 백그라운드 글로우 */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none rounded-t-2xl" />
               <div className="relative flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -5864,9 +5886,9 @@ export default function UIMatrix() {
             </div>
 
             {/* 탭 기반 컨텐츠 */}
-            <div className="overflow-y-auto max-h-[calc(85vh-180px)] bg-gradient-to-b from-background/50 to-background/80 backdrop-blur-sm">
+            <div className="overflow-y-auto max-h-[calc(85vh-180px)]" style={{ background: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
               <Tabs defaultValue="code" className="w-full">
-                <div className="px-8 pt-4 pb-2 sticky top-0 bg-background/95 backdrop-blur-xl z-10 border-b border-border/50 shadow-sm">
+                <div className="px-8 pt-4 pb-2 sticky top-0 z-10" style={{ background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
                   <TabsList className="grid w-full grid-cols-3 h-11 bg-muted/50 backdrop-blur-sm">
                     <TabsTrigger
                       value="code"
@@ -5901,9 +5923,9 @@ export default function UIMatrix() {
                     <div className="relative group">
                       {/* Hover glow effect */}
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-border/50 shadow-lg overflow-hidden">
+                      <div className="relative rounded-xl overflow-hidden" style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 24px 0 rgba(31, 38, 135, 0.12)' }}>
                         {/* 코드 헤더 */}
-                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/30">
+                        <div className="flex items-center justify-between px-4 py-2" style={{ background: 'rgba(255, 255, 255, 0.4)', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
                           <span className="text-xs font-semibold text-muted-foreground">TypeScript</span>
                           <ShadcnButton
                             size="sm"
@@ -5941,7 +5963,7 @@ export function ButtonDemo() {
                     </h3>
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-background/90 to-muted/60 backdrop-blur-md p-6 rounded-xl border-2 border-border/50 shadow-lg">
+                      <div className="relative p-6 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 24px 0 rgba(31, 38, 135, 0.12)' }}>
                         <div className="flex flex-wrap gap-3 justify-center">
                           <ShadcnButton>Default</ShadcnButton>
                           <ShadcnButton variant="outline">Outline</ShadcnButton>
@@ -5968,8 +5990,8 @@ export function ButtonDemo() {
                     </h3>
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-border/50 shadow-lg overflow-hidden">
-                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/30">
+                      <div className="relative rounded-xl overflow-hidden" style={{ background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(255, 255, 255, 0.3)', boxShadow: '0 8px 24px 0 rgba(31, 38, 135, 0.12)' }}>
+                        <div className="flex items-center justify-between px-4 py-2" style={{ background: 'rgba(255, 255, 255, 0.4)', borderBottom: '1px solid rgba(255, 255, 255, 0.2)' }}>
                           <span className="text-xs font-semibold text-muted-foreground">Shell</span>
                           <ShadcnButton
                             size="sm"
@@ -6019,7 +6041,7 @@ export function ButtonDemo() {
 
                   <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-md opacity-50 group-hover:opacity-75 transition duration-500" />
-                    <div className="relative bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/30 rounded-xl p-4 shadow-lg">
+                    <div className="relative rounded-xl p-4" style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.15))', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(59, 130, 246, 0.3)', boxShadow: '0 8px 24px 0 rgba(59, 130, 246, 0.15)' }}>
                       <div className="flex gap-3">
                         <Lightbulb className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5 drop-shadow-sm" />
                         <div className="flex-1">

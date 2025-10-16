@@ -105,6 +105,8 @@ export default function UIMatrix() {
   const [selectedLibrary, setSelectedLibrary] = useState<string>("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   // Prevent scroll restoration
   useLayoutEffect(() => {
@@ -244,6 +246,18 @@ export default function UIMatrix() {
       error("코드 복사에 실패했습니다.");
     }
   }, [success, error]);
+
+  // 상세보기 모달 열기
+  const openDetailModal = useCallback((componentId: string) => {
+    setSelectedComponentId(componentId);
+    setIsDetailModalOpen(true);
+  }, []);
+
+  // 상세보기 모달 닫기
+  const closeDetailModal = useCallback(() => {
+    setIsDetailModalOpen(false);
+    setSelectedComponentId(null);
+  }, []);
 
   // Component groups for "By Component" tab
   const componentGroups = [
@@ -422,10 +436,11 @@ export default function UIMatrix() {
       {/* Buttons: Gallery / Compare */}
       <section className="component-catalog__section">
         <Tabs defaultValue="gallery" className="component-catalog__tabs">
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="compare">Compare</TabsTrigger>
             <TabsTrigger value="by-component">By Component</TabsTrigger>
+            <TabsTrigger value="stats">📊 통계</TabsTrigger>
           </TabsList>
 
           {/* Search & Filter Bar */}
@@ -526,6 +541,14 @@ export default function UIMatrix() {
                         </Link>
                       </div>
                       <div className="flex gap-1">
+                        <button
+                          onClick={() => openDetailModal("shadcn-button")}
+                          className="p-1 hover:bg-muted rounded transition-colors"
+                          title="상세 보기"
+                          aria-label="Button 상세 보기"
+                        >
+                          🔍
+                        </button>
                         <button
                           onClick={() => toggleFavorite("shadcn-button")}
                           className="p-1 hover:bg-muted rounded transition-colors"
@@ -3251,8 +3274,209 @@ export default function UIMatrix() {
               </Accordion>
             </div>
           </TabsContent>
+
+          {/* 통계 탭 */}
+          <TabsContent value="stats">
+            <div className="mt-8 space-y-6">
+              {/* 전체 통계 */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>전체 통계</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center p-4 border-2 border-border rounded-lg">
+                      <div className="text-3xl font-bold">{favorites.size}</div>
+                      <div className="text-sm text-muted-foreground mt-2">⭐ 즐겨찾기</div>
+                    </div>
+                    <div className="text-center p-4 border-2 border-border rounded-lg">
+                      <div className="text-3xl font-bold">4</div>
+                      <div className="text-sm text-muted-foreground mt-2">📚 라이브러리</div>
+                    </div>
+                    <div className="text-center p-4 border-2 border-border rounded-lg">
+                      <div className="text-3xl font-bold">6</div>
+                      <div className="text-sm text-muted-foreground mt-2">🏷️ 카테고리</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 라이브러리별 분포 */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>라이브러리별 컴포넌트</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 border-2 border-blue-200 dark:border-blue-800 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-600 dark:text-blue-400">🎨</span>
+                        <span className="font-semibold">shadcn/ui</span>
+                      </div>
+                      <Badge variant="secondary">20+ 컴포넌트</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 border-2 border-purple-200 dark:border-purple-800 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <span className="text-purple-600 dark:text-purple-400">⚡</span>
+                        <span className="font-semibold">Aceternity UI</span>
+                      </div>
+                      <Badge variant="secondary">10+ 컴포넌트</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 border-2 border-pink-200 dark:border-pink-800 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <span className="text-pink-600 dark:text-pink-400">✨</span>
+                        <span className="font-semibold">Magic UI</span>
+                      </div>
+                      <Badge variant="secondary">15+ 컴포넌트</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 border-2 border-orange-200 dark:border-orange-800 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <span className="text-orange-600 dark:text-orange-400">🎯</span>
+                        <span className="font-semibold">Origin UI</span>
+                      </div>
+                      <Badge variant="secondary">12+ 컴포넌트</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 카테고리별 분포 */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>카테고리별 컴포넌트</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">🔘</div>
+                      <div className="font-semibold text-sm">Button</div>
+                      <div className="text-xs text-muted-foreground mt-1">5개</div>
+                    </div>
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">📝</div>
+                      <div className="font-semibold text-sm">Input</div>
+                      <div className="text-xs text-muted-foreground mt-1">8개</div>
+                    </div>
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">📐</div>
+                      <div className="font-semibold text-sm">Layout</div>
+                      <div className="text-xs text-muted-foreground mt-1">6개</div>
+                    </div>
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">✨</div>
+                      <div className="font-semibold text-sm">Animation</div>
+                      <div className="text-xs text-muted-foreground mt-1">12개</div>
+                    </div>
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">🧭</div>
+                      <div className="font-semibold text-sm">Navigation</div>
+                      <div className="text-xs text-muted-foreground mt-1">4개</div>
+                    </div>
+                    <div className="p-3 border-2 border-border rounded-lg text-center">
+                      <div className="text-2xl mb-1">💬</div>
+                      <div className="font-semibold text-sm">Feedback</div>
+                      <div className="text-xs text-muted-foreground mt-1">5개</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
         </Tabs>
       </section>
+
+      {/* 컴포넌트 상세 모달 */}
+      <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <div className="space-y-4">
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="text-2xl font-bold">Button 컴포넌트</h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  다양한 스타일과 크기를 지원하는 버튼 컴포넌트
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Badge variant="outline">shadcn/ui</Badge>
+                <Badge variant="secondary">button</Badge>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* 코드 예제 */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">사용 예제</h3>
+              <div className="bg-muted p-4 rounded-lg border-2 border-border">
+                <pre className="text-sm overflow-x-auto">
+                  <code>{`import { Button } from "@/components/ui/button"
+
+export function ButtonDemo() {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="destructive">Destructive</Button>
+    </>
+  )
+}`}</code>
+                </pre>
+              </div>
+              <div className="flex justify-end">
+                <ShadcnButton
+                  size="sm"
+                  variant="outline"
+                  onClick={() => copyCode('import { Button } from "@/components/ui/button"', "Button")}
+                >
+                  📋 코드 복사
+                </ShadcnButton>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* 설치 정보 */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">설치</h3>
+              <div className="bg-muted p-3 rounded-lg border-2 border-border">
+                <code className="text-sm">npx shadcn-ui@latest add button</code>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* 의존성 */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">의존성</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="outline">@radix-ui/react-slot</Badge>
+                <Badge variant="outline">class-variance-authority</Badge>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* 링크 */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">링크</h3>
+              <div className="flex gap-3">
+                <Link
+                  href="https://ui.shadcn.com/docs/components/button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary hover:underline flex items-center gap-1"
+                >
+                  공식 문서
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onRemove={removeToast} />

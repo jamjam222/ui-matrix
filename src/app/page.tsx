@@ -62,29 +62,11 @@ import { Skeleton } from "@/components/ui/shadcn/skeleton";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/shadcn/drawer";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/shadcn/command";
 
-// UI 라이브러리 컴포넌트
+// UI 라이브러리 컴포넌트 - 기본만 eager loading
 import { Button as AceternityButton } from "@/components/ui/aceternity/stateful-button";
-import { Button as MovingBorderButton } from "@/components/ui/aceternity/moving-border";
-import { HoverBorderGradient } from "@/components/ui/aceternity/hover-border-gradient";
-import { FloatingDock } from "@/components/ui/aceternity/floating-dock";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/aceternity/card-3d";
 import { ShimmerButton as MagicButton } from "@/components/ui/magicui/shimmer-button";
-import { RainbowButton } from "@/components/ui/magicui/rainbow-button";
-import { ShinyButton } from "@/components/ui/magicui/shiny-button";
-import { AvatarCircles } from "@/components/ui/magicui/avatar-circles";
-import { AnimatedGradientText } from "@/components/ui/magicui/animated-gradient-text";
-import { Meteors } from "@/components/ui/magicui/meteors";
-import { Particles } from "@/components/ui/magicui/particles";
-import { Ripple } from "@/components/ui/magicui/ripple";
-import { SparklesText } from "@/components/ui/magicui/sparkles-text";
-import PulsatingButton from "@/components/ui/magicui/pulsating-button";
-import { MagicCard } from "@/components/ui/magicui/magic-card";
-import { Marquee } from "@/components/ui/magicui/marquee";
-import { NumberTicker } from "@/components/ui/magicui/number-ticker";
-import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";
-import { AnimatedTooltip } from "@/components/ui/aceternity/animated-tooltip";
 
-// Lazy loaded components for performance
+// Lazy loaded components for better performance - 무거운 컴포넌트들
 const BlurFade = lazy(() => import("@/components/ui/magicui/blur-fade").then(mod => ({ default: mod.BlurFade })));
 const OrbitingCircles = lazy(() => import("@/components/ui/magicui/orbiting-circles").then(mod => ({ default: mod.OrbitingCircles })));
 const ConfettiButton = lazy(() => import("@/components/ui/magicui/confetti").then(mod => ({ default: mod.ConfettiButton })));
@@ -92,6 +74,30 @@ const CoolMode = lazy(() => import("@/components/ui/magicui/cool-mode").then(mod
 const Globe = lazy(() => import("@/components/ui/magicui/globe").then(mod => ({ default: mod.Globe })));
 const IconCloud = lazy(() => import("@/components/ui/magicui/icon-cloud").then(mod => ({ default: mod.IconCloud })));
 const BorderBeam = lazy(() => import("@/components/ui/magicui/border-beam").then(mod => ({ default: mod.BorderBeam })));
+
+// Aceternity 무거운 컴포넌트들도 lazy loading
+const MovingBorderButton = lazy(() => import("@/components/ui/aceternity/moving-border").then(mod => ({ default: mod.Button })));
+const HoverBorderGradient = lazy(() => import("@/components/ui/aceternity/hover-border-gradient").then(mod => ({ default: mod.HoverBorderGradient })));
+const FloatingDock = lazy(() => import("@/components/ui/aceternity/floating-dock").then(mod => ({ default: mod.FloatingDock })));
+const CardContainer = lazy(() => import("@/components/ui/aceternity/card-3d").then(mod => ({ default: mod.CardContainer })));
+const CardBody = lazy(() => import("@/components/ui/aceternity/card-3d").then(mod => ({ default: mod.CardBody })));
+const CardItem = lazy(() => import("@/components/ui/aceternity/card-3d").then(mod => ({ default: mod.CardItem })));
+const AceternityTabs = lazy(() => import("@/components/ui/aceternity/tabs").then(mod => ({ default: mod.Tabs })));
+const AnimatedTooltip = lazy(() => import("@/components/ui/aceternity/animated-tooltip").then(mod => ({ default: mod.AnimatedTooltip })));
+
+// MagicUI 무거운 애니메이션 컴포넌트들
+const RainbowButton = lazy(() => import("@/components/ui/magicui/rainbow-button").then(mod => ({ default: mod.RainbowButton })));
+const ShinyButton = lazy(() => import("@/components/ui/magicui/shiny-button").then(mod => ({ default: mod.ShinyButton })));
+const AvatarCircles = lazy(() => import("@/components/ui/magicui/avatar-circles").then(mod => ({ default: mod.AvatarCircles })));
+const AnimatedGradientText = lazy(() => import("@/components/ui/magicui/animated-gradient-text").then(mod => ({ default: mod.AnimatedGradientText })));
+const Meteors = lazy(() => import("@/components/ui/magicui/meteors").then(mod => ({ default: mod.Meteors })));
+const Particles = lazy(() => import("@/components/ui/magicui/particles").then(mod => ({ default: mod.Particles })));
+const Ripple = lazy(() => import("@/components/ui/magicui/ripple").then(mod => ({ default: mod.Ripple })));
+const SparklesText = lazy(() => import("@/components/ui/magicui/sparkles-text").then(mod => ({ default: mod.SparklesText })));
+const PulsatingButton = lazy(() => import("@/components/ui/magicui/pulsating-button"));
+const MagicCard = lazy(() => import("@/components/ui/magicui/magic-card").then(mod => ({ default: mod.MagicCard })));
+const Marquee = lazy(() => import("@/components/ui/magicui/marquee").then(mod => ({ default: mod.Marquee })));
+const NumberTicker = lazy(() => import("@/components/ui/magicui/number-ticker").then(mod => ({ default: mod.NumberTicker })));
 
 export default function UIMatrix() {
   const [isDark, setIsDark] = useState(false);
@@ -143,9 +149,8 @@ export default function UIMatrix() {
     }
   }, []);
 
-  // Force scroll to top after every render during initial mount
+  // Force scroll to top only on initial mount - 성능 최적화
   useEffect(() => {
-    // Continuously force scroll to top for the first few frames
     const forceScroll = () => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
@@ -155,25 +160,15 @@ export default function UIMatrix() {
     // Run immediately
     forceScroll();
 
-    // Run on next 5 animation frames to catch any async scroll changes
-    let count = 0;
-    const maxCount = 5;
-    
-    const rafId = requestAnimationFrame(function scroll() {
+    // Single RAF to ensure it happens after paint - 5번 대신 1번만
+    const rafId = requestAnimationFrame(() => {
       forceScroll();
-      count++;
-      if (count < maxCount) {
-        requestAnimationFrame(scroll);
-      }
     });
 
     return () => {
-      // Cleanup if component unmounts
-      if (count < maxCount) {
-        cancelAnimationFrame(rafId);
-      }
+      cancelAnimationFrame(rafId);
     };
-  });
+  }, []); // 빈 배열로 초기 마운트 시에만 실행
 
   const toggleTheme = () => {
     const newIsDark = !isDark;
@@ -200,9 +195,9 @@ export default function UIMatrix() {
     return selectedLibrary === "all" || selectedLibrary === library;
   };
 
-  // Debounce search query for better performance (300ms delay)
+  // Debounce search query for better performance (200ms delay - 더 빠른 반응)
   // Note: Input value updates immediately, but search filtering is debounced
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const debouncedSearchQuery = useDebounce(searchQuery, 200);
 
   // Memoize normalized search query
   const normalizedSearchQuery = useMemo(() => {

@@ -187,11 +187,11 @@ html, body {
 /* ============================================
    Animation Utility Classes
    ============================================ */
-/* Scroll-triggered animations */
+/* Scroll-triggered animations - 더 빠르고 부드럽게 */
 .scroll-fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .scroll-fade-in.is-visible {
@@ -199,40 +199,40 @@ html, body {
   transform: translateY(0);
 }
 
-/* Initial state for cards - hidden until in viewport */
+/* Initial state for cards - 빠른 애니메이션 */
 .animate-fade-in-up {
   opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.35s ease-out forwards;
 }
 
-/* Stagger animation for cards - smoother delays */
+/* Stagger animation for cards - 짧은 delay로 빠른 느낌 */
 .component-catalog__grid > .animate-fade-in-up:nth-child(1) {
-  animation-delay: 0.05s;
+  animation-delay: 0s;
 }
 
 .component-catalog__grid > .animate-fade-in-up:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0.03s;
 }
 
 .component-catalog__grid > .animate-fade-in-up:nth-child(3) {
-  animation-delay: 0.15s;
+  animation-delay: 0.06s;
 }
 
 .component-catalog__grid > .animate-fade-in-up:nth-child(4) {
-  animation-delay: 0.2s;
+  animation-delay: 0.09s;
 }
 
 .component-catalog__grid > .animate-fade-in-up:nth-child(5) {
-  animation-delay: 0.25s;
+  animation-delay: 0.12s;
 }
 
 .component-catalog__grid > .animate-fade-in-up:nth-child(6) {
-  animation-delay: 0.3s;
+  animation-delay: 0.15s;
 }
 
 /* For cards beyond 6, use a general delay */
 .component-catalog__grid > .animate-fade-in-up:nth-child(n+7) {
-  animation-delay: 0.35s;
+  animation-delay: 0.18s;
 }
 
 /* Reduce motion for accessibility */
@@ -400,17 +400,22 @@ html, body {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
   }
   
-  /* Base card style with enhanced animations */
+  /* Base card style with enhanced animations - 빠른 반응 */
   .component-card {
     @apply relative rounded-xl border-2 border-border bg-card p-6 
            shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] 
-           transition-all duration-300 ease-out
+           transition-all duration-200 ease-out
            hover:shadow-[5px_5px_0_0_hsl(var(--foreground)/0.15)] 
            hover:-translate-y-1 
            active:translate-y-0 active:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.1)];
     /* Smooth touch feedback for mobile */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+  }
+
+  /* GPU 가속은 호버 시에만 적용 (성능 최적화) */
+  .component-card:hover {
+    will-change: transform, box-shadow;
   }
 
   /* Touch device optimization - apply active state on touch */

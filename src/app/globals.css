@@ -306,37 +306,37 @@ html, body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.98 0.005 264); /* 약간 푸른 느낌의 배경 */
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(1 0 0 / 0.7); /* 반투명 카드 */
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(1 0 0 / 0.8);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.5 0.2 264); /* 생생한 블루 */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.92 0.01 264 / 0.8);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.95 0.005 264 / 0.6);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.92 0.01 280 / 0.7);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 0.2); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.3);
+  --ring: oklch(0.5 0.2 264 / 0.5);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.985 0 0 / 0.8);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.5 0.2 264);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.92 0.01 264 / 0.8);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.2);
+  --sidebar-ring: oklch(0.5 0.2 264 / 0.5);
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -345,37 +345,37 @@ html, body {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.15 0.01 264); /* 약간 푸른 느낌의 다크 배경 */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.22 0.01 264 / 0.6); /* 반투명 다크 카드 */
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.22 0.01 264 / 0.8);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary: oklch(0.65 0.25 264); /* 밝은 블루 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.3 0.01 264 / 0.7);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.28 0.01 264 / 0.5);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.3 0.02 280 / 0.6);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(1 0 0 / 0.15); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.2);
+  --ring: oklch(0.65 0.25 264 / 0.6);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.22 0.01 264 / 0.7);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.65 0.25 264);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.3 0.01 264 / 0.7);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.15);
+  --sidebar-ring: oklch(0.65 0.25 264 / 0.6);
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -388,7 +388,19 @@ html, body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.7 0.15 264 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.7 0.15 280 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.7 0.12 300 / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.7 0.1 240 / 0.08) 0px, transparent 50%);
+  }
+  body.dark {
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.35 0.2 264 / 0.2) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.35 0.18 280 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.35 0.15 300 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.35 0.12 240 / 0.1) 0px, transparent 50%);
   }
 }
 
@@ -402,15 +414,28 @@ html, body {
   
   /* Base card style with enhanced animations - 빠른 반응 */
   .component-card {
-    @apply relative rounded-xl border-2 border-border bg-card p-6 
-           shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] 
-           transition-all duration-200 ease-out
-           hover:shadow-[5px_5px_0_0_hsl(var(--foreground)/0.15)] 
-           hover:-translate-y-1 
-           active:translate-y-0 active:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.1)];
+    @apply relative rounded-xl border border-border bg-card/70 backdrop-blur-xl p-6 
+           shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] 
+           transition-all duration-300 ease-out
+           hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.25)] 
+           hover:-translate-y-1 hover:bg-card/80
+           active:translate-y-0 active:shadow-[0_6px_24px_0_rgba(31,38,135,0.12)];
     /* Smooth touch feedback for mobile */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    /* 글래스모피즘 효과 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .dark .component-card {
+    @apply bg-card/50 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  .dark .component-card:hover {
+    @apply bg-card/60;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
   }
 
   /* GPU 가속은 호버 시에만 적용 (성능 최적화) */
@@ -623,4 +648,31 @@ a:focus-visible {
 /* Remove default focus styles when using focus-visible */
 *:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* ============================================
+   Glassmorphism Utility Classes
+   ============================================ */
+.glass {
+  @apply bg-background/70 backdrop-blur-xl border border-white/20;
+}
+
+.dark .glass {
+  @apply bg-background/50 backdrop-blur-xl border-white/10;
+}
+
+.glass--strong {
+  @apply bg-background/80 backdrop-blur-2xl border border-white/25;
+}
+
+.dark .glass--strong {
+  @apply bg-background/60 backdrop-blur-2xl border-white/15;
+}
+
+.glass--subtle {
+  @apply bg-background/50 backdrop-blur-lg border border-white/15;
+}
+
+.dark .glass--subtle {
+  @apply bg-background/30 backdrop-blur-lg border-white/8;
 }

@@ -8,8 +8,70 @@ html {
   scroll-behavior: auto !important;
 }
 
+/* Smooth scrolling for anchor links (but not on page load) */
+html.smooth-scroll {
+  scroll-behavior: smooth !important;
+}
+
 html, body {
   overflow-x: hidden;
+}
+
+/* ============================================
+   Mobile Optimization & UX Improvements
+   ============================================ */
+
+/* Better touch targets for mobile (minimum 44x44px) */
+@media (max-width: 768px) {
+  button, a[role="button"], [role="tab"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile header adjustments */
+  header {
+    padding: 1rem !important;
+  }
+
+  /* Mobile typography */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Mobile container padding */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Mobile filter buttons */
+  .component-catalog__section button {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Mobile card spacing */
+  .component-catalog__grid {
+    gap: 1rem !important;
+  }
+}
+
+/* Touch gesture optimization */
+.swipeable {
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent pull-to-refresh on scroll containers */
+.no-overscroll {
+  overscroll-behavior: contain;
+}
+
+/* Smooth momentum scrolling for touch devices */
+.smooth-scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 /* ============================================
@@ -125,11 +187,25 @@ html, body {
 /* ============================================
    Animation Utility Classes
    ============================================ */
-.animate-fade-in-up {
-  animation: fadeInUp 0.5s ease-out forwards;
+/* Scroll-triggered animations */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Stagger animation for cards */
+.scroll-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Initial state for cards - hidden until in viewport */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Stagger animation for cards - smoother delays */
 .component-catalog__grid > .animate-fade-in-up:nth-child(1) {
   animation-delay: 0.05s;
 }
@@ -157,6 +233,17 @@ html, body {
 /* For cards beyond 6, use a general delay */
 .component-catalog__grid > .animate-fade-in-up:nth-child(n+7) {
   animation-delay: 0.35s;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade-in,
+  .animate-fade-in-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
 }
 
 /* ============================================
@@ -318,9 +405,19 @@ html, body {
     @apply relative rounded-xl border-2 border-border bg-card p-6 
            shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] 
            transition-all duration-300 ease-out
-           hover:shadow-[8px_8px_0_0_hsl(var(--foreground)/0.2)] 
-           hover:-translate-y-2 hover:scale-[1.02]
-           overflow-hidden;
+           hover:shadow-[5px_5px_0_0_hsl(var(--foreground)/0.15)] 
+           hover:-translate-y-1 
+           active:translate-y-0 active:shadow-[2px_2px_0_0_hsl(var(--foreground)/0.1)];
+    /* Smooth touch feedback for mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Touch device optimization - apply active state on touch */
+  @media (hover: none) and (pointer: coarse) {
+    .component-card:active {
+      @apply -translate-y-0.5 shadow-[4px_4px_0_0_hsl(var(--foreground)/0.12)];
+    }
   }
   
   /* Gradient overlay on hover */

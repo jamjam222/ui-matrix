@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, useMemo, useCallback, lazy, Suspense } from "react";
+import { useEffect, useLayoutEffect, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/use-debounce";
 import { ToastContainer } from "@/components/ui/toast";
-import { PageLoadingSkeleton, ComponentLoader } from "@/components/loading-skeleton";
+import { ComponentLoader } from "@/components/loading-skeleton";
 import Link from "next/link";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
@@ -95,15 +95,34 @@ const BorderBeam = lazy(() => import("@/components/ui/magicui/border-beam").then
 
 export default function UIMatrix() {
   const [isDark, setIsDark] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLibrary, setSelectedLibrary] = useState<string>("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
 
+  // Prevent scroll restoration
+  useLayoutEffect(() => {
+    // Disable browser's scroll restoration
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    
+    // Force scroll to top immediately before paint
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Additional: Remove any hash from URL that might cause scroll
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
   useEffect(() => {
-    // Simulate initial loading
-    setIsLoading(true);
+    // Force scroll to top on mount
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     
     // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme");
@@ -122,10 +141,39 @@ export default function UIMatrix() {
     if (savedFavorites) {
       setFavorites(new Set(JSON.parse(savedFavorites)));
     }
-    
-    // End loading after initialization
-    setTimeout(() => setIsLoading(false), 500);
   }, []);
+
+  // Force scroll to top after every render during initial mount
+  useEffect(() => {
+    // Continuously force scroll to top for the first few frames
+    const forceScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    // Run immediately
+    forceScroll();
+
+    // Run on next 5 animation frames to catch any async scroll changes
+    let count = 0;
+    const maxCount = 5;
+    
+    const rafId = requestAnimationFrame(function scroll() {
+      forceScroll();
+      count++;
+      if (count < maxCount) {
+        requestAnimationFrame(scroll);
+      }
+    });
+
+    return () => {
+      // Cleanup if component unmounts
+      if (count < maxCount) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  });
 
   const toggleTheme = () => {
     const newIsDark = !isDark;
@@ -153,6 +201,7 @@ export default function UIMatrix() {
   };
 
   // Debounce search query for better performance (300ms delay)
+  // Note: Input value updates immediately, but search filtering is debounced
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   // Memoize normalized search query
@@ -335,19 +384,18 @@ export default function UIMatrix() {
     },
   ];
 
-  // Show loading skeleton on initial load
-  if (isLoading) {
-    return <PageLoadingSkeleton />;
-  }
-
   return (
     <>
       {/* Skip to main content for keyboard navigation */}
-      <a href="#main-content" className="skip-to-content">
+      <a 
+        href="#main-content" 
+        className="skip-to-content"
+        tabIndex={0}
+      >
         메인 콘텐츠로 건너뛰기
       </a>
 
-      <main id="main-content" className="component-catalog container mx-auto px-6 py-12 space-y-16">
+      <main id="main-content" className="component-catalog container mx-auto px-6 py-12 space-y-16" tabIndex={-1}>
         <header className="flex items-center justify-between mb-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
@@ -401,6 +449,8 @@ export default function UIMatrix() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 border-2 border-border shadow-[3px_3px_0_0_hsl(var(--foreground)/0.1)] focus:shadow-[4px_4px_0_0_hsl(var(--foreground)/0.15)] transition-shadow"
                 aria-label="컴포넌트 검색"
+                autoComplete="off"
+                spellCheck="false"
               />
             </div>
 

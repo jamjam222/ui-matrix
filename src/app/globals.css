@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Force scroll to top on page load */
+html {
+  scroll-behavior: auto !important;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
 /* ============================================
    Animation Keyframes (중복 제거 및 통합)
    ============================================ */
@@ -442,49 +451,74 @@
    Keyboard Navigation & Accessibility
    ============================================ */
 
+/* Skip to main content link */
+.skip-to-content {
+  position: fixed;
+  left: 50%;
+  top: -200px;
+  transform: translateX(-50%);
+  z-index: 99999;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 1rem 2rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+  transition: top 0.2s ease-out;
+  white-space: nowrap;
+}
+
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 1rem;
+  outline: 4px solid hsl(var(--ring));
+  outline-offset: 4px;
+}
+
 /* Enhanced focus visible styles */
-@layer base {
-  *:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
-    @apply transition-all duration-200;
-  }
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
-  /* Button focus styles */
-  button:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2;
-  }
+/* Button focus styles */
+button:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
 
-  /* Input focus styles */
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2;
-  }
+/* Input focus styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
 
-  /* Link focus styles */
-  a:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
-  }
-
-  /* Skip to main content link */
-  .skip-to-content {
-    @apply absolute left-0 top-0 -translate-y-full;
-    @apply bg-primary text-primary-foreground px-4 py-2 rounded-b;
-    @apply transition-transform duration-200 z-50;
-  }
-
-  .skip-to-content:focus {
-    @apply translate-y-0;
-  }
+/* Link focus styles */
+a:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Keyboard navigation helper text (sr-only) */
 .sr-only {
-  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
   clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-/* Focus visible polyfill */
-.js-focus-visible :focus:not(.focus-visible) {
+/* Remove default focus styles when using focus-visible */
+*:focus:not(:focus-visible) {
   outline: none;
 }

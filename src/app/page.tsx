@@ -3385,31 +3385,71 @@ export default function UIMatrix() {
         </Tabs>
       </section>
 
-      {/* 컴포넌트 상세 모달 */}
+      {/* 컴포넌트 상세 모달 - 2025 Modern UI */}
       <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
-        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-          <div className="space-y-4">
-            <div className="flex items-start justify-between">
-              <div>
-                <h2 className="text-2xl font-bold">Button 컴포넌트</h2>
-                <p className="text-sm text-muted-foreground mt-1">
-                  다양한 스타일과 크기를 지원하는 버튼 컴포넌트
+        <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background via-background to-muted/20">
+          {/* 헤더 - 그라데이션 배경 */}
+          <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/5 via-primary/10 to-secondary/5 border-b border-border/50">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                    Button
+                  </h2>
+                  <div className="flex gap-2">
+                    <Badge variant="outline" className="px-3 py-1 bg-background/80 backdrop-blur-sm">
+                      shadcn/ui
+                    </Badge>
+                    <Badge variant="secondary" className="px-3 py-1 bg-background/80 backdrop-blur-sm">
+                      button
+                    </Badge>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  다양한 스타일과 크기를 지원하는 버튼 컴포넌트입니다. <br />
+                  접근성과 사용자 경험을 고려하여 디자인되었습니다.
                 </p>
               </div>
-              <div className="flex gap-2">
-                <Badge variant="outline">shadcn/ui</Badge>
-                <Badge variant="secondary">button</Badge>
-              </div>
             </div>
+          </div>
 
-            <Separator />
+          {/* 탭 기반 컨텐츠 */}
+          <div className="overflow-y-auto max-h-[calc(85vh-180px)]">
+            <Tabs defaultValue="code" className="w-full">
+              <div className="px-8 pt-4 pb-2 sticky top-0 bg-background/95 backdrop-blur-sm z-10 border-b border-border/50">
+                <TabsList className="grid w-full grid-cols-3 h-11">
+                  <TabsTrigger value="code" className="text-sm font-semibold">
+                    💻 코드
+                  </TabsTrigger>
+                  <TabsTrigger value="install" className="text-sm font-semibold">
+                    📦 설치
+                  </TabsTrigger>
+                  <TabsTrigger value="info" className="text-sm font-semibold">
+                    ℹ️ 정보
+                  </TabsTrigger>
+                </TabsList>
+              </div>
 
-            {/* 코드 예제 */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">사용 예제</h3>
-              <div className="bg-muted p-4 rounded-lg border-2 border-border">
-                <pre className="text-sm overflow-x-auto">
-                  <code>{`import { Button } from "@/components/ui/button"
+              {/* 코드 탭 */}
+              <TabsContent value="code" className="px-8 py-6 space-y-4 m-0">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-semibold text-foreground/90">사용 예제</h3>
+                    <ShadcnButton
+                      size="sm"
+                      variant="outline"
+                      onClick={() => copyCode('import { Button } from "@/components/ui/button"', "Button")}
+                      className="h-8 shadow-sm hover:shadow-md transition-all"
+                    >
+                      <span className="mr-1.5">📋</span>
+                      복사
+                    </ShadcnButton>
+                  </div>
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative bg-gradient-to-br from-muted/80 to-muted/40 p-5 rounded-xl border-2 border-border/50 backdrop-blur-sm">
+                      <pre className="text-[13px] leading-relaxed overflow-x-auto font-mono">
+                        <code className="text-foreground/90">{`import { Button } from "@/components/ui/button"
 
 export function ButtonDemo() {
   return (
@@ -3421,59 +3461,144 @@ export function ButtonDemo() {
     </>
   )
 }`}</code>
-                </pre>
-              </div>
-              <div className="flex justify-end">
-                <ShadcnButton
-                  size="sm"
-                  variant="outline"
-                  onClick={() => copyCode('import { Button } from "@/components/ui/button"', "Button")}
-                >
-                  📋 코드 복사
-                </ShadcnButton>
-              </div>
-            </div>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
 
-            <Separator />
+                {/* 미리보기 */}
+                <div className="space-y-3 pt-2">
+                  <h3 className="text-base font-semibold text-foreground/90">미리보기</h3>
+                  <div className="bg-gradient-to-br from-background to-muted/30 p-6 rounded-xl border-2 border-border/50">
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      <ShadcnButton>Default</ShadcnButton>
+                      <ShadcnButton variant="outline">Outline</ShadcnButton>
+                      <ShadcnButton variant="secondary">Secondary</ShadcnButton>
+                      <ShadcnButton variant="destructive">Destructive</ShadcnButton>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
 
-            {/* 설치 정보 */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">설치</h3>
-              <div className="bg-muted p-3 rounded-lg border-2 border-border">
-                <code className="text-sm">npx shadcn-ui@latest add button</code>
-              </div>
-            </div>
+              {/* 설치 탭 */}
+              <TabsContent value="install" className="px-8 py-6 space-y-6 m-0">
+                <div className="space-y-3">
+                  <h3 className="text-base font-semibold text-foreground/90">설치 명령어</h3>
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative bg-gradient-to-br from-muted/80 to-muted/40 p-4 rounded-xl border-2 border-border/50 backdrop-blur-sm flex items-center justify-between">
+                      <code className="text-sm font-mono text-foreground/90">
+                        npx shadcn-ui@latest add button
+                      </code>
+                      <ShadcnButton
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => copyCode('npx shadcn-ui@latest add button', "설치 명령어")}
+                        className="h-7 px-2"
+                      >
+                        📋
+                      </ShadcnButton>
+                    </div>
+                  </div>
+                </div>
 
-            <Separator />
+                <Separator className="my-6" />
 
-            {/* 의존성 */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">의존성</h3>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="outline">@radix-ui/react-slot</Badge>
-                <Badge variant="outline">class-variance-authority</Badge>
-              </div>
-            </div>
+                <div className="space-y-3">
+                  <h3 className="text-base font-semibold text-foreground/90">필수 의존성</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="px-4 py-2 text-sm bg-background/50 backdrop-blur-sm hover:bg-background transition-colors">
+                      @radix-ui/react-slot
+                    </Badge>
+                    <Badge variant="outline" className="px-4 py-2 text-sm bg-background/50 backdrop-blur-sm hover:bg-background transition-colors">
+                      class-variance-authority
+                    </Badge>
+                  </div>
+                </div>
 
-            <Separator />
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-6">
+                  <div className="flex gap-3">
+                    <div className="text-blue-500 text-xl">💡</div>
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground/80 leading-relaxed">
+                        <strong className="text-foreground">Tip:</strong> 컴포넌트를 설치하면 필요한 의존성이 자동으로 추가됩니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
 
-            {/* 링크 */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">링크</h3>
-              <div className="flex gap-3">
-                <Link
-                  href="https://ui.shadcn.com/docs/components/button"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary hover:underline flex items-center gap-1"
-                >
-                  공식 문서
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
+              {/* 정보 탭 */}
+              <TabsContent value="info" className="px-8 py-6 space-y-6 m-0">
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-background to-muted/30 p-5 rounded-xl border-2 border-border/50">
+                    <h3 className="text-base font-semibold mb-3 text-foreground/90">컴포넌트 정보</h3>
+                    <dl className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <dt className="text-sm font-medium text-muted-foreground min-w-[100px]">
+                          라이브러리:
+                        </dt>
+                        <dd className="text-sm text-foreground font-medium">shadcn/ui</dd>
+                      </div>
+                      <Separator />
+                      <div className="flex items-start gap-3">
+                        <dt className="text-sm font-medium text-muted-foreground min-w-[100px]">
+                          카테고리:
+                        </dt>
+                        <dd className="text-sm text-foreground font-medium">Button / Interactive</dd>
+                      </div>
+                      <Separator />
+                      <div className="flex items-start gap-3">
+                        <dt className="text-sm font-medium text-muted-foreground min-w-[100px]">
+                          접근성:
+                        </dt>
+                        <dd className="text-sm text-foreground font-medium">ARIA 완벽 지원</dd>
+                      </div>
+                    </dl>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-background to-muted/30 p-5 rounded-xl border-2 border-border/50">
+                    <h3 className="text-base font-semibold mb-3 text-foreground/90">외부 링크</h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="https://ui.shadcn.com/docs/components/button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors group p-2 rounded-lg hover:bg-primary/5"
+                      >
+                        <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span className="font-medium">공식 문서 보기</span>
+                      </Link>
+                      <Link
+                        href="https://github.com/shadcn-ui/ui"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors group p-2 rounded-lg hover:bg-primary/5"
+                      >
+                        <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span className="font-medium">GitHub 저장소</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-4">
+                    <div className="flex gap-3">
+                      <div className="text-green-500 text-xl">✨</div>
+                      <div className="flex-1">
+                        <p className="text-sm text-foreground/80 leading-relaxed">
+                          <strong className="text-foreground">추천:</strong> 이 컴포넌트는 프로덕션 환경에서 검증되었으며, 
+                          접근성 표준을 완벽하게 준수합니다.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </DialogContent>
       </Dialog>

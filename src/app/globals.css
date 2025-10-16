@@ -306,37 +306,37 @@ html, body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.98 0.005 264); /* 약간 푸른 느낌의 배경 */
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(1 0 0 / 0.7); /* 반투명 카드 */
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(1 0 0 / 0.8);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.5 0.2 264); /* 생생한 블루 */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.92 0.01 264 / 0.8);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.95 0.005 264 / 0.6);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.92 0.01 280 / 0.7);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 0.2); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.3);
+  --ring: oklch(0.5 0.2 264 / 0.5);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.985 0 0 / 0.8);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.5 0.2 264);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.92 0.01 264 / 0.8);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.2);
+  --sidebar-ring: oklch(0.5 0.2 264 / 0.5);
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -345,37 +345,37 @@ html, body {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.15 0.01 264); /* 약간 푸른 느낌의 다크 배경 */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.22 0.01 264 / 0.6); /* 반투명 다크 카드 */
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.22 0.01 264 / 0.8);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary: oklch(0.65 0.25 264); /* 밝은 블루 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.3 0.01 264 / 0.7);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.28 0.01 264 / 0.5);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.3 0.02 280 / 0.6);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(1 0 0 / 0.15); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.2);
+  --ring: oklch(0.65 0.25 264 / 0.6);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.22 0.01 264 / 0.7);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.65 0.25 264);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.3 0.01 264 / 0.7);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.15);
+  --sidebar-ring: oklch(0.65 0.25 264 / 0.6);
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -388,27 +388,19 @@ html, body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    /* 글래스모피즘 배경 그라디언트 */
-    background: linear-gradient(135deg, 
-      oklch(0.95 0.02 250) 0%, 
-      oklch(0.92 0.03 280) 25%,
-      oklch(0.94 0.025 310) 50%,
-      oklch(0.93 0.03 340) 75%,
-      oklch(0.95 0.02 10) 100%
-    );
-    background-attachment: fixed;
+    @apply bg-background text-foreground relative;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.7 0.15 264 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.7 0.15 280 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.7 0.12 300 / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.7 0.1 240 / 0.08) 0px, transparent 50%);
   }
-  
   body.dark {
-    background: linear-gradient(135deg, 
-      oklch(0.15 0.02 250) 0%, 
-      oklch(0.12 0.03 280) 25%,
-      oklch(0.14 0.025 310) 50%,
-      oklch(0.13 0.03 340) 75%,
-      oklch(0.15 0.02 10) 100%
-    );
-    background-attachment: fixed;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.35 0.2 264 / 0.2) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.35 0.18 280 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.35 0.15 300 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.35 0.12 240 / 0.1) 0px, transparent 50%);
   }
 }
 
@@ -420,104 +412,86 @@ html, body {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
   }
   
-  /* Base card style with Glassmorphism - 글래스모피즘 */
+  /* Base card style with enhanced animations - 빠른 반응 */
   .component-card {
-    @apply relative rounded-2xl p-6 
+    @apply relative rounded-xl border border-border bg-card/70 backdrop-blur-xl p-6 
+           shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] 
            transition-all duration-300 ease-out
-           hover:-translate-y-2
-           active:translate-y-0;
-    /* 글래스모피즘 효과 */
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+           hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.25)] 
+           hover:-translate-y-1 hover:bg-card/80
+           active:translate-y-0 active:shadow-[0_6px_24px_0_rgba(31,38,135,0.12)];
     /* Smooth touch feedback for mobile */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    /* 글래스모피즘 효과 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
   
   .dark .component-card {
-    background: rgba(20, 20, 30, 0.6);
+    @apply bg-card/50 backdrop-blur-xl;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  .dark .component-card:hover {
+    @apply bg-card/60;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
   }
 
   /* GPU 가속은 호버 시에만 적용 (성능 최적화) */
   .component-card:hover {
     will-change: transform, box-shadow;
-    box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-  }
-  
-  .dark .component-card:hover {
-    box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   }
 
   /* Touch device optimization - apply active state on touch */
   @media (hover: none) and (pointer: coarse) {
     .component-card:active {
-      @apply -translate-y-1;
+      @apply -translate-y-0.5 shadow-[4px_4px_0_0_hsl(var(--foreground)/0.12)];
     }
   }
   
-  /* Gradient overlay on hover - 글래스모피즘 glow */
+  /* Gradient overlay on hover */
   .component-card::before {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500 rounded-2xl;
-    background: linear-gradient(135deg, 
-      rgba(99, 102, 241, 0.1) 0%,
-      rgba(139, 92, 246, 0.1) 50%,
-      rgba(236, 72, 153, 0.1) 100%
-    );
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300
+           bg-gradient-to-br from-primary/5 via-transparent to-accent/5;
   }
   
   .component-card:hover::before {
     @apply opacity-100;
   }
   
-  /* Library-based color accents - 글래스모피즘 스타일 */
+  /* Library-based color accents - By Component 탭과 동일한 색상 */
   .component-card[data-library="shadcn"] {
-    border: 1px solid rgba(59, 130, 246, 0.4) !important; /* blue with transparency */
-    background: rgba(59, 130, 246, 0.05);
+    border: 2px solid rgb(191 219 254) !important; /* blue-200 */
   }
   
   .component-card[data-library="shadcn"]:is(.dark *) {
-    border: 1px solid rgba(96, 165, 250, 0.3) !important;
-    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid rgb(30 64 175) !important; /* blue-800 */
   }
   
   .component-card[data-library="aceternity"] {
-    border: 1px solid rgba(168, 85, 247, 0.4) !important; /* purple with transparency */
-    background: rgba(168, 85, 247, 0.05);
+    border: 2px solid rgb(233 213 255) !important; /* purple-200 */
   }
   
   .component-card[data-library="aceternity"]:is(.dark *) {
-    border: 1px solid rgba(192, 132, 252, 0.3) !important;
-    background: rgba(168, 85, 247, 0.1);
+    border: 2px solid rgb(107 33 168) !important; /* purple-800 */
   }
   
   .component-card[data-library="magicui"] {
-    border: 1px solid rgba(236, 72, 153, 0.4) !important; /* pink with transparency */
-    background: rgba(236, 72, 153, 0.05);
+    border: 2px solid rgb(251 207 232) !important; /* pink-200 */
   }
   
   .component-card[data-library="magicui"]:is(.dark *) {
-    border: 1px solid rgba(244, 114, 182, 0.3) !important;
-    background: rgba(236, 72, 153, 0.1);
+    border: 2px solid rgb(157 23 77) !important; /* pink-800 */
   }
   
   .component-card[data-library="originui"] {
-    border: 1px solid rgba(251, 146, 60, 0.4) !important; /* orange with transparency */
-    background: rgba(251, 146, 60, 0.05);
+    border: 2px solid rgb(254 215 170) !important; /* orange-200 */
   }
   
   .component-card[data-library="originui"]:is(.dark *) {
-    border: 1px solid rgba(251, 146, 60, 0.3) !important;
-    background: rgba(251, 146, 60, 0.1);
+    border: 2px solid rgb(154 52 18) !important; /* orange-800 */
   }
   
   /* Ripple Effect - Apply to all interactive buttons */
@@ -554,37 +528,13 @@ html, body {
     transition: width 0s, height 0s, opacity 0.3s;
   }
   
-  /* Card variants - 글래스모피즘 강화 */
+  /* Card variants */
   .component-card--glass {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-  }
-  
-  .dark .component-card--glass {
-    background: rgba(20, 20, 30, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    @apply bg-background/60 backdrop-blur-md border-white/20 dark:border-white/10;
   }
   
   .component-card--elevated {
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-  }
-  
-  .dark .component-card--elevated {
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-  }
-  
-  .component-card--elevated:hover {
-    box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.25) inset;
-  }
-  
-  .dark .component-card--elevated:hover {
-    box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    @apply shadow-lg hover:shadow-2xl;
   }
   
   .component-card__header {
@@ -703,78 +653,26 @@ a:focus-visible {
 /* ============================================
    Glassmorphism Utility Classes
    ============================================ */
-
-/* 헤더 글래스 */
-.glass-header {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+.glass {
+  @apply bg-background/70 backdrop-blur-xl border border-white/20;
 }
 
-.dark .glass-header {
-  background: rgba(20, 20, 30, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+.dark .glass {
+  @apply bg-background/50 backdrop-blur-xl border-white/10;
 }
 
-/* 버튼 글래스 */
-.glass-button {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.1);
+.glass--strong {
+  @apply bg-background/80 backdrop-blur-2xl border border-white/25;
 }
 
-.dark .glass-button {
-  background: rgba(30, 30, 40, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.4);
+.dark .glass--strong {
+  @apply bg-background/60 backdrop-blur-2xl border-white/15;
 }
 
-/* 인풋 글래스 */
-.glass-input {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1);
+.glass--subtle {
+  @apply bg-background/50 backdrop-blur-lg border border-white/15;
 }
 
-.dark .glass-input {
-  background: rgba(30, 30, 40, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* 필터 버튼 액티브 (primary) */
-.glass-button-active-primary {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  box-shadow: 0 4px 20px 0 rgba(99, 102, 241, 0.3);
-}
-
-.dark .glass-button-active-primary {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
-  box-shadow: 0 4px 20px 0 rgba(99, 102, 241, 0.5);
-}
-
-/* 필터 버튼 액티브 (secondary) */
-.glass-button-active-secondary {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.8), rgba(244, 114, 182, 0.8));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  box-shadow: 0 4px 20px 0 rgba(236, 72, 153, 0.3);
-}
-
-.dark .glass-button-active-secondary {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.9), rgba(244, 114, 182, 0.9));
-  box-shadow: 0 4px 20px 0 rgba(236, 72, 153, 0.5);
+.dark .glass--subtle {
+  @apply bg-background/30 backdrop-blur-lg border-white/8;
 }

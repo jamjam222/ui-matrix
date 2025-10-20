@@ -106,7 +106,6 @@
 
 .component-catalog table tbody tr {
   transition: background-color 0.2s ease;
-  border: none;
 }
 
 .component-catalog table tbody tr:hover {
@@ -115,8 +114,8 @@
 
 .component-catalog table tbody td {
   border-bottom: 1px solid hsl(var(--border)) !important;
-  border-left: none !important;
-  border-top: none !important;
+  border-left-width: 0 !important;
+  border-top-width: 0 !important;
   padding: 1rem 1.5rem !important;
   text-align: center;
 }

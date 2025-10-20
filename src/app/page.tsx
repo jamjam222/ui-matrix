@@ -296,6 +296,8 @@ export default function UIMatrix() {
     null
   );
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("gallery");
 
   // URL 파라미터에서 컴포넌트 ID 읽기
   useEffect(() => {
@@ -365,6 +367,13 @@ export default function UIMatrix() {
     if (savedFavorites) {
       setFavorites(new Set(JSON.parse(savedFavorites)));
     }
+
+    // 초기 로딩 완료
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Force scroll to top only on initial mount - 성능 최적화
@@ -802,6 +811,32 @@ export default function UIMatrix() {
     },
   ];
 
+  // 로딩 중일 때 로딩 화면 표시
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">
+        <div className="flex flex-col items-center gap-4">
+          {/* 로딩 스피너 */}
+          <div className="relative w-16 h-16">
+            <div className="absolute inset-0 border-4 border-primary/30 rounded-full"></div>
+            <div className="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+          
+          {/* 로딩 텍스트 */}
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-lg font-semibold text-foreground">로딩 중...</p>
+            <p className="text-sm text-muted-foreground">컴포넌트를 불러오고 있습니다</p>
+          </div>
+          
+          {/* 진행 바 */}
+          <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
+            <div className="h-full bg-primary rounded-full animate-pulse" style={{ width: '70%' }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {/* Skip to main content for keyboard navigation */}
@@ -864,7 +899,7 @@ export default function UIMatrix() {
 
         {/* Buttons: Gallery / Compare */}
         <section className="component-catalog__section">
-          <Tabs defaultValue="gallery" className="component-catalog__tabs">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="component-catalog__tabs">
             <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
               <TabsTrigger value="compare">Compare</TabsTrigger>
@@ -4794,7 +4829,7 @@ export default function UIMatrix() {
                 )}
               </div>
             </TabsContent>
-            <TabsContent value="compare">
+            <TabsContent value="compare" className="component-catalog">
               <div className="overflow-x-auto rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                 <table className="table-auto border-collapse w-full">
                   <thead>
@@ -4827,9 +4862,6 @@ export default function UIMatrix() {
                             Shiny
                           </ShinyButton>
                         </div>
-                      </td>
-                      <td>
-                        <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td>
                         <span className="text-muted-foreground text-sm">-</span>

@@ -113,7 +113,6 @@
 }
 
 .component-catalog table tbody td {
-  border-bottom: 1px solid hsl(var(--border)) !important;
   border-left-width: 0 !important;
   border-top-width: 0 !important;
   padding: 1rem 1.5rem !important;

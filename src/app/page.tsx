@@ -301,9 +301,9 @@ export default function UIMatrix() {
 
   // URL 파라미터에서 컴포넌트 ID 읽기
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const componentId = params.get('component');
+      const componentId = params.get("component");
       if (componentId) {
         setSelectedComponentId(componentId);
         setIsDetailModalOpen(true);
@@ -313,10 +313,10 @@ export default function UIMatrix() {
 
   // 모달 닫을 때 URL 파라미터 제거
   useEffect(() => {
-    if (!isDetailModalOpen && typeof window !== 'undefined') {
+    if (!isDetailModalOpen && typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      url.searchParams.delete('component');
-      window.history.replaceState({}, '', url.toString());
+      url.searchParams.delete("component");
+      window.history.replaceState({}, "", url.toString());
     }
   }, [isDetailModalOpen]);
 
@@ -512,12 +512,12 @@ export default function UIMatrix() {
   const openDetailModal = useCallback((componentId: string) => {
     setSelectedComponentId(componentId);
     setIsDetailModalOpen(true);
-    
+
     // URL에 컴포넌트 ID 추가
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      url.searchParams.set('component', componentId);
-      window.history.pushState({}, '', url.toString());
+      url.searchParams.set("component", componentId);
+      window.history.pushState({}, "", url.toString());
     }
   }, []);
 
@@ -531,8 +531,8 @@ export default function UIMatrix() {
   useEffect(() => {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
-      const componentId = params.get('component');
-      
+      const componentId = params.get("component");
+
       if (componentId) {
         setSelectedComponentId(componentId);
         setIsDetailModalOpen(true);
@@ -542,8 +542,8 @@ export default function UIMatrix() {
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   // Component groups for "By Component" tab
@@ -821,16 +821,21 @@ export default function UIMatrix() {
             <div className="absolute inset-0 border-4 border-primary/30 rounded-full"></div>
             <div className="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
-          
+
           {/* 로딩 텍스트 */}
           <div className="flex flex-col items-center gap-2">
             <p className="text-lg font-semibold text-foreground">로딩 중...</p>
-            <p className="text-sm text-muted-foreground">컴포넌트를 불러오고 있습니다</p>
+            <p className="text-sm text-muted-foreground">
+              컴포넌트를 불러오고 있습니다
+            </p>
           </div>
-          
+
           {/* 진행 바 */}
           <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
-            <div className="h-full bg-primary rounded-full animate-pulse" style={{ width: '70%' }}></div>
+            <div
+              className="h-full bg-primary rounded-full animate-pulse"
+              style={{ width: "70%" }}
+            ></div>
           </div>
         </div>
       </div>
@@ -899,7 +904,11 @@ export default function UIMatrix() {
 
         {/* Buttons: Gallery / Compare */}
         <section className="component-catalog__section">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="component-catalog__tabs">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="component-catalog__tabs"
+          >
             <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
               <TabsTrigger value="compare">Compare</TabsTrigger>
@@ -951,11 +960,15 @@ export default function UIMatrix() {
                             : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
                         }`}
                       >
-                        {lib === "all"
-                          ? "전체"
-                          : lib === "favorites"
-                          ? <><Star className="h-4 w-4 inline mr-1" /> 즐겨찾기</>
-                          : lib.charAt(0).toUpperCase() + lib.slice(1)}
+                        {lib === "all" ? (
+                          "전체"
+                        ) : lib === "favorites" ? (
+                          <>
+                            <Star className="h-4 w-4 inline mr-1" /> 즐겨찾기
+                          </>
+                        ) : (
+                          lib.charAt(0).toUpperCase() + lib.slice(1)
+                        )}
                       </button>
                     ))}
                   </div>
@@ -1233,12 +1246,27 @@ export default function UIMatrix() {
                                 onClick={() => toggleFavorite("shadcn-select")}
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="즐겨찾기"
-                                aria-label={favorites.has("shadcn-select") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                aria-label={
+                                  favorites.has("shadcn-select")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
                               >
-                                <Star className={`w-4 h-4 ${favorites.has("shadcn-select") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-select")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
                               </button>
                               <button
-                                onClick={() => copyCode('<Select>\n  <SelectTrigger>\n    <SelectValue placeholder="Select" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value="1">Option 1</SelectItem>\n  </SelectContent>\n</Select>', "Select")}
+                                onClick={() =>
+                                  copyCode(
+                                    '<Select>\n  <SelectTrigger>\n    <SelectValue placeholder="Select" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value="1">Option 1</SelectItem>\n  </SelectContent>\n</Select>',
+                                    "Select"
+                                  )
+                                }
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="코드 복사"
                                 aria-label="Select 코드 복사"
@@ -1300,7 +1328,9 @@ export default function UIMatrix() {
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() => openDetailModal("shadcn-checkbox")}
+                                  onClick={() =>
+                                    openDetailModal("shadcn-checkbox")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="상세 보기"
                                   aria-label="Checkbox 상세 보기"
@@ -1308,15 +1338,32 @@ export default function UIMatrix() {
                                   <Search className="w-4 h-4" />
                                 </button>
                                 <button
-                                  onClick={() => toggleFavorite("shadcn-checkbox")}
+                                  onClick={() =>
+                                    toggleFavorite("shadcn-checkbox")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
-                                  aria-label={favorites.has("shadcn-checkbox") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                  aria-label={
+                                    favorites.has("shadcn-checkbox")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
-                                  <Star className={`w-4 h-4 ${favorites.has("shadcn-checkbox") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-checkbox")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
-                                  onClick={() => copyCode('<Checkbox id="check" />\n<label htmlFor="check">Label</label>', "Checkbox")}
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Checkbox id="check" />\n<label htmlFor="check">Label</label>',
+                                      "Checkbox"
+                                    )
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
                                   aria-label="Checkbox 코드 복사"
@@ -1386,12 +1433,27 @@ export default function UIMatrix() {
                                 onClick={() => toggleFavorite("shadcn-radio")}
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="즐겨찾기"
-                                aria-label={favorites.has("shadcn-radio") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                aria-label={
+                                  favorites.has("shadcn-radio")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
                               >
-                                <Star className={`w-4 h-4 ${favorites.has("shadcn-radio") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-radio")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
                               </button>
                               <button
-                                onClick={() => copyCode('<RadioGroup defaultValue="1">\n  <RadioGroupItem value="1" id="r1" />\n  <label htmlFor="r1">Option 1</label>\n</RadioGroup>', "Radio")}
+                                onClick={() =>
+                                  copyCode(
+                                    '<RadioGroup defaultValue="1">\n  <RadioGroupItem value="1" id="r1" />\n  <label htmlFor="r1">Option 1</label>\n</RadioGroup>',
+                                    "Radio"
+                                  )
+                                }
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="코드 복사"
                                 aria-label="Radio 코드 복사"
@@ -1461,12 +1523,27 @@ export default function UIMatrix() {
                                 onClick={() => toggleFavorite("shadcn-switch")}
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="즐겨찾기"
-                                aria-label={favorites.has("shadcn-switch") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                aria-label={
+                                  favorites.has("shadcn-switch")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
                               >
-                                <Star className={`w-4 h-4 ${favorites.has("shadcn-switch") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-switch")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
                               </button>
                               <button
-                                onClick={() => copyCode('<Switch id="switch" />\n<label htmlFor="switch">Toggle</label>', "Switch")}
+                                onClick={() =>
+                                  copyCode(
+                                    '<Switch id="switch" />\n<label htmlFor="switch">Toggle</label>',
+                                    "Switch"
+                                  )
+                                }
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="코드 복사"
                                 aria-label="Switch 코드 복사"
@@ -1536,12 +1613,27 @@ export default function UIMatrix() {
                                 onClick={() => toggleFavorite("shadcn-slider")}
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="즐겨찾기"
-                                aria-label={favorites.has("shadcn-slider") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                aria-label={
+                                  favorites.has("shadcn-slider")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
                               >
-                                <Star className={`w-4 h-4 ${favorites.has("shadcn-slider") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-slider")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
                               </button>
                               <button
-                                onClick={() => copyCode('<Slider defaultValue={[50]} max={100} step={1} />', "Slider")}
+                                onClick={() =>
+                                  copyCode(
+                                    "<Slider defaultValue={[50]} max={100} step={1} />",
+                                    "Slider"
+                                  )
+                                }
                                 className="p-1 hover:bg-muted rounded transition-colors"
                                 title="코드 복사"
                                 aria-label="Slider 코드 복사"
@@ -1591,7 +1683,9 @@ export default function UIMatrix() {
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() => openDetailModal("shadcn-avatar")}
+                                  onClick={() =>
+                                    openDetailModal("shadcn-avatar")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="상세 보기"
                                   aria-label="Avatar 상세 보기"
@@ -1599,15 +1693,32 @@ export default function UIMatrix() {
                                   <Search className="w-4 h-4" />
                                 </button>
                                 <button
-                                  onClick={() => toggleFavorite("shadcn-avatar")}
+                                  onClick={() =>
+                                    toggleFavorite("shadcn-avatar")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
-                                  aria-label={favorites.has("shadcn-avatar") ? "즐겨찾기 제거" : "즐겨찾기 추가"}
+                                  aria-label={
+                                    favorites.has("shadcn-avatar")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
-                                  <Star className={`w-4 h-4 ${favorites.has("shadcn-avatar") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-avatar")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
-                                  onClick={() => copyCode('<Avatar>\n  <AvatarImage src="..." />\n  <AvatarFallback>CN</AvatarFallback>\n</Avatar>', "Avatar")}
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Avatar>\n  <AvatarImage src="..." />\n  <AvatarFallback>CN</AvatarFallback>\n</Avatar>',
+                                      "Avatar"
+                                    )
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
                                   aria-label="Avatar 코드 복사"
@@ -2159,7 +2270,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("shadcn-tabs") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-tabs")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2225,7 +2342,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("shadcn-toggle") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-toggle")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2293,7 +2416,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("shadcn-skeleton") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-skeleton")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2358,7 +2487,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("shadcn-command") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-command")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2428,7 +2563,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("shadcn-drawer") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-drawer")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2548,7 +2689,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("aceternity-button") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2819,7 +2966,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("aceternity-floating-dock") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-floating-dock")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -2839,8 +2992,16 @@ export default function UIMatrix() {
                               <div className="flex justify-center py-4">
                                 <FloatingDock
                                   items={[
-                                    { title: "Home", icon: <Home className="h-4 w-4" />, href: "#" },
-                                    { title: "Search", icon: <Search className="h-4 w-4" />, href: "#" },
+                                    {
+                                      title: "Home",
+                                      icon: <Home className="h-4 w-4" />,
+                                      href: "#",
+                                    },
+                                    {
+                                      title: "Search",
+                                      icon: <Search className="h-4 w-4" />,
+                                      href: "#",
+                                    },
                                     {
                                       title: "Settings",
                                       icon: <Settings className="h-4 w-4" />,
@@ -2892,7 +3053,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("aceternity-3d-card") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-3d-card")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3004,7 +3171,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-shimmer-button") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-shimmer-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3073,7 +3246,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-rainbow-button") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-rainbow-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3257,7 +3436,8 @@ export default function UIMatrix() {
                             <div className="component-card__body">
                               <div className="flex flex-col gap-2 items-center">
                                 <SparklesText className="text-sm">
-                                  <Sparkles className="h-4 w-4 inline mr-1" /> Sparkles
+                                  <Sparkles className="h-4 w-4 inline mr-1" />{" "}
+                                  Sparkles
                                 </SparklesText>
                               </div>
                             </div>
@@ -3303,7 +3483,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-meteors") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-meteors")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3366,7 +3552,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-particles") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-particles")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3430,7 +3622,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-ripple") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-ripple")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3493,7 +3691,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-pulsating-button") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-pulsating-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3554,7 +3758,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("magic-card") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-card")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   onClick={() =>
@@ -3755,7 +3965,8 @@ export default function UIMatrix() {
                             <div className="component-card__body">
                               <Suspense fallback={<ComponentLoader />}>
                                 <ConfettiButton className="text-sm px-3 py-1">
-                                  <PartyPopper className="h-4 w-4 inline mr-1" /> Celebrate
+                                  <PartyPopper className="h-4 w-4 inline mr-1" />{" "}
+                                  Celebrate
                                 </ConfettiButton>
                               </Suspense>
                             </div>
@@ -3797,7 +4008,8 @@ export default function UIMatrix() {
                               <Suspense fallback={<ComponentLoader />}>
                                 <CoolMode>
                                   <ShadcnButton size="sm">
-                                    <Sparkles className="h-4 w-4 inline mr-1" /> Click Me
+                                    <Sparkles className="h-4 w-4 inline mr-1" />{" "}
+                                    Click Me
                                   </ShadcnButton>
                                 </CoolMode>
                               </Suspense>
@@ -4027,9 +4239,9 @@ export default function UIMatrix() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
                       >
-                        <span>Official Site</span>
+                        <span>공식 사이트</span>
                         <svg
-                          className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
+                          className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -4083,7 +4295,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-button") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4130,7 +4348,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-input") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-input")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4184,7 +4408,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-checkbox") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-checkbox")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4231,7 +4461,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-radio") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-radio")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4280,7 +4516,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-select") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-select")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4329,7 +4571,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-slider") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-slider")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4378,7 +4626,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-switch") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-switch")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4427,7 +4681,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-accordion") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-accordion")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4476,7 +4736,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-avatar") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-avatar")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4523,7 +4789,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-badge") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-badge")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4572,7 +4844,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-dialog") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-dialog")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4621,7 +4899,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-dropdown") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-dropdown")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4670,7 +4954,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-popover") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-popover")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4719,7 +5009,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-tooltip") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-tooltip")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4766,7 +5062,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-tabs") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-tabs")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4815,7 +5117,13 @@ export default function UIMatrix() {
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
-                                  <Star className={`h-4 w-4 ${favorites.has("origin-textarea") ? "fill-yellow-400 text-yellow-400" : ""}`} />
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("origin-textarea")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
@@ -4829,28 +5137,40 @@ export default function UIMatrix() {
                 )}
               </div>
             </TabsContent>
-            <TabsContent value="compare" className="component-catalog">
+            <TabsContent value="compare">
               <div className="overflow-x-auto rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
-                <table className="table-auto border-collapse w-full">
-                  <thead>
-                    <tr>
-                      <th>Component</th>
-                      <th>shadcn</th>
-                      <th>Aceternity</th>
-                      <th>Magic UI</th>
-                      <th>Origin UI</th>
+                <table className="w-full border-collapse">
+                  <thead className="bg-muted/50 backdrop-blur-sm">
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-left">
+                        Component
+                      </th>
+                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
+                        shadcn
+                      </th>
+                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
+                        Aceternity
+                      </th>
+                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
+                        Magic UI
+                      </th>
+                      <th className="border-b-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
+                        Origin UI
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Button</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Button
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <ShadcnButton>Click</ShadcnButton>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <AceternityButton>Click</AceternityButton>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="flex justify-center items-center gap-2">
                           <MagicButton className="shadow-sm text-xs px-2">
                             Shimmer
@@ -4863,25 +5183,27 @@ export default function UIMatrix() {
                           </ShinyButton>
                         </div>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Input</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Input
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Input
                           placeholder="Type here..."
                           className="max-w-[200px]"
                         />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <OriginInput
                           placeholder="Email..."
                           type="email"
@@ -4889,9 +5211,11 @@ export default function UIMatrix() {
                         />
                       </td>
                     </tr>
-                    <tr>
-                      <td>Select</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Select
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="flex justify-center items-center">
                           <Select>
                             <SelectTrigger className="w-[180px]">
@@ -4904,101 +5228,113 @@ export default function UIMatrix() {
                           </Select>
                         </div>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Checkbox</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Checkbox
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Checkbox id="shadcn-check" />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Badge</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Badge
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Badge>New</Badge>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Textarea</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Textarea
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Textarea
                           placeholder="Type here..."
                           className="max-w-[200px]"
                         />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Radio</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Radio
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <RadioGroup defaultValue="option1">
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="option1" id="r1" />
                           </div>
                         </RadioGroup>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Switch</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Switch
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Switch />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Slider</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Slider
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Slider
                           defaultValue={[50]}
                           max={100}
@@ -5006,84 +5342,94 @@ export default function UIMatrix() {
                           className="w-[160px]"
                         />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Avatar</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Avatar
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Avatar>
                           <AvatarImage src="https://github.com/shadcn.png" />
                           <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <AvatarCircles numPeople={3} avatarUrls={[]} />
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Alert</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Alert
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Alert className="max-w-[200px]">
                           <AlertDescription>Alert message</AlertDescription>
                         </Alert>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Progress</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Progress
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Progress value={60} className="w-[160px]" />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Separator</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Separator
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Separator className="w-[160px]" />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Accordion</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Accordion
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Accordion
                           type="single"
                           collapsible
@@ -5095,19 +5441,21 @@ export default function UIMatrix() {
                           </AccordionItem>
                         </Accordion>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Table</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Table
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Table className="w-[200px]">
                           <TableHeader>
                             <TableRow>
@@ -5121,19 +5469,21 @@ export default function UIMatrix() {
                           </TableBody>
                         </Table>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Dialog</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Dialog
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Dialog>
                           <DialogTrigger asChild>
                             <ShadcnButton variant="outline">Open</ShadcnButton>
@@ -5141,21 +5491,23 @@ export default function UIMatrix() {
                           <DialogContent>Dialog Content</DialogContent>
                         </Dialog>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Modal <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Tooltip</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Tooltip
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -5167,7 +5519,7 @@ export default function UIMatrix() {
                           </Tooltip>
                         </TooltipProvider>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <AnimatedTooltip
                           items={[
                             {
@@ -5179,19 +5531,23 @@ export default function UIMatrix() {
                           ]}
                         />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Tabs</td>
-                      <td>
-                        <span className="text-sm">Current Tab <Check className="h-3 w-3 inline" /></span>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Tabs
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-sm">
+                          Current Tab <Check className="h-3 w-3 inline" />
+                        </span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <AceternityTabs
                           tabs={[
                             {
@@ -5209,16 +5565,18 @@ export default function UIMatrix() {
                           contentClassName="hidden"
                         />
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Dropdown</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Dropdown
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <ShadcnButton variant="outline">Menu</ShadcnButton>
@@ -5228,69 +5586,89 @@ export default function UIMatrix() {
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Animated Text</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Animated Text
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="flex justify-center items-center gap-2">
                           <AnimatedGradientText>Gradient</AnimatedGradientText>
-                          <SparklesText><Sparkles className="h-4 w-4 inline mr-1" /> Sparkles</SparklesText>
+                          <SparklesText>
+                            <Sparkles className="h-4 w-4 inline mr-1" />{" "}
+                            Sparkles
+                          </SparklesText>
                         </div>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Bento Grid</td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Bento Grid
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Layout <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Layout <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Background Effects</td>
-                      <td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Background Effects
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Beams <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Particles/Meteors <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Moving Border</td>
-                      <td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Moving Border
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <MovingBorderButton
                           duration={3000}
                           className="text-sm px-3 py-1"
@@ -5298,18 +5676,23 @@ export default function UIMatrix() {
                           Border
                         </MovingBorderButton>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Border Beam <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Hover Border Gradient</td>
-                      <td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Hover Border Gradient
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <HoverBorderGradient
                           containerClassName="rounded-md"
                           className="text-sm px-3 py-1"
@@ -5317,207 +5700,255 @@ export default function UIMatrix() {
                           Hover
                         </HoverBorderGradient>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Ripple Effect</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Ripple Effect
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="relative w-32 h-32 flex items-center justify-center">
                           <Ripple />
                         </div>
                       </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Marquee</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Marquee
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Marquee className="max-w-[200px]">
                           <span className="text-sm">Scrolling Text</span>
                         </Marquee>
                       </td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Number Animation</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Number Animation
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <NumberTicker value={100} />
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Timeline</td>
-                      <td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Timeline
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Animated List</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Animated List
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Floating Dock</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Floating Dock
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Dock <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Dock <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Floating Navbar</td>
-                      <td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Floating Navbar
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Floating Navbar <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Sidebar</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Sidebar
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Sidebar <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Text Reveal</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Text Reveal
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Text Reveal <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td>Animated Beam</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Animated Beam
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated Beam <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Blur Fade</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Blur Fade
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <BlurFade delay={0.1} inView>
                           <div className="text-sm">Fade In</div>
                         </BlurFade>
                       </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Confetti</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Confetti
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Suspense fallback={<ComponentLoader />}>
                           <ConfettiButton className="text-xs px-3 py-1">
-                            <PartyPopper className="h-3 w-3 inline mr-1" /> Click
+                            <PartyPopper className="h-3 w-3 inline mr-1" />{" "}
+                            Click
                           </ConfettiButton>
                         </Suspense>
                       </td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Cool Mode</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Cool Mode
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Suspense fallback={<ComponentLoader />}>
                           <CoolMode>
                             <ShadcnButton size="sm" className="text-xs">
@@ -5526,48 +5957,63 @@ export default function UIMatrix() {
                           </CoolMode>
                         </Suspense>
                       </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Globe</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Globe
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="w-32 h-32 relative">
                           <Suspense fallback={<ComponentLoader />}>
                             <Globe />
                           </Suspense>
                         </div>
                       </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Icon Cloud</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Icon Cloud
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="w-32 h-32">
                           <Suspense fallback={<ComponentLoader />}>
                             <IconCloud width={128} height={128} />
                           </Suspense>
                         </div>
                       </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Orbiting Circles</td>
-                      <td>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                        Orbiting Circles
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <div className="relative w-32 h-32 flex items-center justify-center">
                           <Suspense fallback={<ComponentLoader />}>
                             <OrbitingCircles
@@ -5588,6 +6034,9 @@ export default function UIMatrix() {
                             </OrbitingCircles>
                           </Suspense>
                         </div>
+                      </td>
+                      <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
                   </tbody>
@@ -5732,7 +6181,8 @@ export default function UIMatrix() {
                       <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
                         <div className="text-3xl font-bold">4</div>
                         <div className="text-sm text-muted-foreground mt-2">
-                          <BookOpen className="h-4 w-4 inline mr-1" /> 라이브러리
+                          <BookOpen className="h-4 w-4 inline mr-1" />{" "}
+                          라이브러리
                         </div>
                       </div>
                       <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
@@ -5800,42 +6250,54 @@ export default function UIMatrix() {
                   <CardContent>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><Circle className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <Circle className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Button</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           5개
                         </div>
                       </div>
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><FileText className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <FileText className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Input</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           8개
                         </div>
                       </div>
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><Layout className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <Layout className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Layout</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           6개
                         </div>
                       </div>
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><Sparkles className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <Sparkles className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Animation</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           12개
                         </div>
                       </div>
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><Compass className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <Compass className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Navigation</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           4개
                         </div>
                       </div>
                       <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1"><MessageSquare className="h-6 w-6 mx-auto" /></div>
+                        <div className="text-2xl mb-1">
+                          <MessageSquare className="h-6 w-6 mx-auto" />
+                        </div>
                         <div className="font-semibold text-sm">Feedback</div>
                         <div className="text-xs text-muted-foreground mt-1">
                           5개
@@ -5851,9 +6313,9 @@ export default function UIMatrix() {
 
         {/* 컴포넌트 상세 모달 - 2025 Glassmorphism UI */}
         <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
-          <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background/95 via-background/98 to-muted/95 backdrop-blur-xl border-2 border-border/50 shadow-2xl">
+          <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background/95 via-background/98 to-muted/95 backdrop-blur-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-2xl">
             {/* 헤더 - 그라데이션 글래스 효과 */}
-            <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 backdrop-blur-md border-b border-border/50 relative">
+            <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50 relative">
               {/* 백그라운드 글로우 */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
               <div className="relative flex items-start justify-between gap-4">
@@ -5865,7 +6327,7 @@ export default function UIMatrix() {
                     <div className="flex gap-2">
                       <Badge
                         variant="outline"
-                        className="px-3 py-1 bg-background/90 backdrop-blur-sm border-border/50 shadow-sm"
+                        className="px-3 py-1 bg-background/90 backdrop-blur-sm border-gray-200 dark:border-gray-700/50 shadow-sm"
                       >
                         shadcn/ui
                       </Badge>
@@ -5888,7 +6350,7 @@ export default function UIMatrix() {
             {/* 탭 기반 컨텐츠 */}
             <div className="overflow-y-auto max-h-[calc(85vh-180px)] bg-gradient-to-b from-background/50 to-background/80 backdrop-blur-sm">
               <Tabs defaultValue="code" className="w-full">
-                <div className="px-8 pt-4 pb-2 sticky top-0 bg-background/95 backdrop-blur-xl z-10 border-b border-border/50 shadow-sm">
+                <div className="px-8 pt-4 pb-2 sticky top-0 bg-background/95 backdrop-blur-xl z-10 border-b border-gray-200 dark:border-gray-700/50 shadow-sm">
                   <TabsList className="grid w-full grid-cols-3 h-11 bg-muted/50 backdrop-blur-sm">
                     <TabsTrigger
                       value="code"
@@ -5923,14 +6385,21 @@ export default function UIMatrix() {
                     <div className="relative group">
                       {/* Hover glow effect */}
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-border/50 shadow-lg overflow-hidden">
+                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg overflow-hidden">
                         {/* 코드 헤더 */}
-                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/30">
-                          <span className="text-xs font-semibold text-muted-foreground">TypeScript</span>
+                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-gray-200 dark:border-gray-700/30">
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            TypeScript
+                          </span>
                           <ShadcnButton
                             size="sm"
                             variant="ghost"
-                            onClick={() => copyCode('import { Button } from "@/components/ui/button"\n\nexport function ButtonDemo() {\n  return (\n    <>\n      <Button>Default</Button>\n      <Button variant="outline">Outline</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="destructive">Destructive</Button>\n    </>\n  )\n}', "Button 코드")}
+                            onClick={() =>
+                              copyCode(
+                                'import { Button } from "@/components/ui/button"\n\nexport function ButtonDemo() {\n  return (\n    <>\n      <Button>Default</Button>\n      <Button variant="outline">Outline</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="destructive">Destructive</Button>\n    </>\n  )\n}',
+                                "Button 코드"
+                              )
+                            }
                             className="h-6 px-2 gap-1.5 hover:bg-background/80"
                           >
                             <Copy className="w-3 h-3" />
@@ -5963,7 +6432,7 @@ export function ButtonDemo() {
                     </h3>
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-background/90 to-muted/60 backdrop-blur-md p-6 rounded-xl border-2 border-border/50 shadow-lg">
+                      <div className="relative bg-gradient-to-br from-background/90 to-muted/60 backdrop-blur-md p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg">
                         <div className="flex flex-wrap gap-3 justify-center">
                           <ShadcnButton>Default</ShadcnButton>
                           <ShadcnButton variant="outline">Outline</ShadcnButton>
@@ -5990,9 +6459,11 @@ export function ButtonDemo() {
                     </h3>
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-border/50 shadow-lg overflow-hidden">
-                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/30">
-                          <span className="text-xs font-semibold text-muted-foreground">Shell</span>
+                      <div className="relative bg-gradient-to-br from-muted/90 to-muted/70 backdrop-blur-md rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg overflow-hidden">
+                        <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-gray-200 dark:border-gray-700/30">
+                          <span className="text-xs font-semibold text-muted-foreground">
+                            Shell
+                          </span>
                           <ShadcnButton
                             size="sm"
                             variant="ghost"
@@ -6026,13 +6497,13 @@ export function ButtonDemo() {
                     <div className="flex flex-wrap gap-2">
                       <Badge
                         variant="outline"
-                        className="px-4 py-2 text-sm bg-background/80 backdrop-blur-sm border-border/50 shadow-sm"
+                        className="px-4 py-2 text-sm bg-background/80 backdrop-blur-sm border-gray-200 dark:border-gray-700/50 shadow-sm"
                       >
                         @radix-ui/react-slot
                       </Badge>
                       <Badge
                         variant="outline"
-                        className="px-4 py-2 text-sm bg-background/80 backdrop-blur-sm border-border/50 shadow-sm"
+                        className="px-4 py-2 text-sm bg-background/80 backdrop-blur-sm border-gray-200 dark:border-gray-700/50 shadow-sm"
                       >
                         class-variance-authority
                       </Badge>
@@ -6063,7 +6534,7 @@ export function ButtonDemo() {
                   <div className="space-y-4">
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-md p-5 rounded-xl border-2 border-border/50 shadow-lg">
+                      <div className="relative bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-md p-5 rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg">
                         <h3 className="text-base font-semibold mb-3 text-foreground drop-shadow-sm">
                           컴포넌트 정보
                         </h3>
@@ -6100,7 +6571,7 @@ export function ButtonDemo() {
 
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
-                      <div className="relative bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-md p-5 rounded-xl border-2 border-border/50 shadow-lg">
+                      <div className="relative bg-gradient-to-br from-muted/80 to-muted/60 backdrop-blur-md p-5 rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg">
                         <h3 className="text-base font-semibold mb-3 text-foreground drop-shadow-sm">
                           외부 링크
                         </h3>

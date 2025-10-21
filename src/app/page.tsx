@@ -5142,7 +5142,7 @@ export default function UIMatrix() {
                 <table className="w-full border-collapse">
                   <thead className="bg-muted/50 backdrop-blur-sm">
                     <tr className="transition-colors hover:bg-muted/30">
-                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-left">
+                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
                         Component
                       </th>
                       <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
@@ -5161,17 +5161,21 @@ export default function UIMatrix() {
                   </thead>
                   <tbody>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Button
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <ShadcnButton>Click</ShadcnButton>
+                        <div className="inline-block">
+                          <ShadcnButton>Click</ShadcnButton>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <AceternityButton>Click</AceternityButton>
+                        <div className="inline-block">
+                          <AceternityButton>Click</AceternityButton>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="flex justify-center items-center gap-2">
+                        <div className="inline-flex gap-2">
                           <MagicButton className="shadow-sm text-xs px-2">
                             Shimmer
                           </MagicButton>
@@ -5188,13 +5192,13 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Input
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Input
                           placeholder="Type here..."
-                          className="max-w-[200px]"
+                          className="max-w-[200px] mx-auto"
                         />
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5207,25 +5211,42 @@ export default function UIMatrix() {
                         <OriginInput
                           placeholder="Email..."
                           type="email"
-                          className="max-w-[200px]"
+                          className="max-w-[200px] mx-auto"
                         />
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Select
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="flex justify-center items-center">
-                          <Select>
-                            <SelectTrigger className="w-[180px]">
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="option1">Option 1</SelectItem>
-                              <SelectItem value="option2">Option 2</SelectItem>
-                            </SelectContent>
-                          </Select>
+                        <Select>
+                          <SelectTrigger className="w-[180px] mx-auto">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="option1">Option 1</SelectItem>
+                            <SelectItem value="option2">Option 2</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <span className="text-muted-foreground text-sm">-</span>
+                      </td>
+                    </tr>
+                    <tr className="transition-colors hover:bg-muted/30">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                        Checkbox
+                      </td>
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                        <div className="inline-block">
+                          <Checkbox id="shadcn-check" />
                         </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5239,28 +5260,13 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
-                        Checkbox
-                      </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Checkbox id="shadcn-check" />
-                      </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <span className="text-muted-foreground text-sm">-</span>
-                      </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <span className="text-muted-foreground text-sm">-</span>
-                      </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <span className="text-muted-foreground text-sm">-</span>
-                      </td>
-                    </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Badge
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Badge>New</Badge>
+                        <div className="inline-block">
+                          <Badge>New</Badge>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5273,13 +5279,13 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Textarea
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Textarea
                           placeholder="Type here..."
-                          className="max-w-[200px]"
+                          className="max-w-[200px] mx-auto"
                         />
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5293,15 +5299,17 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Radio
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <RadioGroup defaultValue="option1">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option1" id="r1" />
-                          </div>
-                        </RadioGroup>
+                        <div className="inline-block">
+                          <RadioGroup defaultValue="option1">
+                            <div className="flex items-center space-x-2">
+                              <RadioGroupItem value="option1" id="r1" />
+                            </div>
+                          </RadioGroup>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5314,11 +5322,13 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Switch
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Switch />
+                        <div className="inline-block">
+                          <Switch />
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5331,7 +5341,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Slider
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5339,7 +5349,7 @@ export default function UIMatrix() {
                           defaultValue={[50]}
                           max={100}
                           step={1}
-                          className="w-[160px]"
+                          className="w-[160px] mx-auto"
                         />
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5353,31 +5363,35 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Avatar
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
+                        <div className="inline-block">
+                          <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <AvatarCircles numPeople={3} avatarUrls={[]} />
+                        <div className="inline-block">
+                          <AvatarCircles numPeople={3} avatarUrls={[]} />
+                        </div>
                       </td>
                       <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Alert
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Alert className="max-w-[200px]">
+                        <Alert className="max-w-[200px] mx-auto">
                           <AlertDescription>Alert message</AlertDescription>
                         </Alert>
                       </td>
@@ -5392,11 +5406,11 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Progress
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Progress value={60} className="w-[160px]" />
+                        <Progress value={60} className="w-[160px] mx-auto" />
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5409,11 +5423,13 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Separator
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Separator className="w-[160px]" />
+                        <div className="flex justify-center">
+                          <Separator className="w-[160px]" />
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5426,14 +5442,14 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Accordion
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <Accordion
                           type="single"
                           collapsible
-                          className="w-[200px]"
+                          className="w-[200px] mx-auto"
                         >
                           <AccordionItem value="item-1">
                             <AccordionTrigger>Item 1</AccordionTrigger>
@@ -5452,11 +5468,12 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Table
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Table className="w-[200px]">
+                        <div className="inline-block">
+                          <Table className="w-[200px]">
                           <TableHeader>
                             <TableRow>
                               <TableHead>Name</TableHead>
@@ -5468,6 +5485,7 @@ export default function UIMatrix() {
                             </TableRow>
                           </TableBody>
                         </Table>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5480,7 +5498,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Dialog
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5504,32 +5522,36 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Tooltip
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <ShadcnButton variant="outline">
-                                Hover
-                              </ShadcnButton>
-                            </TooltipTrigger>
-                            <TooltipContent>Tooltip</TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
+                        <div className="inline-block">
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <ShadcnButton variant="outline">
+                                  Hover
+                                </ShadcnButton>
+                              </TooltipTrigger>
+                              <TooltipContent>Tooltip</TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <AnimatedTooltip
-                          items={[
-                            {
-                              id: 1,
-                              name: "Hover Me",
-                              designation: "Animated",
-                              image: "https://github.com/shadcn.png",
-                            },
-                          ]}
-                        />
+                        <div className="inline-block">
+                          <AnimatedTooltip
+                            items={[
+                              {
+                                id: 1,
+                                name: "Hover Me",
+                                designation: "Animated",
+                                image: "https://github.com/shadcn.png",
+                              },
+                            ]}
+                          />
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5539,7 +5561,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Tabs
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5561,7 +5583,7 @@ export default function UIMatrix() {
                               content: "Content 2",
                             },
                           ]}
-                          containerClassName="w-[200px]"
+                          containerClassName="w-[200px] mx-auto"
                           contentClassName="hidden"
                         />
                       </td>
@@ -5573,7 +5595,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Dropdown
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5597,7 +5619,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Animated Text
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5607,7 +5629,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="flex justify-center items-center gap-2">
+                        <div className="inline-flex gap-2">
                           <AnimatedGradientText>Gradient</AnimatedGradientText>
                           <SparklesText>
                             <Sparkles className="h-4 w-4 inline mr-1" />{" "}
@@ -5620,7 +5642,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Bento Grid
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5641,7 +5663,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Background Effects
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5662,7 +5684,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Moving Border
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5686,19 +5708,21 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Hover Border Gradient
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <HoverBorderGradient
-                          containerClassName="rounded-md"
-                          className="text-sm px-3 py-1"
-                        >
-                          Hover
-                        </HoverBorderGradient>
+                        <div className="inline-block">
+                          <HoverBorderGradient
+                            containerClassName="rounded-md"
+                            className="text-sm px-3 py-1"
+                          >
+                            Hover
+                          </HoverBorderGradient>
+                        </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
@@ -5708,7 +5732,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Ripple Effect
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5718,7 +5742,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="relative w-32 h-32 flex items-center justify-center">
+                        <div className="relative w-32 h-32 flex items-center justify-center mx-auto">
                           <Ripple />
                         </div>
                       </td>
@@ -5727,7 +5751,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Marquee
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5737,7 +5761,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <Marquee className="max-w-[200px]">
+                        <Marquee className="max-w-[200px] mx-auto">
                           <span className="text-sm">Scrolling Text</span>
                         </Marquee>
                       </td>
@@ -5746,7 +5770,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Number Animation
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5763,7 +5787,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Timeline
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5782,7 +5806,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Animated List
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5801,7 +5825,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Floating Dock
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5822,7 +5846,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Floating Navbar
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5841,7 +5865,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Sidebar
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5860,7 +5884,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Text Reveal
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5879,7 +5903,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Animated Beam
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5898,7 +5922,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Blur Fade
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5917,7 +5941,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Confetti
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5939,7 +5963,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Cool Mode
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5962,7 +5986,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Globe
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5972,7 +5996,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="w-32 h-32 relative">
+                        <div className="w-32 h-32 relative mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <Globe />
                           </Suspense>
@@ -5983,7 +6007,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Icon Cloud
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -5993,7 +6017,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="w-32 h-32">
+                        <div className="w-32 h-32 mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <IconCloud width={128} height={128} />
                           </Suspense>
@@ -6004,7 +6028,7 @@ export default function UIMatrix() {
                       </td>
                     </tr>
                     <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-left">
+                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
                         Orbiting Circles
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
@@ -6014,7 +6038,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="relative w-32 h-32 flex items-center justify-center">
+                        <div className="relative w-32 h-32 flex items-center justify-center mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <OrbitingCircles
                               className="h-8 w-8 border-none bg-transparent"

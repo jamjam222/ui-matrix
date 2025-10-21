@@ -98,53 +98,8 @@
   min-height: 80px;
 }
 
-/* Compare Table Styles - Neobrutalism */
-.component-catalog table {
-  background: var(--card-bg);
-  backdrop-filter: blur(8px);
-}
-
-.component-catalog table tbody tr {
-  transition: background-color 0.2s ease;
-}
-
-.component-catalog table tbody tr:hover {
-  background-color: hsl(var(--muted) / 0.3);
-}
-
-.component-catalog table tbody td {
-  border-left-width: 0 !important;
-  border-top-width: 0 !important;
-  padding: 1rem 1.5rem !important;
-  text-align: center;
-}
-
-.component-catalog table tbody td:not(:last-child) {
-  border-right: 2px solid hsl(var(--border)) !important;
-}
-
-.component-catalog table tbody td:first-child {
-  font-weight: 600;
-  text-align: left;
-}
-
-/* Table header neobrutalism style */
-.component-catalog table thead th {
-  background: hsl(var(--muted) / 0.5);
-  backdrop-filter: blur(4px);
-  font-weight: 700;
-  padding: 1rem 1.5rem;
-  border-bottom: 2px solid hsl(var(--border)) !important;
-  text-align: center;
-}
-
-.component-catalog table thead th:first-child {
-  text-align: left;
-}
-
-.component-catalog table thead th:not(:last-child) {
-  border-right: 2px solid hsl(var(--border)) !important;
-}
+/* Compare Table Styles - 이제 Tailwind 클래스 사용 */
+/* 테이블 스타일은 page.tsx에서 Tailwind utility classes로 직접 적용 */
 
 /* ============================================
    Responsive Styles
@@ -171,22 +126,6 @@
     padding: 12px;
     min-height: 60px;
   }
-
-  /* Table: reduce padding */
-  .component-catalog table tbody td {
-    padding: 0.75rem 0.5rem !important;
-    font-size: 0.875rem;
-  }
-
-  .component-catalog table thead th {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  /* Hide long text on mobile */
-  .component-catalog table tbody td:first-child {
-    font-size: 0.875rem;
-  }
 }
 
 /* Tablet: 768px - 1023px */
@@ -195,15 +134,6 @@
   .component-catalog__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-
-  /* Table: slightly reduced padding */
-  .component-catalog table tbody td {
-    padding: 0.875rem 1rem !important;
-  }
-
-  .component-catalog table thead th {
-    padding: 0.875rem 1rem;
   }
 }
 

@@ -299,6 +299,58 @@ export default function UIMatrix() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("gallery");
 
+  // 탭 변경 시 스크롤을 맨 위로
+  const handleTabChange = (value: string) => {
+    // 즉시 스크롤 위치 고정
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    setActiveTab(value);
+    
+    // 리렌더링 후 다시 한번 스크롤 확인
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  };
+
+  // 라이브러리 변경 시 스크롤을 맨 위로
+  const handleLibraryChange = (library: string) => {
+    // 즉시 스크롤 위치 고정
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    setSelectedLibrary(library);
+    
+    // 리렌더링 후 다시 한번 스크롤 확인
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  };
+
+  // 카테고리 변경 시 스크롤을 맨 위로
+  const handleCategoryChange = (category: string) => {
+    // 즉시 스크롤 위치 고정
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    setSelectedCategory(category);
+    
+    // 리렌더링 후 다시 한번 스크롤 확인
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  };
+
+  // 탭, 라이브러리, 카테고리 변경 시 스크롤 강제 고정
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [activeTab, selectedLibrary, selectedCategory]);
+
   // URL 파라미터에서 컴포넌트 ID 읽기
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -906,7 +958,7 @@ export default function UIMatrix() {
         <section className="component-catalog__section">
           <Tabs
             value={activeTab}
-            onValueChange={setActiveTab}
+            onValueChange={handleTabChange}
             className="component-catalog__tabs"
           >
             <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
@@ -953,7 +1005,8 @@ export default function UIMatrix() {
                     {libraries.map((lib) => (
                       <button
                         key={lib}
-                        onClick={() => setSelectedLibrary(lib)}
+                        type="button"
+                        onClick={() => handleLibraryChange(lib)}
                         className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
                           selectedLibrary === lib
                             ? "bg-primary/90 text-primary-foreground backdrop-blur-lg border border-primary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
@@ -983,7 +1036,8 @@ export default function UIMatrix() {
                     {categories.map((cat) => (
                       <button
                         key={cat}
-                        onClick={() => setSelectedCategory(cat)}
+                        type="button"
+                        onClick={() => handleCategoryChange(cat)}
                         className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
                           selectedCategory === cat
                             ? "bg-secondary/90 text-secondary-foreground backdrop-blur-lg border border-secondary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
@@ -5165,17 +5219,17 @@ export default function UIMatrix() {
                         Button
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <ShadcnButton>Click</ShadcnButton>
                         </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <AceternityButton>Click</AceternityButton>
                         </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-flex gap-2">
+                        <div className="component-showcase component-showcase--flex">
                           <MagicButton className="shadow-sm text-xs px-2">
                             Shimmer
                           </MagicButton>
@@ -5245,7 +5299,7 @@ export default function UIMatrix() {
                         Checkbox
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <Checkbox id="shadcn-check" />
                         </div>
                       </td>
@@ -5264,7 +5318,7 @@ export default function UIMatrix() {
                         Badge
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <Badge>New</Badge>
                         </div>
                       </td>
@@ -5303,7 +5357,7 @@ export default function UIMatrix() {
                         Radio
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <RadioGroup defaultValue="option1">
                             <div className="flex items-center space-x-2">
                               <RadioGroupItem value="option1" id="r1" />
@@ -5326,7 +5380,7 @@ export default function UIMatrix() {
                         Switch
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <Switch />
                         </div>
                       </td>
@@ -5367,7 +5421,7 @@ export default function UIMatrix() {
                         Avatar
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" />
                             <AvatarFallback>CN</AvatarFallback>
@@ -5378,7 +5432,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <AvatarCircles numPeople={3} avatarUrls={[]} />
                         </div>
                       </td>
@@ -5427,7 +5481,7 @@ export default function UIMatrix() {
                         Separator
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="flex justify-center">
+                        <div className="component-showcase component-showcase--flex">
                           <Separator className="w-[160px]" />
                         </div>
                       </td>
@@ -5472,7 +5526,7 @@ export default function UIMatrix() {
                         Table
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <Table className="w-[200px]">
                           <TableHeader>
                             <TableRow>
@@ -5526,7 +5580,7 @@ export default function UIMatrix() {
                         Tooltip
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -5540,7 +5594,7 @@ export default function UIMatrix() {
                         </div>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <AnimatedTooltip
                             items={[
                               {
@@ -5629,7 +5683,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-flex gap-2">
+                        <div className="component-showcase component-showcase--flex">
                           <AnimatedGradientText>Gradient</AnimatedGradientText>
                           <SparklesText>
                             <Sparkles className="h-4 w-4 inline mr-1" />{" "}
@@ -5715,7 +5769,7 @@ export default function UIMatrix() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                       <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
-                        <div className="inline-block">
+                        <div className="component-showcase component-showcase--inline">
                           <HoverBorderGradient
                             containerClassName="rounded-md"
                             className="text-sm px-3 py-1"

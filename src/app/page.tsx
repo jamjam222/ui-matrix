@@ -560,6 +560,182 @@ export default function UIMatrix() {
     [success, error]
   );
 
+  // 컴포넌트 상세 정보 데이터
+  const componentDetailsData: Record<string, {
+    name: string;
+    library: string;
+    category: string;
+    description: string;
+    code: string;
+    installCommand: string;
+    docs: string;
+  }> = {
+    "shadcn-button": {
+      name: "Button",
+      library: "shadcn/ui",
+      category: "button",
+      description: "다양한 스타일과 크기를 지원하는 버튼 컴포넌트입니다. <br />접근성과 사용자 경험을 고려하여 디자인되었습니다.",
+      code: `import { Button } from "@/components/ui/button"
+
+export function ButtonDemo() {
+  return (
+    <>
+      <Button>Default</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="destructive">Destructive</Button>
+    </>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add button",
+      docs: "https://ui.shadcn.com/docs/components/button"
+    },
+    "shadcn-input": {
+      name: "Input",
+      library: "shadcn/ui",
+      category: "input",
+      description: "사용자 입력을 받기 위한 텍스트 필드 컴포넌트입니다. <br />다양한 타입과 스타일을 지원합니다.",
+      code: `import { Input } from "@/components/ui/input"
+
+export function InputDemo() {
+  return (
+    <>
+      <Input placeholder="Type here..." />
+      <Input type="email" placeholder="Email" />
+      <Input type="password" placeholder="Password" />
+    </>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add input",
+      docs: "https://ui.shadcn.com/docs/components/input"
+    },
+    "shadcn-checkbox": {
+      name: "Checkbox",
+      library: "shadcn/ui",
+      category: "input",
+      description: "여러 옵션 중 하나 이상을 선택할 수 있는 체크박스 컴포넌트입니다.",
+      code: `import { Checkbox } from "@/components/ui/checkbox"
+
+export function CheckboxDemo() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <label htmlFor="terms">Accept terms and conditions</label>
+    </div>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add checkbox",
+      docs: "https://ui.shadcn.com/docs/components/checkbox"
+    },
+    "shadcn-radio": {
+      name: "Radio Group",
+      library: "shadcn/ui",
+      category: "input",
+      description: "여러 옵션 중 하나만 선택할 수 있는 라디오 버튼 그룹입니다.",
+      code: `import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
+export function RadioDemo() {
+  return (
+    <RadioGroup defaultValue="option1">
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option1" id="option1" />
+        <label htmlFor="option1">Option 1</label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option2" id="option2" />
+        <label htmlFor="option2">Option 2</label>
+      </div>
+    </RadioGroup>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add radio-group",
+      docs: "https://ui.shadcn.com/docs/components/radio-group"
+    },
+    "shadcn-select": {
+      name: "Select",
+      library: "shadcn/ui",
+      category: "input",
+      description: "드롭다운에서 옵션을 선택할 수 있는 셀렉트 컴포넌트입니다.",
+      code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+export function SelectDemo() {
+  return (
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Select an option" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add select",
+      docs: "https://ui.shadcn.com/docs/components/select"
+    },
+    "shadcn-switch": {
+      name: "Switch",
+      library: "shadcn/ui",
+      category: "input",
+      description: "On/Off 상태를 토글할 수 있는 스위치 컴포넌트입니다.",
+      code: `import { Switch } from "@/components/ui/switch"
+
+export function SwitchDemo() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Switch id="airplane-mode" />
+      <label htmlFor="airplane-mode">Airplane Mode</label>
+    </div>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add switch",
+      docs: "https://ui.shadcn.com/docs/components/switch"
+    },
+    "shadcn-slider": {
+      name: "Slider",
+      library: "shadcn/ui",
+      category: "input",
+      description: "범위 내에서 값을 선택할 수 있는 슬라이더 컴포넌트입니다.",
+      code: `import { Slider } from "@/components/ui/slider"
+
+export function SliderDemo() {
+  return (
+    <Slider
+      defaultValue={[50]}
+      max={100}
+      step={1}
+      className="w-[60%]"
+    />
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add slider",
+      docs: "https://ui.shadcn.com/docs/components/slider"
+    },
+    "shadcn-avatar": {
+      name: "Avatar",
+      library: "shadcn/ui",
+      category: "display",
+      description: "사용자 프로필 이미지를 표시하는 아바타 컴포넌트입니다.",
+      code: `import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+export function AvatarDemo() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add avatar",
+      docs: "https://ui.shadcn.com/docs/components/avatar"
+    },
+  };
+
+  // 선택된 컴포넌트 정보 가져오기
+  const selectedComponent = selectedComponentId ? componentDetailsData[selectedComponentId] : null;
+
   // 상세보기 모달 열기
   const openDetailModal = useCallback((componentId: string) => {
     setSelectedComponentId(componentId);
@@ -6400,27 +6576,24 @@ export default function UIMatrix() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent drop-shadow-sm">
-                      Button
+                      {selectedComponent?.name || "Component"}
                     </h2>
                     <div className="flex gap-2">
                       <Badge
                         variant="outline"
                         className="px-3 py-1 bg-background/90 backdrop-blur-sm border-gray-200 dark:border-gray-700/50 shadow-sm"
                       >
-                        shadcn/ui
+                        {selectedComponent?.library || "Library"}
                       </Badge>
                       <Badge
                         variant="secondary"
                         className="px-3 py-1 bg-secondary/90 backdrop-blur-sm shadow-sm"
                       >
-                        button
+                        {selectedComponent?.category || "Category"}
                       </Badge>
                     </div>
                   </div>
-                  <p className="text-sm text-foreground/90 leading-relaxed drop-shadow-sm">
-                    다양한 스타일과 크기를 지원하는 버튼 컴포넌트입니다. <br />
-                    접근성과 사용자 경험을 고려하여 디자인되었습니다.
-                  </p>
+                  <p className="text-sm text-foreground/90 leading-relaxed drop-shadow-sm" dangerouslySetInnerHTML={{ __html: selectedComponent?.description || "컴포넌트 설명이 없습니다." }} />
                 </div>
               </div>
             </div>
@@ -6474,8 +6647,8 @@ export default function UIMatrix() {
                             variant="ghost"
                             onClick={() =>
                               copyCode(
-                                'import { Button } from "@/components/ui/button"\n\nexport function ButtonDemo() {\n  return (\n    <>\n      <Button>Default</Button>\n      <Button variant="outline">Outline</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="destructive">Destructive</Button>\n    </>\n  )\n}',
-                                "Button 코드"
+                                selectedComponent?.code || "",
+                                `${selectedComponent?.name || "Component"} 코드`
                               )
                             }
                             className="h-6 px-2 gap-1.5 hover:bg-background/80"
@@ -6486,18 +6659,7 @@ export default function UIMatrix() {
                         </div>
                         {/* 코드 내용 */}
                         <pre className="p-4 text-[13px] leading-relaxed overflow-x-auto font-mono">
-                          <code className="text-foreground drop-shadow-sm">{`import { Button } from "@/components/ui/button"
-
-export function ButtonDemo() {
-  return (
-    <>
-      <Button>Default</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-    </>
-  )
-}`}</code>
+                          <code className="text-foreground drop-shadow-sm">{selectedComponent?.code || "// 코드가 없습니다."}</code>
                         </pre>
                       </div>
                     </div>
@@ -6547,7 +6709,7 @@ export function ButtonDemo() {
                             variant="ghost"
                             onClick={() =>
                               copyCode(
-                                "npx shadcn-ui@latest add button",
+                                selectedComponent?.installCommand || "",
                                 "설치 명령어"
                               )
                             }
@@ -6559,7 +6721,7 @@ export function ButtonDemo() {
                         </div>
                         <div className="p-4">
                           <code className="text-sm font-mono text-foreground drop-shadow-sm">
-                            npx shadcn-ui@latest add button
+                            {selectedComponent?.installCommand || "설치 명령어가 없습니다."}
                           </code>
                         </div>
                       </div>
@@ -6622,7 +6784,7 @@ export function ButtonDemo() {
                               라이브러리:
                             </dt>
                             <dd className="text-sm text-foreground font-medium drop-shadow-sm">
-                              shadcn/ui
+                              {selectedComponent?.library || "Unknown"}
                             </dd>
                           </div>
                           <Separator className="bg-border/50" />
@@ -6631,7 +6793,7 @@ export function ButtonDemo() {
                               카테고리:
                             </dt>
                             <dd className="text-sm text-foreground font-medium drop-shadow-sm">
-                              Button / Interactive
+                              {selectedComponent?.category || "Unknown"}
                             </dd>
                           </div>
                           <Separator className="bg-border/50" />
@@ -6655,7 +6817,7 @@ export function ButtonDemo() {
                         </h3>
                         <div className="space-y-2">
                           <Link
-                            href="https://ui.shadcn.com/docs/components/button"
+                            href={selectedComponent?.docs || "#"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors group/link p-2 rounded-lg hover:bg-background/50 backdrop-blur-sm"

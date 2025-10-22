@@ -578,6 +578,276 @@ export default function UIMatrix() {
     installCommand: string;
     docs: string;
   }> = {
+    "magic-shimmer-button": {
+      name: "Shimmer Button",
+      library: "magicui",
+      category: "button",
+      description: "버튼 위로 반짝이는 효과가 지나가는 애니메이션을 제공합니다.",
+      code: `import ShimmerButton from "@/components/ui/magicui/shimmer-button";\n\nexport function ShimmerButtonDemo() {\n  return <ShimmerButton>Shimmer</ShimmerButton>;\n}`,
+      installCommand: "npx magic-ui-cli add shimmer-button",
+      docs: "https://magicui.design/docs/components/shimmer-button",
+    },
+    "magic-rainbow-button": {
+      name: "Rainbow Button",
+      library: "magicui",
+      category: "button",
+      description: "버튼 주위에 무지개 색상의 애니메이션 테두리를 추가합니다.",
+      code: `import RainbowButton from "@/components/ui/magicui/rainbow-button";\n\nexport function RainbowButtonDemo() {\n  return <RainbowButton>Rainbow</RainbowButton>;\n}`,
+      installCommand: "npx magic-ui-cli add rainbow-button",
+      docs: "https://magicui.design/docs/components/rainbow-button",
+    },
+    "magic-meteors": {
+      name: "Meteors",
+      library: "magicui",
+      category: "animation",
+      description: "배경에 유성이 떨어지는 듯한 애니메이션 효과를 추가합니다.",
+      code: `import Meteors from "@/components/ui/magicui/meteors";\n\nexport function MeteorsDemo() {\n  return <Meteors number={20} />;\n}`,
+      installCommand: "npx magic-ui-cli add meteors",
+      docs: "https://magicui.design/docs/components/meteors",
+    },
+    "magic-particles": {
+      name: "Particles",
+      library: "magicui",
+      category: "animation",
+      description: "배경에 떠다니는 입자 애니메이션 효과를 추가합니다.",
+      code: `import Particles from "@/components/ui/magicui/particles";\n\nexport function ParticlesDemo() {\n  return <Particles className=\"absolute inset-0\" quantity={100} />;\n}`,
+      installCommand: "npx magic-ui-cli add particles",
+      docs: "https://magicui.design/docs/components/particles",
+    },
+    "magic-ripple": {
+      name: "Ripple",
+      library: "magicui",
+      category: "animation",
+      description: "물결이 퍼져나가는 듯한 리플 애니메이션 효과를 추가합니다.",
+      code: `import Ripple from "@/components/ui/magicui/ripple";\n\nexport function RippleDemo() {\n  return <Ripple />;\n}`,
+      installCommand: "npx magic-ui-cli add ripple",
+      docs: "https://magicui.design/docs/components/ripple",
+    },
+    "magic-pulsating-button": {
+      name: "Pulsating Button",
+      library: "magicui",
+      category: "button",
+      description: "주기적으로 맥동하는 애니메이션 효과가 있는 버튼입니다.",
+      code: `import PulsatingButton from "@/components/ui/magicui/pulsating-button";\n\nexport function PulsatingButtonDemo() {\n  return <PulsatingButton>Pulsating</PulsatingButton>;\n}`,
+      installCommand: "npx magic-ui-cli add pulsating-button",
+      docs: "https://magicui.design/docs/components/pulsating-button",
+    },
+    "magic-card": {
+      name: "Magic Card",
+      library: "magicui",
+      category: "animation",
+      description: "마우스를 올리면 빛나는 그라데이션 테두리가 나타나는 카드입니다.",
+      code: `import { MagicCard } from "@/components/ui/magicui/magic-card";\n\nexport function MagicCardDemo() {\n  return <MagicCard>Magic Card</MagicCard>;\n}`,
+      installCommand: "npx magic-ui-cli add magic-card",
+      docs: "https://magicui.design/docs/components/magic-card",
+    },
+    "aceternity-button": {
+      name: "Stateful Button",
+      library: "aceternity",
+      category: "button",
+      description: "클릭 시 로딩, 완료 등 다양한 상태를 가질 수 있는 버튼입니다.",
+      code: `import { Button as AceternityButton } from "@/components/ui/aceternity/stateful-button";\n\nexport function StatefulButtonDemo() {\n  return <AceternityButton>Click Me</AceternityButton>;\n}`,
+      installCommand: "npx aceternity-ui@latest add tailwindcss-buttons",
+      docs: "https://ui.aceternity.com/components/tailwindcss-buttons",
+    },
+    "aceternity-animated-tooltip": {
+      name: "Animated Tooltip",
+      library: "aceternity",
+      category: "animation",
+      description: "여러 사용자 아바타에 마우스를 올리면 부드러운 애니메이션과 함께 툴팁이 표시됩니다.",
+      code: `import { AnimatedTooltip } from "@/components/ui/aceternity/animated-tooltip";\n\nconst people = [\n  { id: 1, name: 'John Doe', designation: 'Software Engineer', image: '...' },\n  { id: 2, name: 'Jane Doe', designation: 'Product Manager', image: '...' }\n];\n\nexport function AnimatedTooltipDemo() {\n  return <AnimatedTooltip items={people} />;\n}`,
+      installCommand: "npx aceternity-ui@latest add animated-tooltip",
+      docs: "https://ui.aceternity.com/components/animated-tooltip",
+    },
+    "aceternity-moving-border": {
+      name: "Moving Border",
+      library: "aceternity",
+      category: "animation",
+      description: "버튼이나 컨테이너 주위를 따라 움직이는 애니메이션 테두리를 추가합니다.",
+      code: `import { Button as MovingBorderButton } from "@/components/ui/aceternity/moving-border";\n\nexport function MovingBorderDemo() {\n  return <MovingBorderButton>Moving Border</MovingBorderButton>;\n}`,
+      installCommand: "npx aceternity-ui@latest add moving-border",
+      docs: "https://ui.aceternity.com/components/moving-border",
+    },
+    "aceternity-hover-border": {
+      name: "Hover Border Gradient",
+      library: "aceternity",
+      category: "animation",
+      description: "마우스를 올리면 그라데이션 테두리가 나타나는 효과를 추가합니다.",
+      code: `import { HoverBorderGradient } from "@/components/ui/aceternity/hover-border-gradient";\n\nexport function HoverBorderGradientDemo() {\n  return <HoverBorderGradient>Hover Me</HoverBorderGradient>;\n}`,
+      installCommand: "npx aceternity-ui@latest add hover-border-gradient",
+      docs: "https://ui.aceternity.com/components/hover-border-gradient",
+    },
+    "aceternity-tabs": {
+      name: "Animated Tabs",
+      library: "aceternity",
+      category: "navigation",
+      description: "탭 전환 시 부드러운 애니메이션 효과가 적용된 탭 컴포넌트입니다.",
+      code: `import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";\n\nconst tabs = [\n  { title: 'Tab 1', value: 'tab1', content: '...' },\n  { title: 'Tab 2', value: 'tab2', content: '...' }\n];\n\nexport function AnimatedTabsDemo() {\n  return <AceternityTabs tabs={tabs} />;\n}`,
+      installCommand: "npx aceternity-ui@latest add tabs",
+      docs: "https://ui.aceternity.com/components/tabs",
+    },
+    "aceternity-floating-dock": {
+      name: "Floating Dock",
+      library: "aceternity",
+      category: "navigation",
+      description: "macOS의 Dock과 유사한 플로팅 네비게이션 메뉴입니다.",
+      code: `import { FloatingDock } from "@/components/ui/aceternity/floating-dock";\n\nconst navItems = [\n  { title: 'Home', icon: <HomeIcon />, href: '#' },\n  { title: 'About', icon: <UserIcon />, href: '#' }\n];\n\nexport function FloatingDockDemo() {\n  return <FloatingDock items={navItems} />;\n}`,
+      installCommand: "npx aceternity-ui@latest add floating-nav",
+      docs: "https://ui.aceternity.com/components/floating-nav",
+    },
+    "aceternity-3d-card": {
+      name: "3D Card",
+      library: "aceternity",
+      category: "animation",
+      description: "마우스 움직임에 따라 3D 효과를 보여주는 카드 컴포넌트입니다.",
+      code: `import { CardContainer, CardBody, CardItem } from "@/components/ui/aceternity/card-3d";\n\nexport function Card3DDemo() {\n  return <CardContainer><CardBody><CardItem>3D Card</CardItem></CardBody></CardContainer>;\n}`,
+      installCommand: "npx aceternity-ui@latest add 3d-card-effect",
+      docs: "https://ui.aceternity.com/components/3d-card-effect",
+    },
+    "origin-button": {
+      name: "Button",
+      library: "originui",
+      category: "button",
+      description: "다양한 형태와 상호작용을 지원하는 기본 버튼입니다.",
+      code: `import { Button } from "@/components/ui/origin/button";\n\nexport function ButtonDemo() {\n  return <Button>Click Me</Button>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/button",
+    },
+    "origin-input": {
+      name: "Input",
+      library: "originui",
+      category: "form",
+      description: "사용자 입력을 받기 위한 기본적인 텍스트 필드입니다.",
+      code: `import { Input } from "@/components/ui/origin/input";\n\nexport function InputDemo() {\n  return <Input placeholder=\"Enter text...\" />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/input",
+    },
+    "origin-checkbox": {
+      name: "Checkbox",
+      library: "originui",
+      category: "form",
+      description: "단일 또는 다중 선택이 가능한 체크박스입니다.",
+      code: `import { Checkbox } from "@/components/ui/origin/checkbox";\n\nexport function CheckboxDemo() {\n  return <Checkbox label=\"Accept terms\" />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/checkbox",
+    },
+    "origin-radio": {
+      name: "Radio",
+      library: "originui",
+      category: "form",
+      description: "여러 옵션 중 하나만 선택할 수 있는 라디오 버튼 그룹입니다.",
+      code: `import { RadioGroup, Radio } from "@/components/ui/origin/radio";\n\nexport function RadioDemo() {\n  return <RadioGroup label=\"Options\"><Radio value=\"1\">Option 1</Radio></RadioGroup>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/radio",
+    },
+    "origin-select": {
+      name: "Select",
+      library: "originui",
+      category: "form",
+      description: "드롭다운 목록에서 하나의 값을 선택하는 컴포넌트입니다.",
+      code: `import { Select, SelectItem } from "@/components/ui/origin/select";\n\nexport function SelectDemo() {\n  return <Select label=\"Select an option\"><SelectItem>Option 1</SelectItem></Select>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/select",
+    },
+    "origin-slider": {
+      name: "Slider",
+      library: "originui",
+      category: "form",
+      description: "지정된 범위 내에서 값을 조절하는 슬라이더입니다.",
+      code: `import { Slider } from "@/components/ui/origin/slider";\n\nexport function SliderDemo() {\n  return <Slider label=\"Volume\" defaultValue={50} />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/slider",
+    },
+    "origin-switch": {
+      name: "Switch",
+      library: "originui",
+      category: "form",
+      description: "On/Off 상태를 전환하는 스위치입니다.",
+      code: `import { Switch } from "@/components/ui/origin/switch";\n\nexport function SwitchDemo() {\n  return <Switch label=\"Enable notifications\" />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/switch",
+    },
+    "origin-textarea": {
+      name: "Textarea",
+      library: "originui",
+      category: "form",
+      description: "여러 줄의 텍스트를 입력받는 필드입니다.",
+      code: `import { Textarea } from "@/components/ui/origin/textarea";\n\nexport function TextareaDemo() {\n  return <Textarea placeholder=\"Enter long text...\" />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/textarea",
+    },
+    "origin-accordion": {
+      name: "Accordion",
+      library: "originui",
+      category: "layout",
+      description: "콘텐츠를 접고 펼 수 있는 아코디언 컴포넌트입니다.",
+      code: `import { Accordion, AccordionItem } from "@/components/ui/origin/accordion";\n\nexport function AccordionDemo() {\n  return <Accordion><AccordionItem title=\"Section 1\">Content 1</AccordionItem></Accordion>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/accordion",
+    },
+    "origin-avatar": {
+      name: "Avatar",
+      library: "originui",
+      category: "data display",
+      description: "사용자 프로필 이미지나 이니셜을 표시하는 아바타입니다.",
+      code: `import { Avatar } from "@/components/ui/origin/avatar";\n\nexport function AvatarDemo() {\n  return <Avatar src=\"https://i.pravatar.cc/150?u=a042581f4e29026024d\" />;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/avatar",
+    },
+    "origin-badge": {
+      name: "Badge",
+      library: "originui",
+      category: "data display",
+      description: "상태나 정보를 강조하는 작은 배지입니다.",
+      code: `import { Badge } from "@/components/ui/origin/badge";\n\nexport function BadgeDemo() {\n  return <Badge>New</Badge>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/badge",
+    },
+    "origin-dialog": {
+      name: "Dialog",
+      library: "originui",
+      category: "overlay",
+      description: "사용자에게 중요한 정보를 알리거나 추가 입력을 요구하는 모달 창입니다.",
+      code: `import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/origin/dialog";\n\nexport function DialogDemo() {\n  return <Dialog><DialogTrigger>Open</DialogTrigger><DialogContent>Dialog Content</DialogContent></Dialog>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/dialog",
+    },
+    "origin-dropdown": {
+      name: "Dropdown",
+      library: "originui",
+      category: "overlay",
+      description: "클릭 시 메뉴나 옵션 목록을 보여주는 드롭다운입니다.",
+      code: `import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@/components/ui/origin/dropdown";\n\nexport function DropdownDemo() {\n  return <Dropdown><DropdownTrigger>Open</DropdownTrigger><DropdownMenu><DropdownItem>Item 1</DropdownItem></DropdownMenu></Dropdown>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/dropdown",
+    },
+    "origin-popover": {
+      name: "Popover",
+      library: "originui",
+      category: "overlay",
+      description: "특정 요소 근처에 추가 정보를 표시하는 팝오버입니다.",
+      code: `import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/origin/popover";\n\nexport function PopoverDemo() {\n  return <Popover><PopoverTrigger>Open</PopoverTrigger><PopoverContent>Popover Content</PopoverContent></Popover>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/popover",
+    },
+    "origin-tooltip": {
+      name: "Tooltip",
+      library: "originui",
+      category: "overlay",
+      description: "마우스를 올렸을 때 간단한 정보를 보여주는 툴팁입니다.",
+      code: `import { Tooltip } from "@/components/ui/origin/tooltip";\n\nexport function TooltipDemo() {\n  return <Tooltip content=\"Tooltip message\"><button>Hover me</button></Tooltip>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/tooltip",
+    },
+    "origin-tabs": {
+      name: "Tabs",
+      library: "originui",
+      category: "layout",
+      description: "여러 콘텐츠 패널을 전환할 수 있는 탭 인터페이스입니다.",
+      code: `import { Tabs, Tab } from "@/components/ui/origin/tabs";\n\nexport function TabsDemo() {\n  return <Tabs><Tab title=\"Tab 1\">Content 1</Tab></Tabs>;\n}`,
+      installCommand: "npm install @origin-ui/react",
+      docs: "https://www.origin-ui.com/components/tabs",
+    },
     "shadcn-button": {
       name: "Button",
       library: "shadcn/ui",
@@ -3714,9 +3984,7 @@ export function DrawerDemo() {
                                   <Search className="w-4 h-4" />
                                 </button>
                                 <button
-                                  onClick={() =>
-                                    toggleFavorite("shadcn-drawer")
-                                  }
+                                  onClick={() => toggleFavorite("shadcn-drawer")}
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                   aria-label={
@@ -3939,6 +4207,13 @@ export function DrawerDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("aceternity-button")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
                                   onClick={() =>
                                     toggleFavorite("aceternity-button")
                                   }
@@ -3980,6 +4255,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="aceternity-animated-tooltip"
                             data-library="aceternity"
                           >
                             <div className="component-card__header">
@@ -4005,6 +4281,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-animated-tooltip")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("aceternity-animated-tooltip")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-animated-tooltip")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<AnimatedTooltip items={[...]} />",
+                                      "Animated Tooltip"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -4032,6 +4344,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="aceternity-moving-border"
                             data-library="aceternity"
                           >
                             <div className="component-card__header">
@@ -4058,6 +4371,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-moving-border")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("aceternity-moving-border")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-moving-border")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<MovingBorderButton>Button</MovingBorderButton>",
+                                      "Moving Border"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex flex-wrap gap-2 justify-center">
@@ -4082,6 +4431,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="aceternity-hover-border"
                             data-library="aceternity"
                           >
                             <div className="component-card__header">
@@ -4108,6 +4458,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-hover-border")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("aceternity-hover-border")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-hover-border")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<HoverBorderGradient>Button</HoverBorderGradient>",
+                                      "Hover Border Gradient"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex flex-wrap gap-2 justify-center">
@@ -4132,6 +4518,7 @@ export function DrawerDemo() {
                         matchesCategory("navigation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="aceternity-tabs"
                             data-library="aceternity"
                           >
                             <div className="component-card__header">
@@ -4157,6 +4544,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-tabs")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("aceternity-tabs")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("aceternity-tabs")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<AceternityTabs tabs={[...]} />",
+                                      "Animated Tabs"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -4193,7 +4616,7 @@ export function DrawerDemo() {
                             <div className="component-card__header">
                               <div className="component-card__title">
                                 <Link
-                                  href="https://ui.aceternity.com/components/floating-dock"
+                                  href="https://ui.aceternity.com/components/floating-nav"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
@@ -4215,6 +4638,13 @@ export function DrawerDemo() {
                                 </Link>
                               </div>
                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-floating-dock")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
                                 <button
                                   onClick={() =>
                                     toggleFavorite("aceternity-floating-dock")
@@ -4280,12 +4710,12 @@ export function DrawerDemo() {
                             <div className="component-card__header">
                               <div className="component-card__title">
                                 <Link
-                                  href="https://ui.aceternity.com/components/3d-card"
+                                  href="https://ui.aceternity.com/components/3d-card-effect"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
                                 >
-                                  <span>3D Card Effect</span>
+                                  <span>3D Card</span>
                                   <svg
                                     className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
                                     fill="none"
@@ -4302,6 +4732,13 @@ export function DrawerDemo() {
                                 </Link>
                               </div>
                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("aceternity-3d-card")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
                                 <button
                                   onClick={() =>
                                     toggleFavorite("aceternity-3d-card")
@@ -4421,11 +4858,21 @@ export function DrawerDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() =>
-                                    toggleFavorite("magic-shimmer-button")
-                                  }
+                                  onClick={() => openDetailModal("magic-shimmer-button")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("magic-shimmer-button")}
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("magic-shimmer-button")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${

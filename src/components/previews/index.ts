@@ -23,7 +23,10 @@ import { ShadcnCommandPreview } from "./shadcn-command-preview";
 import { ShadcnDrawerPreview } from "./shadcn-drawer-preview";
 import { ShadcnPopoverPreview } from "./shadcn-popover-preview";
 
+import { aceternityComponentPreviews } from "./aceternity";
+
 export const componentPreviews: { [key: string]: React.ComponentType } = {
+  ...aceternityComponentPreviews,
   "shadcn-button": ShadcnButtonPreview,
   "shadcn-input": ShadcnInputPreview,
   "shadcn-select": ShadcnSelectPreview,

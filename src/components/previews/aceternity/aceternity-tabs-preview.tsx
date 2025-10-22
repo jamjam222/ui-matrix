@@ -2,9 +2,33 @@ import { Tabs } from "@/components/ui/aceternity/tabs";
 
 export function AceternityTabsPreview() {
   const tabs = [
-    { title: "Product", value: "product", content: <p>Product Content</p> },
-    { title: "Services", value: "services", content: <p>Services Content</p> },
-    { title: "Playground", value: "playground", content: <p>Playground Content</p> },
+    {
+      title: "Product",
+      value: "product",
+      content: (
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+          <p>Product Tab</p>
+        </div>
+      ),
+    },
+    {
+      title: "Services",
+      value: "services",
+      content: (
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+          <p>Services Tab</p>
+        </div>
+      ),
+    },
+    {
+      title: "Playground",
+      value: "playground",
+      content: (
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+          <p>Playground Tab</p>
+        </div>
+      ),
+    },
   ];
 
   return (

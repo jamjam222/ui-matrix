@@ -14,6 +14,58 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { ToastContainer } from "@/components/ui/toast";
 import { ComponentLoader } from "@/components/loading-skeleton";
 import Link from "next/link";
+import { ShadcnButtonPreview } from "@/components/previews/shadcn/shadcn-button-preview";
+import { ShadcnInputPreview } from "@/components/previews/shadcn/shadcn-input-preview";
+import { ShadcnCheckboxPreview } from "@/components/previews/shadcn/shadcn-checkbox-preview";
+import { ShadcnRadioGroupPreview } from "@/components/previews/shadcn/shadcn-radio-group-preview";
+import { ShadcnSelectPreview } from "@/components/previews/shadcn/shadcn-select-preview";
+import { ShadcnSwitchPreview } from "@/components/previews/shadcn/shadcn-switch-preview";
+import { ShadcnSliderPreview } from "@/components/previews/shadcn/shadcn-slider-preview";
+import { ShadcnAvatarPreview } from "@/components/previews/shadcn/shadcn-avatar-preview";
+import { ShadcnBadgePreview } from "@/components/previews/shadcn/shadcn-badge-preview";
+import { ShadcnAlertPreview } from "@/components/previews/shadcn/shadcn-alert-preview";
+import { ShadcnProgressPreview } from "@/components/previews/shadcn/shadcn-progress-preview";
+import { ShadcnSeparatorPreview } from "@/components/previews/shadcn/shadcn-separator-preview";
+import { ShadcnAccordionPreview } from "@/components/previews/shadcn/shadcn-accordion-preview";
+import { ShadcnCardPreview } from "@/components/previews/shadcn/shadcn-card-preview";
+import { ShadcnTablePreview } from "@/components/previews/shadcn/shadcn-table-preview";
+import { ShadcnTextareaPreview } from "@/components/previews/shadcn/shadcn-textarea-preview";
+import { ShadcnTabsPreview } from "@/components/previews/shadcn/shadcn-tabs-preview";
+import { ShadcnTooltipPreview } from "@/components/previews/shadcn/shadcn-tooltip-preview";
+import { ShadcnDialogPreview } from "@/components/previews/shadcn/shadcn-dialog-preview";
+import { ShadcnDropdownMenuPreview } from "@/components/previews/shadcn/shadcn-dropdown-menu-preview";
+import { ShadcnPopoverPreview } from "@/components/previews/shadcn/shadcn-popover-preview";
+import { ShadcnTogglePreview } from "@/components/previews/shadcn/shadcn-toggle-preview";
+import { ShadcnSkeletonPreview } from "@/components/previews/shadcn/shadcn-skeleton-preview";
+import { ShadcnCommandPreview } from "@/components/previews/shadcn/shadcn-command-preview";
+import { ShadcnDrawerPreview } from "@/components/previews/shadcn/shadcn-drawer-preview";
+import { Aceternity3dCardPreview } from "@/components/previews/aceternity/aceternity-3d-card-preview";
+import { AceternityMovingBorderPreview } from "@/components/previews/aceternity/aceternity-moving-border-preview";
+import { AceternityAnimatedTooltipPreview } from "@/components/previews/aceternity/aceternity-animated-tooltip-preview";
+import { AceternityButtonPreview } from "@/components/previews/aceternity/aceternity-button-preview";
+import { AceternityFloatingDockPreview } from "@/components/previews/aceternity/aceternity-floating-dock-preview";
+import { AceternityHoverBorderPreview } from "@/components/previews/aceternity/aceternity-hover-border-preview";
+import { AceternityTabsPreview } from "@/components/previews/aceternity/aceternity-tabs-preview";
+import { MagicShimmerButtonPreview } from "@/components/previews/magicui/magic-shimmer-button-preview";
+import { MagicRainbowButtonPreview } from "@/components/previews/magicui/magic-rainbow-button-preview";
+import { MagicMeteorsPreview } from "@/components/previews/magicui/magic-meteors-preview";
+import { MagicParticlesPreview } from "@/components/previews/magicui/magic-particles-preview";
+import { MagicRipplePreview } from "@/components/previews/magicui/magic-ripple-preview";
+import { MagicPulsatingButtonPreview } from "@/components/previews/magicui/magic-pulsating-button-preview";
+import { MagicShinyButtonPreview } from "@/components/previews/magicui/magic-shiny-button-preview";
+import { MagicAvatarCirclesPreview } from "@/components/previews/magicui/magic-avatar-circles-preview";
+import { MagicAnimatedGradientTextPreview } from "@/components/previews/magicui/magic-animated-gradient-text-preview";
+import { MagicSparklesTextPreview } from "@/components/previews/magicui/magic-sparkles-text-preview";
+import { MagicBlurFadePreview } from "@/components/previews/magicui/magic-blur-fade-preview";
+import { MagicConfettiPreview } from "@/components/previews/magicui/magic-confetti-preview";
+import { MagicCoolModePreview } from "@/components/previews/magicui/magic-cool-mode-preview";
+import { MagicGlobePreview } from "@/components/previews/magicui/magic-globe-preview";
+import { MagicIconCloudPreview } from "@/components/previews/magicui/magic-icon-cloud-preview";
+import { MagicOrbitingCirclesPreview } from "@/components/previews/magicui/magic-orbiting-circles-preview";
+import { MagicBorderBeamPreview } from "@/components/previews/magicui/magic-border-beam-preview";
+import { MagicNumberTickerPreview } from "@/components/previews/magicui/magic-number-ticker-preview";
+import { MagicMarqueePreview } from "@/components/previews/magicui/magic-marquee-preview";
+import { MagicCardPreview } from "@/components/previews/magicui/magic-card-preview";
 import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import {
   Card,
@@ -577,6 +629,7 @@ export default function UIMatrix() {
     code: string;
     installCommand: string;
     docs: string;
+    preview?: React.ReactNode;
   }> = {
     "magic-shimmer-button": {
       name: "Shimmer Button",
@@ -586,6 +639,7 @@ export default function UIMatrix() {
       code: `import ShimmerButton from "@/components/ui/magicui/shimmer-button";\n\nexport function ShimmerButtonDemo() {\n  return <ShimmerButton>Shimmer</ShimmerButton>;\n}`,
       installCommand: "npx magic-ui-cli add shimmer-button",
       docs: "https://magicui.design/docs/components/shimmer-button",
+      preview: <MagicShimmerButtonPreview />
     },
     "magic-rainbow-button": {
       name: "Rainbow Button",
@@ -595,6 +649,7 @@ export default function UIMatrix() {
       code: `import RainbowButton from "@/components/ui/magicui/rainbow-button";\n\nexport function RainbowButtonDemo() {\n  return <RainbowButton>Rainbow</RainbowButton>;\n}`,
       installCommand: "npx magic-ui-cli add rainbow-button",
       docs: "https://magicui.design/docs/components/rainbow-button",
+      preview: <MagicRainbowButtonPreview />
     },
     "magic-meteors": {
       name: "Meteors",
@@ -604,6 +659,7 @@ export default function UIMatrix() {
       code: `import Meteors from "@/components/ui/magicui/meteors";\n\nexport function MeteorsDemo() {\n  return <Meteors number={20} />;\n}`,
       installCommand: "npx magic-ui-cli add meteors",
       docs: "https://magicui.design/docs/components/meteors",
+      preview: <MagicMeteorsPreview />
     },
     "magic-particles": {
       name: "Particles",
@@ -613,6 +669,7 @@ export default function UIMatrix() {
       code: `import Particles from "@/components/ui/magicui/particles";\n\nexport function ParticlesDemo() {\n  return <Particles className=\"absolute inset-0\" quantity={100} />;\n}`,
       installCommand: "npx magic-ui-cli add particles",
       docs: "https://magicui.design/docs/components/particles",
+      preview: <MagicParticlesPreview />
     },
     "magic-ripple": {
       name: "Ripple",
@@ -622,6 +679,7 @@ export default function UIMatrix() {
       code: `import Ripple from "@/components/ui/magicui/ripple";\n\nexport function RippleDemo() {\n  return <Ripple />;\n}`,
       installCommand: "npx magic-ui-cli add ripple",
       docs: "https://magicui.design/docs/components/ripple",
+      preview: <MagicRipplePreview />
     },
     "magic-pulsating-button": {
       name: "Pulsating Button",
@@ -631,6 +689,137 @@ export default function UIMatrix() {
       code: `import PulsatingButton from "@/components/ui/magicui/pulsating-button";\n\nexport function PulsatingButtonDemo() {\n  return <PulsatingButton>Pulsating</PulsatingButton>;\n}`,
       installCommand: "npx magic-ui-cli add pulsating-button",
       docs: "https://magicui.design/docs/components/pulsating-button",
+      preview: <MagicPulsatingButtonPreview />
+    },
+    "magic-shiny-button": {
+      name: "Shiny Button",
+      library: "magicui",
+      category: "button",
+      description: "마우스를 올리면 빛나는 효과가 나타나는 버튼입니다.",
+      code: `import ShinyButton from "@/components/ui/magicui/shiny-button";\n\nexport function ShinyButtonDemo() {\n  return <ShinyButton>Shiny</ShinyButton>;\n}`,
+      installCommand: "npx magic-ui-cli add shiny-button",
+      docs: "https://magicui.design/docs/components/shiny-button",
+      preview: <MagicShinyButtonPreview />
+    },
+    "magic-avatar-circles": {
+      name: "Avatar Circles",
+      library: "magicui",
+      category: "animation",
+      description: "여러 아바타 이미지를 원형으로 겹쳐서 보여주는 컴포넌트입니다.",
+      code: `import AvatarCircles from "@/components/ui/magicui/avatar-circles";\n\nexport function AvatarCirclesDemo() {\n  return <AvatarCircles numPeople={3} />;\n}`,
+      installCommand: "npx magic-ui-cli add avatar-circles",
+      docs: "https://magicui.design/docs/components/avatar-circles",
+      preview: <MagicAvatarCirclesPreview />
+    },
+    "magic-animated-gradient-text": {
+      name: "Animated Gradient Text",
+      library: "magicui",
+      category: "animation",
+      description: "텍스트에 애니메이션 그라데이션 효과를 적용합니다.",
+      code: `import AnimatedGradientText from "@/components/ui/magicui/animated-gradient-text";\n\nexport function AnimatedGradientTextDemo() {\n  return <AnimatedGradientText>Gradient</AnimatedGradientText>;\n}`,
+      installCommand: "npx magic-ui-cli add animated-gradient-text",
+      docs: "https://magicui.design/docs/components/animated-gradient-text",
+      preview: <MagicAnimatedGradientTextPreview />
+    },
+    "magic-sparkles-text": {
+      name: "Sparkles Text",
+      library: "magicui",
+      category: "animation",
+      description: "텍스트 주위에 반짝이는 효과를 추가합니다.",
+      code: `import SparklesText from "@/components/ui/magicui/sparkles-text";\n\nexport function SparklesTextDemo() {\n  return <SparklesText text=\"Sparkles\" />;\n}`,
+      installCommand: "npx magic-ui-cli add sparkles-text",
+      docs: "https://magicui.design/docs/components/sparkles-text",
+      preview: <MagicSparklesTextPreview />
+    },
+    "magic-blur-fade": {
+      name: "Blur Fade",
+      library: "magicui",
+      category: "animation",
+      description: "흐려지면서 나타나는 페이드 인 애니메이션 효과입니다.",
+      code: `import BlurFade from "@/components/ui/magicui/blur-fade";\n\nexport function BlurFadeDemo() {\n  return <BlurFade>Blur Fade</BlurFade>;\n}`,
+      installCommand: "npx magic-ui-cli add blur-fade",
+      docs: "https://magicui.design/docs/components/blur-fade",
+      preview: <MagicBlurFadePreview />
+    },
+    "magic-confetti": {
+      name: "Confetti",
+      library: "magicui",
+      category: "animation",
+      description: "클릭 시 색종이 조각이 흩날리는 애니메이션 효과를 보여줍니다.",
+      code: `import Confetti from "@/components/ui/magicui/confetti";\n\nexport function ConfettiDemo() {\n  return <Confetti />;\n}`,
+      installCommand: "npx magic-ui-cli add confetti",
+      docs: "https://magicui.design/docs/components/confetti",
+      preview: <MagicConfettiPreview />
+    },
+    "magic-cool-mode": {
+      name: "Cool Mode",
+      library: "magicui",
+      category: "animation",
+      description: "버튼 클릭 시 주변으로 다채로운 파티클이 폭발하는 효과를 추가합니다.",
+      code: `import CoolMode from "@/components/ui/magicui/cool-mode";\n\nexport function CoolModeDemo() {\n  return <CoolMode><button>Click</button></CoolMode>;\n}`,
+      installCommand: "npx magic-ui-cli add cool-mode",
+      docs: "https://magicui.design/docs/components/cool-mode",
+      preview: <MagicCoolModePreview />
+    },
+    "magic-globe": {
+      name: "Globe",
+      library: "magicui",
+      category: "animation",
+      description: "인터랙티브한 3D 지구본을 렌더링합니다.",
+      code: `import Globe from "@/components/ui/magicui/globe";\n\nexport function GlobeDemo() {\n  return <Globe />;\n}`,
+      installCommand: "npx magic-ui-cli add globe",
+      docs: "https://magicui.design/docs/components/globe",
+      preview: <MagicGlobePreview />
+    },
+    "magic-icon-cloud": {
+      name: "Icon Cloud",
+      library: "magicui",
+      category: "animation",
+      description: "여러 아이콘이 구름처럼 떠다니는 애니메이션 효과를 만듭니다.",
+      code: `import IconCloud from "@/components/ui/magicui/icon-cloud";\n\nexport function IconCloudDemo() {\n  return <IconCloud />;\n}`,
+      installCommand: "npx magic-ui-cli add icon-cloud",
+      docs: "https://magicui.design/docs/components/icon-cloud",
+      preview: <MagicIconCloudPreview />
+    },
+    "magic-orbiting-circles": {
+      name: "Orbiting Circles",
+      library: "magicui",
+      category: "animation",
+      description: "중심점을 기준으로 여러 요소가 궤도를 도는 애니메이션입니다.",
+      code: `import OrbitingCircles from "@/components/ui/magicui/orbiting-circles";\n\nexport function OrbitingCirclesDemo() {\n  return <OrbitingCircles><div className=\"h-3 w-3 rounded-full bg-primary\"></div></OrbitingCircles>;\n}`,
+      installCommand: "npx magic-ui-cli add orbiting-circles",
+      docs: "https://magicui.design/docs/components/orbiting-circles",
+      preview: <MagicOrbitingCirclesPreview />
+    },
+    "magic-border-beam": {
+      name: "Border Beam",
+      library: "magicui",
+      category: "animation",
+      description: "컨테이너 주위에 빛나는 테두리 빔 애니메이션을 추가합니다.",
+      code: `import BorderBeam from "@/components/ui/magicui/border-beam";\n\nexport function BorderBeamDemo() {\n  return <div className=\"relative rounded-xl\"><BorderBeam /><div className=\"p-4\">Content</div></div>;\n}`,
+      installCommand: "npx magic-ui-cli add border-beam",
+      docs: "https://magicui.design/docs/components/border-beam",
+      preview: <MagicBorderBeamPreview />
+    },
+    "magic-number-ticker": {
+      name: "Number Ticker",
+      library: "magicui",
+      category: "animation",
+      description: "숫자가 부드럽게 올라가거나 내려가는 애니메이션 효과를 줍니다.",
+      code: `import NumberTicker from "@/components/ui/magicui/number-ticker";\n\nexport function NumberTickerDemo() {\n  return <NumberTicker value={100} />;\n}`,
+      installCommand: "npx magic-ui-cli add number-ticker",
+      docs: "https://magicui.design/docs/components/number-ticker",
+      preview: <MagicNumberTickerPreview />
+    },
+    "magic-marquee": {
+      name: "Marquee",
+      library: "magicui",
+      category: "animation",
+      description: "콘텐츠가 수평으로 계속 흐르는 마키 애니메이션입니다.",
+      code: `import Marquee from "@/components/ui/magicui/marquee";\n\nexport function MarqueeDemo() {\n  return <Marquee><p>Content</p></Marquee>;\n}`,
+      installCommand: "npx magic-ui-cli add marquee",
+      docs: "https://magicui.design/docs/components/marquee",
+      preview: <MagicMarqueePreview />
     },
     "magic-card": {
       name: "Magic Card",
@@ -640,6 +829,7 @@ export default function UIMatrix() {
       code: `import { MagicCard } from "@/components/ui/magicui/magic-card";\n\nexport function MagicCardDemo() {\n  return <MagicCard>Magic Card</MagicCard>;\n}`,
       installCommand: "npx magic-ui-cli add magic-card",
       docs: "https://magicui.design/docs/components/magic-card",
+      preview: <MagicCardPreview />
     },
     "aceternity-button": {
       name: "Stateful Button",
@@ -649,6 +839,7 @@ export default function UIMatrix() {
       code: `import { Button as AceternityButton } from "@/components/ui/aceternity/stateful-button";\n\nexport function StatefulButtonDemo() {\n  return <AceternityButton>Click Me</AceternityButton>;\n}`,
       installCommand: "npx aceternity-ui@latest add tailwindcss-buttons",
       docs: "https://ui.aceternity.com/components/tailwindcss-buttons",
+      preview: <AceternityButtonPreview />
     },
     "aceternity-animated-tooltip": {
       name: "Animated Tooltip",
@@ -658,15 +849,17 @@ export default function UIMatrix() {
       code: `import { AnimatedTooltip } from "@/components/ui/aceternity/animated-tooltip";\n\nconst people = [\n  { id: 1, name: 'John Doe', designation: 'Software Engineer', image: '...' },\n  { id: 2, name: 'Jane Doe', designation: 'Product Manager', image: '...' }\n];\n\nexport function AnimatedTooltipDemo() {\n  return <AnimatedTooltip items={people} />;\n}`,
       installCommand: "npx aceternity-ui@latest add animated-tooltip",
       docs: "https://ui.aceternity.com/components/animated-tooltip",
+      preview: <AceternityAnimatedTooltipPreview />
     },
     "aceternity-moving-border": {
       name: "Moving Border",
       library: "aceternity",
-      category: "animation",
-      description: "버튼이나 컨테이너 주위를 따라 움직이는 애니메이션 테두리를 추가합니다.",
-      code: `import { Button as MovingBorderButton } from "@/components/ui/aceternity/moving-border";\n\nexport function MovingBorderDemo() {\n  return <MovingBorderButton>Moving Border</MovingBorderButton>;\n}`,
+      category: "button",
+      description: "버튼 주위를 따라 움직이는 애니메이션 테두리를 추가합니다.",
+      code: `import { Button } from "@/components/ui/moving-border";\n\nexport function MovingBorderDemo() {\n  return <Button>Moving Border</Button>;\n}`,
       installCommand: "npx aceternity-ui@latest add moving-border",
       docs: "https://ui.aceternity.com/components/moving-border",
+      preview: <AceternityMovingBorderPreview />
     },
     "aceternity-hover-border": {
       name: "Hover Border Gradient",
@@ -676,6 +869,7 @@ export default function UIMatrix() {
       code: `import { HoverBorderGradient } from "@/components/ui/aceternity/hover-border-gradient";\n\nexport function HoverBorderGradientDemo() {\n  return <HoverBorderGradient>Hover Me</HoverBorderGradient>;\n}`,
       installCommand: "npx aceternity-ui@latest add hover-border-gradient",
       docs: "https://ui.aceternity.com/components/hover-border-gradient",
+      preview: <AceternityHoverBorderPreview />
     },
     "aceternity-tabs": {
       name: "Animated Tabs",
@@ -685,6 +879,7 @@ export default function UIMatrix() {
       code: `import { Tabs as AceternityTabs } from "@/components/ui/aceternity/tabs";\n\nconst tabs = [\n  { title: 'Tab 1', value: 'tab1', content: '...' },\n  { title: 'Tab 2', value: 'tab2', content: '...' }\n];\n\nexport function AnimatedTabsDemo() {\n  return <AceternityTabs tabs={tabs} />;\n}`,
       installCommand: "npx aceternity-ui@latest add tabs",
       docs: "https://ui.aceternity.com/components/tabs",
+      preview: <AceternityTabsPreview />
     },
     "aceternity-floating-dock": {
       name: "Floating Dock",
@@ -694,15 +889,17 @@ export default function UIMatrix() {
       code: `import { FloatingDock } from "@/components/ui/aceternity/floating-dock";\n\nconst navItems = [\n  { title: 'Home', icon: <HomeIcon />, href: '#' },\n  { title: 'About', icon: <UserIcon />, href: '#' }\n];\n\nexport function FloatingDockDemo() {\n  return <FloatingDock items={navItems} />;\n}`,
       installCommand: "npx aceternity-ui@latest add floating-nav",
       docs: "https://ui.aceternity.com/components/floating-nav",
+      preview: <AceternityFloatingDockPreview />
     },
     "aceternity-3d-card": {
-      name: "3D Card",
+      name: "3D Card Effect",
       library: "aceternity",
-      category: "animation",
+      category: "card",
       description: "마우스 움직임에 따라 3D 효과를 보여주는 카드 컴포넌트입니다.",
-      code: `import { CardContainer, CardBody, CardItem } from "@/components/ui/aceternity/card-3d";\n\nexport function Card3DDemo() {\n  return <CardContainer><CardBody><CardItem>3D Card</CardItem></CardBody></CardContainer>;\n}`,
-      installCommand: "npx aceternity-ui@latest add 3d-card-effect",
+      code: `import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";\n\nexport function CardDemo() {\n  return (\n    <CardContainer>\n      <CardBody>\n        <CardItem>Hello</CardItem>\n      </CardBody>\n    </CardContainer>\n  );\n}`,
+      installCommand: "npx aceternity-ui@latest add 3d-card",
       docs: "https://ui.aceternity.com/components/3d-card-effect",
+      preview: <Aceternity3dCardPreview />
     },
     "origin-button": {
       name: "Button",
@@ -711,7 +908,7 @@ export default function UIMatrix() {
       description: "다양한 형태와 상호작용을 지원하는 기본 버튼입니다.",
       code: `import { Button } from "@/components/ui/origin/button";\n\nexport function ButtonDemo() {\n  return <Button>Click Me</Button>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/button",
+      docs: "https://www.origin-ui.com/components/button"
     },
     "origin-input": {
       name: "Input",
@@ -720,7 +917,7 @@ export default function UIMatrix() {
       description: "사용자 입력을 받기 위한 기본적인 텍스트 필드입니다.",
       code: `import { Input } from "@/components/ui/origin/input";\n\nexport function InputDemo() {\n  return <Input placeholder=\"Enter text...\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/input",
+      docs: "https://www.origin-ui.com/components/input"
     },
     "origin-checkbox": {
       name: "Checkbox",
@@ -729,7 +926,7 @@ export default function UIMatrix() {
       description: "단일 또는 다중 선택이 가능한 체크박스입니다.",
       code: `import { Checkbox } from "@/components/ui/origin/checkbox";\n\nexport function CheckboxDemo() {\n  return <Checkbox label=\"Accept terms\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/checkbox",
+      docs: "https://www.origin-ui.com/components/checkbox"
     },
     "origin-radio": {
       name: "Radio",
@@ -738,7 +935,7 @@ export default function UIMatrix() {
       description: "여러 옵션 중 하나만 선택할 수 있는 라디오 버튼 그룹입니다.",
       code: `import { RadioGroup, Radio } from "@/components/ui/origin/radio";\n\nexport function RadioDemo() {\n  return <RadioGroup label=\"Options\"><Radio value=\"1\">Option 1</Radio></RadioGroup>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/radio",
+      docs: "https://www.origin-ui.com/components/radio"
     },
     "origin-select": {
       name: "Select",
@@ -747,7 +944,7 @@ export default function UIMatrix() {
       description: "드롭다운 목록에서 하나의 값을 선택하는 컴포넌트입니다.",
       code: `import { Select, SelectItem } from "@/components/ui/origin/select";\n\nexport function SelectDemo() {\n  return <Select label=\"Select an option\"><SelectItem>Option 1</SelectItem></Select>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/select",
+      docs: "https://www.origin-ui.com/components/select"
     },
     "origin-slider": {
       name: "Slider",
@@ -756,7 +953,7 @@ export default function UIMatrix() {
       description: "지정된 범위 내에서 값을 조절하는 슬라이더입니다.",
       code: `import { Slider } from "@/components/ui/origin/slider";\n\nexport function SliderDemo() {\n  return <Slider label=\"Volume\" defaultValue={50} />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/slider",
+      docs: "https://www.origin-ui.com/components/slider"
     },
     "origin-switch": {
       name: "Switch",
@@ -765,7 +962,7 @@ export default function UIMatrix() {
       description: "On/Off 상태를 전환하는 스위치입니다.",
       code: `import { Switch } from "@/components/ui/origin/switch";\n\nexport function SwitchDemo() {\n  return <Switch label=\"Enable notifications\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/switch",
+      docs: "https://www.origin-ui.com/components/switch"
     },
     "origin-textarea": {
       name: "Textarea",
@@ -774,7 +971,7 @@ export default function UIMatrix() {
       description: "여러 줄의 텍스트를 입력받는 필드입니다.",
       code: `import { Textarea } from "@/components/ui/origin/textarea";\n\nexport function TextareaDemo() {\n  return <Textarea placeholder=\"Enter long text...\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/textarea",
+      docs: "https://www.origin-ui.com/components/textarea"
     },
     "origin-accordion": {
       name: "Accordion",
@@ -783,7 +980,7 @@ export default function UIMatrix() {
       description: "콘텐츠를 접고 펼 수 있는 아코디언 컴포넌트입니다.",
       code: `import { Accordion, AccordionItem } from "@/components/ui/origin/accordion";\n\nexport function AccordionDemo() {\n  return <Accordion><AccordionItem title=\"Section 1\">Content 1</AccordionItem></Accordion>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/accordion",
+      docs: "https://www.origin-ui.com/components/accordion"
     },
     "origin-avatar": {
       name: "Avatar",
@@ -792,7 +989,7 @@ export default function UIMatrix() {
       description: "사용자 프로필 이미지나 이니셜을 표시하는 아바타입니다.",
       code: `import { Avatar } from "@/components/ui/origin/avatar";\n\nexport function AvatarDemo() {\n  return <Avatar src=\"https://i.pravatar.cc/150?u=a042581f4e29026024d\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/avatar",
+      docs: "https://www.origin-ui.com/components/avatar"
     },
     "origin-badge": {
       name: "Badge",
@@ -801,7 +998,7 @@ export default function UIMatrix() {
       description: "상태나 정보를 강조하는 작은 배지입니다.",
       code: `import { Badge } from "@/components/ui/origin/badge";\n\nexport function BadgeDemo() {\n  return <Badge>New</Badge>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/badge",
+      docs: "https://www.origin-ui.com/components/badge"
     },
     "origin-dialog": {
       name: "Dialog",
@@ -810,7 +1007,7 @@ export default function UIMatrix() {
       description: "사용자에게 중요한 정보를 알리거나 추가 입력을 요구하는 모달 창입니다.",
       code: `import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/origin/dialog";\n\nexport function DialogDemo() {\n  return <Dialog><DialogTrigger>Open</DialogTrigger><DialogContent>Dialog Content</DialogContent></Dialog>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/dialog",
+      docs: "https://www.origin-ui.com/components/dialog"
     },
     "origin-dropdown": {
       name: "Dropdown",
@@ -819,7 +1016,7 @@ export default function UIMatrix() {
       description: "클릭 시 메뉴나 옵션 목록을 보여주는 드롭다운입니다.",
       code: `import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@/components/ui/origin/dropdown";\n\nexport function DropdownDemo() {\n  return <Dropdown><DropdownTrigger>Open</DropdownTrigger><DropdownMenu><DropdownItem>Item 1</DropdownItem></DropdownMenu></Dropdown>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/dropdown",
+      docs: "https://www.origin-ui.com/components/dropdown"
     },
     "origin-popover": {
       name: "Popover",
@@ -828,7 +1025,7 @@ export default function UIMatrix() {
       description: "특정 요소 근처에 추가 정보를 표시하는 팝오버입니다.",
       code: `import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/origin/popover";\n\nexport function PopoverDemo() {\n  return <Popover><PopoverTrigger>Open</PopoverTrigger><PopoverContent>Popover Content</PopoverContent></Popover>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/popover",
+      docs: "https://www.origin-ui.com/components/popover"
     },
     "origin-tooltip": {
       name: "Tooltip",
@@ -837,7 +1034,7 @@ export default function UIMatrix() {
       description: "마우스를 올렸을 때 간단한 정보를 보여주는 툴팁입니다.",
       code: `import { Tooltip } from "@/components/ui/origin/tooltip";\n\nexport function TooltipDemo() {\n  return <Tooltip content=\"Tooltip message\"><button>Hover me</button></Tooltip>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/tooltip",
+      docs: "https://www.origin-ui.com/components/tooltip"
     },
     "origin-tabs": {
       name: "Tabs",
@@ -846,7 +1043,7 @@ export default function UIMatrix() {
       description: "여러 콘텐츠 패널을 전환할 수 있는 탭 인터페이스입니다.",
       code: `import { Tabs, Tab } from "@/components/ui/origin/tabs";\n\nexport function TabsDemo() {\n  return <Tabs><Tab title=\"Tab 1\">Content 1</Tab></Tabs>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/tabs",
+      docs: "https://www.origin-ui.com/components/tabs"
     },
     "shadcn-button": {
       name: "Button",
@@ -859,14 +1056,17 @@ export function ButtonDemo() {
   return (
     <>
       <Button>Default</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
     </>
   )
 }`,
       installCommand: "npx shadcn-ui@latest add button",
-      docs: "https://ui.shadcn.com/docs/components/button"
+      docs: "https://ui.shadcn.com/docs/components/button",
+      preview: <ShadcnButtonPreview />
     },
     "shadcn-input": {
       name: "Input",
@@ -885,7 +1085,8 @@ export function InputDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add input",
-      docs: "https://ui.shadcn.com/docs/components/input"
+      docs: "https://ui.shadcn.com/docs/components/input",
+      preview: <ShadcnInputPreview />
     },
     "shadcn-checkbox": {
       name: "Checkbox",
@@ -903,7 +1104,8 @@ export function CheckboxDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add checkbox",
-      docs: "https://ui.shadcn.com/docs/components/checkbox"
+      docs: "https://ui.shadcn.com/docs/components/checkbox",
+      preview: <ShadcnCheckboxPreview />
     },
     "shadcn-radio": {
       name: "Radio Group",
@@ -927,69 +1129,38 @@ export function RadioDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add radio-group",
-      docs: "https://ui.shadcn.com/docs/components/radio-group"
+      docs: "https://ui.shadcn.com/docs/components/radio-group",
+      preview: <ShadcnRadioGroupPreview />
     },
     "shadcn-select": {
       name: "Select",
       library: "shadcn/ui",
       category: "input",
       description: "드롭다운에서 옵션을 선택할 수 있는 셀렉트 컴포넌트입니다.",
-      code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-export function SelectDemo() {
-  return (
-    <Select>
-      <SelectTrigger>
-        <SelectValue placeholder="Select an option" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="option1">Option 1</SelectItem>
-        <SelectItem value="option2">Option 2</SelectItem>
-        <SelectItem value="option3">Option 3</SelectItem>
-      </SelectContent>
-    </Select>
-  )
-}`,
+      code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"\n\nexport function SelectDemo() {\n  return (\n    <Select>\n      <SelectTrigger className=\"w-[180px]\">\n        <SelectValue placeholder=\"Theme\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"option1\">Option 1</SelectItem>\n        <SelectItem value=\"option2\">Option 2</SelectItem>\n        <SelectItem value=\"option3\">Option 3</SelectItem>\n      </SelectContent>\n    </Select>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add select",
-      docs: "https://ui.shadcn.com/docs/components/select"
+      docs: "https://ui.shadcn.com/docs/components/select",
+      preview: <ShadcnSelectPreview />
     },
     "shadcn-switch": {
       name: "Switch",
       library: "shadcn/ui",
       category: "input",
       description: "On/Off 상태를 토글할 수 있는 스위치 컴포넌트입니다.",
-      code: `import { Switch } from "@/components/ui/switch"
-
-export function SwitchDemo() {
-  return (
-    <div className="flex items-center space-x-2">
-      <Switch id="airplane-mode" />
-      <label htmlFor="airplane-mode">Airplane Mode</label>
-    </div>
-  )
-}`,
+      code: `import { Switch } from "@/components/ui/switch"\n\nexport function SwitchDemo() {\n  return (\n    <div className=\"flex items-center space-x-2\">\n      <Switch id=\"airplane-mode\" />\n      <label htmlFor=\"airplane-mode\">Airplane Mode</label>\n    </div>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add switch",
-      docs: "https://ui.shadcn.com/docs/components/switch"
+      docs: "https://ui.shadcn.com/docs/components/switch",
+      preview: <ShadcnSwitchPreview />
     },
     "shadcn-slider": {
       name: "Slider",
       library: "shadcn/ui",
       category: "input",
       description: "범위 내에서 값을 선택할 수 있는 슬라이더 컴포넌트입니다.",
-      code: `import { Slider } from "@/components/ui/slider"
-
-export function SliderDemo() {
-  return (
-    <Slider
-      defaultValue={[50]}
-      max={100}
-      step={1}
-      className="w-[60%]"
-    />
-  )
-}`,
+      code: `import { Slider } from "@/components/ui/slider"\n\nexport function SliderDemo() {\n  return (\n    <Slider\n      defaultValue={[50]}\n      max={100}\n      step={1}\n      className=\"w-[60%]\"\n    />\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add slider",
-      docs: "https://ui.shadcn.com/docs/components/slider"
+      docs: "https://ui.shadcn.com/docs/components/slider",
+      preview: <ShadcnSliderPreview />
     },
     "shadcn-avatar": {
       name: "Avatar",
@@ -1007,7 +1178,8 @@ export function AvatarDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add avatar",
-      docs: "https://ui.shadcn.com/docs/components/avatar"
+      docs: "https://ui.shadcn.com/docs/components/avatar",
+      preview: <ShadcnAvatarPreview />
     },
     "shadcn-badge": {
       name: "Badge",
@@ -1027,15 +1199,15 @@ export function BadgeDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add badge",
-      docs: "https://ui.shadcn.com/docs/components/badge"
+      docs: "https://ui.shadcn.com/docs/components/badge",
+      preview: <ShadcnBadgePreview />
     },
     "shadcn-alert": {
       name: "Alert",
       library: "shadcn/ui",
       category: "feedback",
       description: "사용자에게 중요한 메시지를 표시하는 알림 컴포넌트입니다.",
-      code: `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
+      code: `import { Github, ExternalLink, Search, Star, Copy, Code, Info, Sparkles, X, ChevronDown, ChevronUp, Filter, Heart, Code2, Package, Terminal } from "lucide-react";
 
 export function AlertDemo() {
   return (
@@ -1049,358 +1221,158 @@ export function AlertDemo() {
   )
 }`,
       installCommand: "npx shadcn-ui@latest add alert",
-      docs: "https://ui.shadcn.com/docs/components/alert"
+      docs: "https://ui.shadcn.com/docs/components/alert",
+      preview: <ShadcnAlertPreview />
     },
     "shadcn-progress": {
       name: "Progress",
       library: "shadcn/ui",
-      category: "feedback",
+      category: "data display",
       description: "작업의 진행 상태를 시각적으로 표시하는 프로그레스 바입니다.",
-      code: `import { Progress } from "@/components/ui/progress"
-
-export function ProgressDemo() {
-  return (
-    <>
-      <Progress value={33} />
-      <Progress value={66} />
-      <Progress value={100} />
-    </>
-  )
-}`,
+      code: `import { Progress } from "@/components/ui/progress";\n\nexport function ProgressDemo() {\n  return <Progress value={33} />;\n}`,
       installCommand: "npx shadcn-ui@latest add progress",
-      docs: "https://ui.shadcn.com/docs/components/progress"
+      docs: "https://ui.shadcn.com/docs/components/progress",
+      preview: <ShadcnProgressPreview />
     },
     "shadcn-separator": {
       name: "Separator",
       library: "shadcn/ui",
       category: "layout",
       description: "콘텐츠를 시각적으로 구분하는 구분선 컴포넌트입니다.",
-      code: `import { Separator } from "@/components/ui/separator"
-
-export function SeparatorDemo() {
-  return (
-    <div>
-      <div className="space-y-1">
-        <h4 className="text-sm font-medium">Radix Primitives</h4>
-        <p className="text-sm text-muted-foreground">
-          An open-source UI component library.
-        </p>
-      </div>
-      <Separator className="my-4" />
-      <div className="flex h-5 items-center space-x-4 text-sm">
-        <div>Blog</div>
-        <Separator orientation="vertical" />
-        <div>Docs</div>
-      </div>
-    </div>
-  )
-}`,
+      code: `import { Separator } from "@/components/ui/separator"\n\nexport function SeparatorDemo() {\n  return (\n    <div>\n      <div className=\"space-y-1\">\n        <h4 className=\"text-sm font-medium\">Radix Primitives</h4>\n        <p className=\"text-sm text-muted-foreground\">\n          An open-source UI component library.\n        </p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"flex h-5 items-center space-x-4 text-sm\">\n        <div>Blog</div>\n        <Separator orientation=\"vertical\" />\n        <div>Docs</div>\n      </div>\n    </div>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add separator",
-      docs: "https://ui.shadcn.com/docs/components/separator"
+      docs: "https://ui.shadcn.com/docs/components/separator",
+      preview: <ShadcnSeparatorPreview />
     },
     "shadcn-accordion": {
       name: "Accordion",
       library: "shadcn/ui",
       category: "layout",
       description: "콘텐츠를 접고 펼칠 수 있는 아코디언 컴포넌트입니다.",
-      code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
-export function AccordionDemo() {
-  return (
-    <Accordion type="single" collapsible>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It comes with default styles.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  )
-}`,
+      code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"\n\nexport function AccordionDemo() {\n  return (\n    <Accordion type=\"single\" collapsible>\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>Is it accessible?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It adheres to the WAI-ARIA design pattern.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>Is it styled?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It comes with default styles that matches the other components' aesthetic.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-3\">\n        <AccordionTrigger>Is it animated?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It's animated by default, but you can disable it if you prefer.\n        </AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add accordion",
-      docs: "https://ui.shadcn.com/docs/components/accordion"
+      docs: "https://ui.shadcn.com/docs/components/accordion",
+      preview: <ShadcnAccordionPreview />
     },
     "shadcn-card": {
       name: "Card",
       library: "shadcn/ui",
       category: "layout",
       description: "관련된 콘텐츠를 그룹화하는 카드 컴포넌트입니다.",
-      code: `import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-
-export function CardDemo() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
-  )
-}`,
+      code: `import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"\n\nexport function CardDemo() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Card Title</CardTitle>\n        <CardDescription>Card Description</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <p>Card Content</p>\n      </CardContent>\n      <CardFooter>\n        <p>Card Footer</p>\n      </CardFooter>\n    </Card>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add card",
-      docs: "https://ui.shadcn.com/docs/components/card"
+      docs: "https://ui.shadcn.com/docs/components/card",
+      preview: <ShadcnCardPreview />
     },
     "shadcn-table": {
       name: "Table",
       library: "shadcn/ui",
       category: "layout",
       description: "데이터를 표 형식으로 표시하는 테이블 컴포넌트입니다.",
-      code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-
-export function TableDemo() {
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Status</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>Item 1</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Item 2</TableCell>
-          <TableCell>Inactive</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  )
-}`,
+      code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"\n\nexport function TableDemo() {\n  return (\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableHead>Name</TableHead>\n          <TableHead>Status</TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        <TableRow>\n          <TableCell>Item 1</TableCell>\n          <TableCell>Active</TableCell>\n        </TableRow>\n        <TableRow>\n          <TableCell>Item 2</TableCell>\n          <TableCell>Inactive</TableCell>\n        </TableRow>\n      </TableBody>\n    </Table>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add table",
-      docs: "https://ui.shadcn.com/docs/components/table"
+      docs: "https://ui.shadcn.com/docs/components/table",
+      preview: <ShadcnTablePreview />
     },
     "shadcn-textarea": {
       name: "Textarea",
       library: "shadcn/ui",
       category: "input",
       description: "여러 줄의 텍스트 입력을 받는 텍스트 영역 컴포넌트입니다.",
-      code: `import { Textarea } from "@/components/ui/textarea"
-
-export function TextareaDemo() {
-  return (
-    <Textarea placeholder="Type your message here." />
-  )
-}`,
+      code: `import { Textarea } from "@/components/ui/textarea"\n\nexport function TextareaDemo() {\n  return (\n    <Textarea placeholder=\"Type your message here.\" />\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add textarea",
-      docs: "https://ui.shadcn.com/docs/components/textarea"
+      docs: "https://ui.shadcn.com/docs/components/textarea",
+      preview: <ShadcnTextareaPreview />
     },
     "shadcn-tabs": {
       name: "Tabs",
       library: "shadcn/ui",
       category: "navigation",
       description: "콘텐츠를 탭으로 구분하여 표시하는 탭 컴포넌트입니다.",
-      code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-export function TabsDemo() {
-  return (
-    <Tabs defaultValue="account">
-      <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        Make changes to your account here.
-      </TabsContent>
-      <TabsContent value="password">
-        Change your password here.
-      </TabsContent>
-    </Tabs>
-  )
-}`,
+      code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"\n\nexport function TabsDemo() {\n  return (\n    <Tabs defaultValue=\"account\">\n      <TabsList>\n        <TabsTrigger value=\"account\">Account</TabsTrigger>\n        <TabsTrigger value=\"password\">Password</TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"account\">\n        Make changes to your account here.\n      </TabsContent>\n      <TabsContent value=\"password\">\n        Change your password here.\n      </TabsContent>\n    </Tabs>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add tabs",
-      docs: "https://ui.shadcn.com/docs/components/tabs"
+      docs: "https://ui.shadcn.com/docs/components/tabs",
+      preview: <ShadcnTabsPreview />
     },
     "shadcn-tooltip": {
       name: "Tooltip",
       library: "shadcn/ui",
       category: "feedback",
       description: "요소에 마우스를 올렸을 때 추가 정보를 표시하는 툴팁 컴포넌트입니다.",
-      code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-
-export function TooltipDemo() {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>Hover me</TooltipTrigger>
-        <TooltipContent>
-          <p>This is a tooltip</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
-}`,
+      code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"\n\nexport function TooltipDemo() {\n  return (\n    <TooltipProvider>\n      <Tooltip>\n        <TooltipTrigger>Hover me</TooltipTrigger>\n        <TooltipContent>\n          <p>This is a tooltip</p>\n        </TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add tooltip",
-      docs: "https://ui.shadcn.com/docs/components/tooltip"
+      docs: "https://ui.shadcn.com/docs/components/tooltip",
+      preview: <ShadcnTooltipPreview />
     },
     "shadcn-dialog": {
       name: "Dialog",
       library: "shadcn/ui",
       category: "feedback",
       description: "모달 형식으로 콘텐츠를 표시하는 다이얼로그 컴포넌트입니다.",
-      code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-
-export function DialogDemo() {
-  return (
-    <Dialog>
-      <DialogTrigger>Open</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  )
-}`,
+      code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Are you sure?</DialogTitle>\n          <DialogDescription>\n            This action cannot be undone.\n          </DialogDescription>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add dialog",
-      docs: "https://ui.shadcn.com/docs/components/dialog"
+      docs: "https://ui.shadcn.com/docs/components/dialog",
+      preview: <ShadcnDialogPreview />
     },
     "shadcn-dropdown": {
       name: "Dropdown Menu",
       library: "shadcn/ui",
       category: "navigation",
       description: "메뉴 옵션을 드롭다운으로 표시하는 컴포넌트입니다.",
-      code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-
-export function DropdownDemo() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Logout</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}`,
+      code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"\n\nexport function DropdownDemo() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem>Profile</DropdownMenuItem>\n        <DropdownMenuItem>Settings</DropdownMenuItem>\n        <DropdownMenuItem>Logout</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add dropdown-menu",
-      docs: "https://ui.shadcn.com/docs/components/dropdown-menu"
+      docs: "https://ui.shadcn.com/docs/components/dropdown-menu",
+      preview: <ShadcnDropdownMenuPreview />
     },
     "shadcn-popover": {
       name: "Popover",
       library: "shadcn/ui",
       category: "feedback",
       description: "요소 주변에 팝업 콘텐츠를 표시하는 팝오버 컴포넌트입니다.",
-      code: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-
-export function PopoverDemo() {
-  return (
-    <Popover>
-      <PopoverTrigger>Open</PopoverTrigger>
-      <PopoverContent>
-        Place content for the popover here.
-      </PopoverContent>
-    </Popover>
-  )
-}`,
+      code: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"\n\nexport function PopoverDemo() {\n  return (\n    <Popover>\n      <PopoverTrigger>Open</PopoverTrigger>\n      <PopoverContent>\n        Place content for the popover here.\n      </PopoverContent>\n    </Popover>\n  )\n}`,
       installCommand: "npx shadcn-ui@latest add popover",
-      docs: "https://ui.shadcn.com/docs/components/popover"
+      docs: "https://ui.shadcn.com/docs/components/popover",
+      preview: <ShadcnPopoverPreview />
     },
     "shadcn-toggle": {
       name: "Toggle",
       library: "shadcn/ui",
       category: "input",
       description: "On/Off 상태를 전환할 수 있는 토글 버튼 컴포넌트입니다.",
-      code: `import { Toggle } from "@/components/ui/toggle"
-
-export function ToggleDemo() {
-  return (
-    <>
-      <Toggle>Toggle</Toggle>
-      <Toggle variant="outline">Toggle Outline</Toggle>
-    </>
-  )
-}`,
-      installCommand: "npx shadcn-ui@latest add toggle",
-      docs: "https://ui.shadcn.com/docs/components/toggle"
+      code: `import { Toggle } from "@/components/ui/toggle"\n\nexport function ToggleDemo() {\n  return (\n    <>\n      <Toggle>Toggle</Toggle>\n      <Toggle variant=\"outline\">Toggle Outline</Toggle>\n    </>\n  )\n}`,
+      installCommand: "npx shadcn@latest add toggle",
+      docs: "https://ui.shadcn.com/docs/components/toggle",
+      preview: <ShadcnTogglePreview />
     },
     "shadcn-skeleton": {
       name: "Skeleton",
       library: "shadcn/ui",
       category: "feedback",
       description: "콘텐츠 로딩 중 플레이스홀더를 표시하는 스켈레톤 컴포넌트입니다.",
-      code: `import { Skeleton } from "@/components/ui/skeleton"
-
-export function SkeletonDemo() {
-  return (
-    <div className="space-y-2">
-      <Skeleton className="h-4 w-[250px]" />
-      <Skeleton className="h-4 w-[200px]" />
-      <Skeleton className="h-4 w-[150px]" />
-    </div>
-  )
-}`,
-      installCommand: "npx shadcn-ui@latest add skeleton",
-      docs: "https://ui.shadcn.com/docs/components/skeleton"
+      code: `import { Skeleton } from "@/components/ui/skeleton"\n\nexport function SkeletonDemo() {\n  return (\n    <div className=\"space-y-2\">\n      <Skeleton className=\"h-4 w-[250px]\" />\n      <Skeleton className=\"h-4 w-[200px]\" />\n      <Skeleton className=\"h-4 w-[150px]\" />\n    </div>\n  )\n}`,
+      installCommand: "npx shadcn@latest add skeleton",
+      docs: "https://ui.shadcn.com/docs/components/skeleton",
+      preview: <ShadcnSkeletonPreview />
     },
     "shadcn-command": {
       name: "Command",
       library: "shadcn/ui",
       category: "navigation",
       description: "명령 팔레트를 구현하는 커맨드 메뉴 컴포넌트입니다.",
-      code: `import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
-
-export function CommandDemo() {
-  return (
-    <Command>
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>Calendar</CommandItem>
-          <CommandItem>Search Emoji</CommandItem>
-          <CommandItem>Calculator</CommandItem>
-        </CommandGroup>
-      </CommandList>
-    </Command>
-  )
-}`,
-      installCommand: "npx shadcn-ui@latest add command",
-      docs: "https://ui.shadcn.com/docs/components/command"
+      code: `import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"\n\nexport function CommandDemo() {\n  return (\n    <Command>\n      <CommandInput placeholder=\"Type a command or search...\" />\n      <CommandList>\n        <CommandEmpty>No results found.</CommandEmpty>\n        <CommandGroup heading=\"Suggestions\">\n          <CommandItem>Calendar</CommandItem>\n          <CommandItem>Search Emoji</CommandItem>\n          <CommandItem>Calculator</CommandItem>\n        </CommandGroup>\n      </CommandList>\n    </Command>\n  )\n}`,
+      installCommand: "npx shadcn@latest add command",
+      docs: "https://ui.shadcn.com/docs/components/command",
+      preview: <ShadcnCommandPreview />
     },
     "shadcn-drawer": {
       name: "Drawer",
       library: "shadcn/ui",
       category: "feedback",
       description: "화면 측면에서 슬라이드되는 드로어 컴포넌트입니다.",
-      code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
-
-export function DrawerDemo() {
-  return (
-    <Drawer>
-      <DrawerTrigger>Open</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Are you sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
-        </DrawerHeader>
-        <DrawerFooter>
-          <DrawerClose>Cancel</DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  )
-}`,
-      installCommand: "npx shadcn-ui@latest add drawer",
-      docs: "https://ui.shadcn.com/docs/components/drawer"
+      code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"\n\nexport function DrawerDemo() {\n  return (\n    <Drawer>\n      <DrawerTrigger>Open</DrawerTrigger>\n      <DrawerContent>\n        <DrawerHeader>\n          <DrawerTitle>Are you sure?</DrawerTitle>\n          <DrawerDescription>This action cannot be undone.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerFooter>\n          <DrawerClose>Cancel</DrawerClose>\n        </DrawerFooter>\n      </DrawerContent>\n    </Drawer>\n  )\n}`,
+      installCommand: "npx shadcn@latest add drawer",
+      docs: "https://ui.shadcn.com/docs/components/drawer",
+      preview: <ShadcnDrawerPreview />
     },
   };
 
@@ -1475,7 +1447,7 @@ export function DrawerDemo() {
           ),
         },
         originui: { count: 0, component: null },
-      },
+      }
     },
     {
       name: "Input",
@@ -1488,7 +1460,7 @@ export function DrawerDemo() {
           count: 1,
           component: <OriginInput placeholder="Email..." />,
         },
-      },
+      }
     },
     {
       name: "Select",
@@ -1510,7 +1482,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginSelectExample /> },
-      },
+      }
     },
     {
       name: "Checkbox",
@@ -1520,7 +1492,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginCheckboxExample /> },
-      },
+      }
     },
     {
       name: "Radio",
@@ -1537,7 +1509,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginRadioExample /> },
-      },
+      }
     },
     {
       name: "Switch",
@@ -1547,7 +1519,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginSwitchExample /> },
-      },
+      }
     },
     {
       name: "Slider",
@@ -1562,7 +1534,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginSliderExample /> },
-      },
+      }
     },
     {
       name: "Avatar",
@@ -1587,7 +1559,7 @@ export function DrawerDemo() {
           ),
         },
         originui: { count: 1, component: <OriginAvatarExample /> },
-      },
+      }
     },
     {
       name: "Badge",
@@ -1597,7 +1569,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginBadgeExample /> },
-      },
+      }
     },
     {
       name: "Dialog",
@@ -1619,7 +1591,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginDialogExample /> },
-      },
+      }
     },
     {
       name: "Dropdown",
@@ -1641,7 +1613,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginDropdownExample /> },
-      },
+      }
     },
     {
       name: "Tooltip",
@@ -1686,7 +1658,7 @@ export function DrawerDemo() {
             </div>
           ),
         },
-      },
+      }
     },
     {
       name: "Accordion",
@@ -1706,7 +1678,7 @@ export function DrawerDemo() {
         aceternity: { count: 0, component: null },
         magicui: { count: 0, component: null },
         originui: { count: 1, component: <OriginAccordionExample /> },
-      },
+      }
     },
   ];
 
@@ -4986,6 +4958,7 @@ export function DrawerDemo() {
                         matchesCategory("button") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-shiny-button"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5012,6 +4985,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-shiny-button")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-shiny-button")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-shiny-button")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<ShinyButton>Shiny</ShinyButton>",
+                                      "Shiny Button"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex flex-wrap gap-2 justify-center">
@@ -5028,6 +5037,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-avatar-circles"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5054,6 +5064,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-avatar-circles")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-avatar-circles")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-avatar-circles")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<AvatarCircles numPeople={3} />",
+                                      "Avatar Circles"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex flex-col gap-3 items-center">
@@ -5068,6 +5114,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-animated-gradient-text"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5078,7 +5125,7 @@ export function DrawerDemo() {
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
                                 >
-                                  <span>Animated Text</span>
+                                  <span>Animated Gradient Text</span>
                                   <svg
                                     className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
                                     fill="none"
@@ -5093,6 +5140,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-animated-gradient-text")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-animated-gradient-text")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-animated-gradient-text")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<AnimatedGradientText>Text</AnimatedGradientText>",
+                                      "Animated Gradient Text"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -5109,6 +5192,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-sparkles-text"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5134,6 +5218,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-sparkles-text")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-sparkles-text")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-sparkles-text")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<SparklesText text=\"Sparkles\" />",
+                                      "Sparkles Text"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -5179,6 +5299,13 @@ export function DrawerDemo() {
                                 </Link>
                               </div>
                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-meteors")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
                                 <button
                                   onClick={() =>
                                     toggleFavorite("magic-meteors")
@@ -5248,6 +5375,13 @@ export function DrawerDemo() {
                                 </Link>
                               </div>
                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-particles")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
                                 <button
                                   onClick={() =>
                                     toggleFavorite("magic-particles")
@@ -5321,7 +5455,16 @@ export function DrawerDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() => toggleFavorite("magic-ripple")}
+                                  onClick={() => openDetailModal("magic-ripple")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-ripple")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
@@ -5387,6 +5530,13 @@ export function DrawerDemo() {
                                 </Link>
                               </div>
                               <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-pulsating-button")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
                                 <button
                                   onClick={() =>
                                     toggleFavorite("magic-pulsating-button")
@@ -5457,7 +5607,16 @@ export function DrawerDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() => toggleFavorite("magic-card")}
+                                  onClick={() => openDetailModal("magic-card")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-card")
+                                  }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
                                 >
@@ -5500,6 +5659,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-marquee"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5525,6 +5685,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-marquee")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-marquee")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-marquee")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<Marquee>...</Marquee>",
+                                      "Marquee"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -5552,6 +5748,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-number-ticker"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5562,7 +5759,7 @@ export function DrawerDemo() {
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
                                 >
-                                  <span>Number Animation</span>
+                                  <span>Number Ticker</span>
                                   <svg
                                     className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
                                     fill="none"
@@ -5578,6 +5775,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-number-ticker")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-number-ticker")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-number-ticker")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<NumberTicker value={100} />",
+                                      "Number Ticker"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex gap-4 text-2xl font-bold">
@@ -5592,6 +5825,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-blur-fade"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5618,6 +5852,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-blur-fade")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-blur-fade")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-blur-fade")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<BlurFade>Content</BlurFade>",
+                                      "Blur Fade"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex flex-col gap-2 items-center">
@@ -5638,6 +5908,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-confetti"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5664,6 +5935,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-confetti")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-confetti")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-confetti")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<Confetti />",
+                                      "Confetti"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <Suspense fallback={<ComponentLoader />}>
@@ -5680,6 +5987,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-cool-mode"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5706,6 +6014,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-cool-mode")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-cool-mode")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-cool-mode")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<CoolMode><button>Click</button></CoolMode>",
+                                      "Cool Mode"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <Suspense fallback={<ComponentLoader />}>
@@ -5724,6 +6068,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-globe"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5750,6 +6095,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-globe")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-globe")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-globe")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<Globe />",
+                                      "Globe"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="w-40 h-40 mx-auto relative">
@@ -5765,6 +6146,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-icon-cloud"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5791,6 +6173,42 @@ export function DrawerDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-icon-cloud")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-icon-cloud")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-icon-cloud")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<IconCloud />",
+                                      "Icon Cloud"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="w-40 h-40 mx-auto">
@@ -5806,6 +6224,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-orbiting-circles"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5831,6 +6250,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-orbiting-circles")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-orbiting-circles")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-orbiting-circles")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<OrbitingCircles>...</OrbitingCircles>",
+                                      "Orbiting Circles"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -5862,6 +6317,7 @@ export function DrawerDemo() {
                         matchesCategory("animation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="magic-border-beam"
                             data-library="magicui"
                           >
                             <div className="component-card__header">
@@ -5887,6 +6343,42 @@ export function DrawerDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("magic-border-beam")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    toggleFavorite("magic-border-beam")
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("magic-border-beam")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      "<BorderBeam />",
+                                      "Border Beam"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -8039,7 +8531,14 @@ export function DrawerDemo() {
         </section>
 
         {/* 컴포넌트 상세 모달 - 2025 Glassmorphism UI */}
-        <Dialog open={isDetailModalOpen} onOpenChange={setIsDetailModalOpen}>
+        <Dialog
+          open={isDetailModalOpen}
+          onOpenChange={(isOpen) => {
+            if (!isOpen) {
+              closeDetailModal();
+            }
+          }}
+        >
           <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background/95 via-background/98 to-muted/95 backdrop-blur-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-2xl">
             {/* 헤더 - 그라데이션 글래스 효과 */}
             <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50 relative">
@@ -8073,9 +8572,16 @@ export function DrawerDemo() {
 
             {/* 탭 기반 컨텐츠 */}
             <div className="overflow-y-auto max-h-[calc(85vh-180px)] bg-gradient-to-b from-background/50 to-background/80 backdrop-blur-sm">
-              <Tabs defaultValue="code" className="w-full">
+              <Tabs defaultValue="preview" className="w-full">
                 <div className="px-8 pt-4 pb-2 sticky top-0 bg-background/95 backdrop-blur-xl z-10 border-b border-gray-200 dark:border-gray-700/50 shadow-sm">
-                  <TabsList className="grid w-full grid-cols-3 h-11 bg-muted/50 backdrop-blur-sm">
+                  <TabsList className="grid w-full grid-cols-4 h-11 bg-muted/50 backdrop-blur-sm">
+                    <TabsTrigger
+                      value="preview"
+                      className="text-sm font-semibold gap-2 data-[state=active]:bg-background/90 data-[state=active]:backdrop-blur-sm data-[state=active]:shadow-sm"
+                    >
+                      <Star className="w-4 h-4" />
+                      미리보기
+                    </TabsTrigger>
                     <TabsTrigger
                       value="code"
                       className="text-sm font-semibold gap-2 data-[state=active]:bg-background/90 data-[state=active]:backdrop-blur-sm data-[state=active]:shadow-sm"
@@ -8099,6 +8605,13 @@ export function DrawerDemo() {
                     </TabsTrigger>
                   </TabsList>
                 </div>
+
+                {/* 미리보기 탭 */}
+                <TabsContent value="preview" className="px-8 py-6 m-0">
+                  <div className="relative bg-gradient-to-br from-muted/30 to-muted/20 backdrop-blur-sm p-8 rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700/50 shadow-inner min-h-[200px] flex items-center justify-center">
+                    {selectedComponent?.preview}
+                  </div>
+                </TabsContent>
 
                 {/* 코드 탭 */}
                 <TabsContent value="code" className="px-8 py-6 space-y-4 m-0">

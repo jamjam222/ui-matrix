@@ -116,6 +116,11 @@ import {
   CommandList,
 } from "@/components/ui/shadcn/command";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Search,
   Star,
   Copy,
@@ -285,6 +290,9 @@ const NumberTicker = lazy(() =>
     default: mod.NumberTicker,
   }))
 );
+
+// 컴포넌트 미리보기 매핑
+import { componentPreviews } from "@/components/previews";
 
 export default function UIMatrix() {
   const [isDark, setIsDark] = useState(false);
@@ -730,6 +738,399 @@ export function AvatarDemo() {
 }`,
       installCommand: "npx shadcn-ui@latest add avatar",
       docs: "https://ui.shadcn.com/docs/components/avatar"
+    },
+    "shadcn-badge": {
+      name: "Badge",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "상태나 카테고리를 표시하는 뱃지 컴포넌트입니다.",
+      code: `import { Badge } from "@/components/ui/badge"
+
+export function BadgeDemo() {
+  return (
+    <>
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add badge",
+      docs: "https://ui.shadcn.com/docs/components/badge"
+    },
+    "shadcn-alert": {
+      name: "Alert",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "사용자에게 중요한 메시지를 표시하는 알림 컴포넌트입니다.",
+      code: `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from "lucide-react"
+
+export function AlertDemo() {
+  return (
+    <Alert>
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the cli.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add alert",
+      docs: "https://ui.shadcn.com/docs/components/alert"
+    },
+    "shadcn-progress": {
+      name: "Progress",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "작업의 진행 상태를 시각적으로 표시하는 프로그레스 바입니다.",
+      code: `import { Progress } from "@/components/ui/progress"
+
+export function ProgressDemo() {
+  return (
+    <>
+      <Progress value={33} />
+      <Progress value={66} />
+      <Progress value={100} />
+    </>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add progress",
+      docs: "https://ui.shadcn.com/docs/components/progress"
+    },
+    "shadcn-separator": {
+      name: "Separator",
+      library: "shadcn/ui",
+      category: "layout",
+      description: "콘텐츠를 시각적으로 구분하는 구분선 컴포넌트입니다.",
+      code: `import { Separator } from "@/components/ui/separator"
+
+export function SeparatorDemo() {
+  return (
+    <div>
+      <div className="space-y-1">
+        <h4 className="text-sm font-medium">Radix Primitives</h4>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
+      </div>
+      <Separator className="my-4" />
+      <div className="flex h-5 items-center space-x-4 text-sm">
+        <div>Blog</div>
+        <Separator orientation="vertical" />
+        <div>Docs</div>
+      </div>
+    </div>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add separator",
+      docs: "https://ui.shadcn.com/docs/components/separator"
+    },
+    "shadcn-accordion": {
+      name: "Accordion",
+      library: "shadcn/ui",
+      category: "layout",
+      description: "콘텐츠를 접고 펼칠 수 있는 아코디언 컴포넌트입니다.",
+      code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+export function AccordionDemo() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add accordion",
+      docs: "https://ui.shadcn.com/docs/components/accordion"
+    },
+    "shadcn-card": {
+      name: "Card",
+      library: "shadcn/ui",
+      category: "layout",
+      description: "관련된 콘텐츠를 그룹화하는 카드 컴포넌트입니다.",
+      code: `import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
+export function CardDemo() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card Description</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Card Content</p>
+      </CardContent>
+      <CardFooter>
+        <p>Card Footer</p>
+      </CardFooter>
+    </Card>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add card",
+      docs: "https://ui.shadcn.com/docs/components/card"
+    },
+    "shadcn-table": {
+      name: "Table",
+      library: "shadcn/ui",
+      category: "layout",
+      description: "데이터를 표 형식으로 표시하는 테이블 컴포넌트입니다.",
+      code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+
+export function TableDemo() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Item 1</TableCell>
+          <TableCell>Active</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Item 2</TableCell>
+          <TableCell>Inactive</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add table",
+      docs: "https://ui.shadcn.com/docs/components/table"
+    },
+    "shadcn-textarea": {
+      name: "Textarea",
+      library: "shadcn/ui",
+      category: "input",
+      description: "여러 줄의 텍스트 입력을 받는 텍스트 영역 컴포넌트입니다.",
+      code: `import { Textarea } from "@/components/ui/textarea"
+
+export function TextareaDemo() {
+  return (
+    <Textarea placeholder="Type your message here." />
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add textarea",
+      docs: "https://ui.shadcn.com/docs/components/textarea"
+    },
+    "shadcn-tabs": {
+      name: "Tabs",
+      library: "shadcn/ui",
+      category: "navigation",
+      description: "콘텐츠를 탭으로 구분하여 표시하는 탭 컴포넌트입니다.",
+      code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export function TabsDemo() {
+  return (
+    <Tabs defaultValue="account">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        Make changes to your account here.
+      </TabsContent>
+      <TabsContent value="password">
+        Change your password here.
+      </TabsContent>
+    </Tabs>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add tabs",
+      docs: "https://ui.shadcn.com/docs/components/tabs"
+    },
+    "shadcn-tooltip": {
+      name: "Tooltip",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "요소에 마우스를 올렸을 때 추가 정보를 표시하는 툴팁 컴포넌트입니다.",
+      code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+
+export function TooltipDemo() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>
+          <p>This is a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add tooltip",
+      docs: "https://ui.shadcn.com/docs/components/tooltip"
+    },
+    "shadcn-dialog": {
+      name: "Dialog",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "모달 형식으로 콘텐츠를 표시하는 다이얼로그 컴포넌트입니다.",
+      code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone.
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add dialog",
+      docs: "https://ui.shadcn.com/docs/components/dialog"
+    },
+    "shadcn-dropdown": {
+      name: "Dropdown Menu",
+      library: "shadcn/ui",
+      category: "navigation",
+      description: "메뉴 옵션을 드롭다운으로 표시하는 컴포넌트입니다.",
+      code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+
+export function DropdownDemo() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>Logout</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add dropdown-menu",
+      docs: "https://ui.shadcn.com/docs/components/dropdown-menu"
+    },
+    "shadcn-popover": {
+      name: "Popover",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "요소 주변에 팝업 콘텐츠를 표시하는 팝오버 컴포넌트입니다.",
+      code: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+
+export function PopoverDemo() {
+  return (
+    <Popover>
+      <PopoverTrigger>Open</PopoverTrigger>
+      <PopoverContent>
+        Place content for the popover here.
+      </PopoverContent>
+    </Popover>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add popover",
+      docs: "https://ui.shadcn.com/docs/components/popover"
+    },
+    "shadcn-toggle": {
+      name: "Toggle",
+      library: "shadcn/ui",
+      category: "input",
+      description: "On/Off 상태를 전환할 수 있는 토글 버튼 컴포넌트입니다.",
+      code: `import { Toggle } from "@/components/ui/toggle"
+
+export function ToggleDemo() {
+  return (
+    <>
+      <Toggle>Toggle</Toggle>
+      <Toggle variant="outline">Toggle Outline</Toggle>
+    </>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add toggle",
+      docs: "https://ui.shadcn.com/docs/components/toggle"
+    },
+    "shadcn-skeleton": {
+      name: "Skeleton",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "콘텐츠 로딩 중 플레이스홀더를 표시하는 스켈레톤 컴포넌트입니다.",
+      code: `import { Skeleton } from "@/components/ui/skeleton"
+
+export function SkeletonDemo() {
+  return (
+    <div className="space-y-2">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+      <Skeleton className="h-4 w-[150px]" />
+    </div>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add skeleton",
+      docs: "https://ui.shadcn.com/docs/components/skeleton"
+    },
+    "shadcn-command": {
+      name: "Command",
+      library: "shadcn/ui",
+      category: "navigation",
+      description: "명령 팔레트를 구현하는 커맨드 메뉴 컴포넌트입니다.",
+      code: `import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+
+export function CommandDemo() {
+  return (
+    <Command>
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>Calendar</CommandItem>
+          <CommandItem>Search Emoji</CommandItem>
+          <CommandItem>Calculator</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add command",
+      docs: "https://ui.shadcn.com/docs/components/command"
+    },
+    "shadcn-drawer": {
+      name: "Drawer",
+      library: "shadcn/ui",
+      category: "feedback",
+      description: "화면 측면에서 슬라이드되는 드로어 컴포넌트입니다.",
+      code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+
+export function DrawerDemo() {
+  return (
+    <Drawer>
+      <DrawerTrigger>Open</DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Are you sure?</DrawerTitle>
+          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <DrawerClose>Cancel</DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}`,
+      installCommand: "npx shadcn-ui@latest add drawer",
+      docs: "https://ui.shadcn.com/docs/components/drawer"
     },
   };
 
@@ -1975,6 +2376,7 @@ export function AvatarDemo() {
                         matchesCategory("feedback") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-badge"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2001,6 +2403,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-badge")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Badge 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-badge")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-badge")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-badge")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Badge>Default</Badge>\n<Badge variant="secondary">Secondary</Badge>',
+                                      "Badge"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Badge 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="flex gap-2">
@@ -2014,6 +2457,7 @@ export function AvatarDemo() {
                       {matchesSearch("Progress") && matchesCategory() && (
                         <article
                           className="component-card animate-fade-in-up"
+                          data-component="shadcn-progress"
                           data-library="shadcn"
                         >
                           <div className="component-card__header">
@@ -2040,6 +2484,47 @@ export function AvatarDemo() {
                                 </svg>
                               </Link>
                             </div>
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => openDetailModal("shadcn-progress")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="상세 보기"
+                                aria-label="Progress 상세 보기"
+                              >
+                                <Search className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => toggleFavorite("shadcn-progress")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="즐겨찾기"
+                                aria-label={
+                                  favorites.has("shadcn-progress")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
+                              >
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-progress")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
+                              </button>
+                              <button
+                                onClick={() =>
+                                  copyCode(
+                                    '<Progress value={33} />\n<Progress value={66} />\n<Progress value={100} />',
+                                    "Progress"
+                                  )
+                                }
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="코드 복사"
+                                aria-label="Progress 코드 복사"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
                           <div className="component-card__body">
                             <div className="space-y-2 w-full max-w-[200px]">
@@ -2054,6 +2539,7 @@ export function AvatarDemo() {
                         matchesCategory("navigation") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-dropdown"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2080,6 +2566,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-dropdown")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Dropdown 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-dropdown")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-dropdown")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-dropdown")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<DropdownMenu>\n  <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuItem>Profile</DropdownMenuItem>\n    <DropdownMenuItem>Settings</DropdownMenuItem>\n    <DropdownMenuItem>Logout</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>',
+                                      "Dropdown"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Dropdown 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <DropdownMenu>
@@ -2102,6 +2629,7 @@ export function AvatarDemo() {
                         matchesCategory("feedback") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-tooltip"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2128,6 +2656,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-tooltip")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Tooltip 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-tooltip")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-tooltip")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-tooltip")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger>Hover me</TooltipTrigger>\n    <TooltipContent>\n      <p>This is a tooltip</p>\n    </TooltipContent>\n  </Tooltip>\n</TooltipProvider>',
+                                      "Tooltip"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Tooltip 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <TooltipProvider>
@@ -2150,6 +2719,7 @@ export function AvatarDemo() {
                         matchesCategory("layout") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-accordion"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2175,6 +2745,47 @@ export function AvatarDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-accordion")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Accordion 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-accordion")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-accordion")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-accordion")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Accordion type="single" collapsible>\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>\n      Yes. It adheres to the WAI-ARIA design pattern.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>',
+                                      "Accordion"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Accordion 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -2204,6 +2815,7 @@ export function AvatarDemo() {
                         matchesCategory("feedback") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-alert"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2230,6 +2842,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-alert")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Alert 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-alert")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-alert")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-alert")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Alert>\n  <Terminal className="h-4 w-4" />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>\n    You can add components to your app using the cli.\n  </AlertDescription>\n</Alert>',
+                                      "Alert"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Alert 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <Alert>
@@ -2244,6 +2897,7 @@ export function AvatarDemo() {
                       {matchesSearch("Card") && matchesCategory("layout") && (
                         <article
                           className="component-card animate-fade-in-up"
+                          data-component="shadcn-card"
                           data-library="shadcn"
                         >
                           <div className="component-card__header">
@@ -2270,6 +2924,47 @@ export function AvatarDemo() {
                                 </svg>
                               </Link>
                             </div>
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => openDetailModal("shadcn-card")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="상세 보기"
+                                aria-label="Card 상세 보기"
+                              >
+                                <Search className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => toggleFavorite("shadcn-card")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="즐겨찾기"
+                                aria-label={
+                                  favorites.has("shadcn-card")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
+                              >
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-card")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
+                              </button>
+                              <button
+                                onClick={() =>
+                                  copyCode(
+                                    '<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>',
+                                    "Card"
+                                  )
+                                }
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="코드 복사"
+                                aria-label="Card 코드 복사"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
                           <div className="component-card__body">
                             <Card>
@@ -2290,6 +2985,7 @@ export function AvatarDemo() {
                         matchesCategory("feedback") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-dialog"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2316,6 +3012,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-dialog")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Dialog 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-dialog")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-dialog")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-dialog")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Dialog>\n  <DialogTrigger>Open</DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you sure?</DialogTitle>\n      <DialogDescription>\n        This action cannot be undone.\n      </DialogDescription>\n    </DialogHeader>\n  </DialogContent>\n</Dialog>',
+                                      "Dialog"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Dialog 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <Dialog>
@@ -2336,6 +3073,7 @@ export function AvatarDemo() {
                         matchesCategory("layout") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-separator"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2362,6 +3100,47 @@ export function AvatarDemo() {
                                   </svg>
                                 </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-separator")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Separator 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-separator")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-separator")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-separator")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Separator />',
+                                      "Separator"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Separator 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
                             </div>
                             <div className="component-card__body">
                               <div className="space-y-2">
@@ -2376,6 +3155,7 @@ export function AvatarDemo() {
                       {matchesSearch("Table") && matchesCategory("layout") && (
                         <article
                           className="component-card animate-fade-in-up"
+                          data-component="shadcn-table"
                           data-library="shadcn"
                         >
                           <div className="component-card__header">
@@ -2401,6 +3181,47 @@ export function AvatarDemo() {
                                   />
                                 </svg>
                               </Link>
+                            </div>
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => openDetailModal("shadcn-table")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="상세 보기"
+                                aria-label="Table 상세 보기"
+                              >
+                                <Search className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => toggleFavorite("shadcn-table")}
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="즐겨찾기"
+                                aria-label={
+                                  favorites.has("shadcn-table")
+                                    ? "즐겨찾기 제거"
+                                    : "즐겨찾기 추가"
+                                }
+                              >
+                                <Star
+                                  className={`w-4 h-4 ${
+                                    favorites.has("shadcn-table")
+                                      ? "fill-yellow-400 text-yellow-400"
+                                      : ""
+                                  }`}
+                                />
+                              </button>
+                              <button
+                                onClick={() =>
+                                  copyCode(
+                                    '<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Name</TableHead>\n      <TableHead>Status</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>Item 1</TableCell>\n      <TableCell>Active</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>',
+                                    "Table"
+                                  )
+                                }
+                                className="p-1 hover:bg-muted rounded transition-colors"
+                                title="코드 복사"
+                                aria-label="Table 코드 복사"
+                              >
+                                <Copy className="w-4 h-4" />
+                              </button>
                             </div>
                           </div>
                           <div className="component-card__body">
@@ -2430,6 +3251,7 @@ export function AvatarDemo() {
                         matchesCategory("input") && (
                           <article
                             className="component-card animate-fade-in-up"
+                            data-component="shadcn-textarea"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
@@ -2455,6 +3277,47 @@ export function AvatarDemo() {
                                     />
                                   </svg>
                                 </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-textarea")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Textarea 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-textarea")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-textarea")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-textarea")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Textarea placeholder="Type your message here." />',
+                                      "Textarea"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Textarea 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
                               </div>
                             </div>
                             <div className="component-card__body">
@@ -2496,9 +3359,22 @@ export function AvatarDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("shadcn-tabs")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Tabs 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
                                   onClick={() => toggleFavorite("shadcn-tabs")}
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-tabs")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${
@@ -2517,6 +3393,7 @@ export function AvatarDemo() {
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
+                                  aria-label="Tabs 코드 복사"
                                 >
                                   <Copy className="h-4 w-4" />
                                 </button>
@@ -2566,11 +3443,24 @@ export function AvatarDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("shadcn-toggle")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Toggle 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
                                   onClick={() =>
                                     toggleFavorite("shadcn-toggle")
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-toggle")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${
@@ -2589,6 +3479,7 @@ export function AvatarDemo() {
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
+                                  aria-label="Toggle 코드 복사"
                                 >
                                   <Copy className="h-4 w-4" />
                                 </button>
@@ -2640,11 +3531,24 @@ export function AvatarDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("shadcn-skeleton")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Skeleton 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
                                   onClick={() =>
                                     toggleFavorite("shadcn-skeleton")
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-skeleton")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${
@@ -2663,6 +3567,7 @@ export function AvatarDemo() {
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
+                                  aria-label="Skeleton 코드 복사"
                                 >
                                   <Copy className="h-4 w-4" />
                                 </button>
@@ -2711,11 +3616,24 @@ export function AvatarDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("shadcn-command")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Command 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
                                   onClick={() =>
                                     toggleFavorite("shadcn-command")
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-command")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${
@@ -2734,6 +3652,7 @@ export function AvatarDemo() {
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
+                                  aria-label="Command 코드 복사"
                                 >
                                   <Copy className="h-4 w-4" />
                                 </button>
@@ -2787,11 +3706,24 @@ export function AvatarDemo() {
                               </div>
                               <div className="flex gap-1">
                                 <button
+                                  onClick={() => openDetailModal("shadcn-drawer")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Drawer 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
                                   onClick={() =>
                                     toggleFavorite("shadcn-drawer")
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-drawer")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
                                 >
                                   <Star
                                     className={`h-4 w-4 ${
@@ -2810,6 +3742,7 @@ export function AvatarDemo() {
                                   }
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
+                                  aria-label="Drawer 코드 복사"
                                 >
                                   <Copy className="h-4 w-4" />
                                 </button>
@@ -2843,6 +3776,99 @@ export function AvatarDemo() {
                                   </DrawerFooter>
                                 </DrawerContent>
                               </Drawer>
+                            </div>
+                          </article>
+                        )}
+
+                      {matchesSearch("Popover", "shadcn-popover") &&
+                        matchesCategory("feedback") && (
+                          <article
+                            className="component-card animate-fade-in-up"
+                            data-component="shadcn-popover"
+                            data-library="shadcn"
+                          >
+                            <div className="component-card__header">
+                              <div className="component-card__title">
+                                <Link
+                                  href="https://ui.shadcn.com/docs/components/popover"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
+                                >
+                                  <span>Popover</span>
+                                  <svg
+                                    className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                  </svg>
+                                </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-popover")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                  aria-label="Popover 상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-popover")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                  aria-label={
+                                    favorites.has("shadcn-popover")
+                                      ? "즐겨찾기 제거"
+                                      : "즐겨찾기 추가"
+                                  }
+                                >
+                                  <Star
+                                    className={`w-4 h-4 ${
+                                      favorites.has("shadcn-popover")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : ""
+                                    }`}
+                                  />
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    copyCode(
+                                      '<Popover>\n  <PopoverTrigger>Open</PopoverTrigger>\n  <PopoverContent>\n    <p>Content</p>\n  </PopoverContent>\n</Popover>',
+                                      "Popover"
+                                    )
+                                  }
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                  aria-label="Popover 코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="component-card__body">
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <ShadcnButton variant="outline">
+                                    Open Popover
+                                  </ShadcnButton>
+                                </PopoverTrigger>
+                                <PopoverContent>
+                                  <div className="space-y-2">
+                                    <h4 className="font-medium">Popover Title</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                      This is a popover component
+                                    </p>
+                                  </div>
+                                </PopoverContent>
+                              </Popover>
                             </div>
                           </article>
                         )}
@@ -6673,15 +7699,16 @@ export function AvatarDemo() {
                     <div className="relative group">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                       <div className="relative bg-gradient-to-br from-background/90 to-muted/60 backdrop-blur-md p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-lg">
-                        <div className="flex flex-wrap gap-3 justify-center">
-                          <ShadcnButton>Default</ShadcnButton>
-                          <ShadcnButton variant="outline">Outline</ShadcnButton>
-                          <ShadcnButton variant="secondary">
-                            Secondary
-                          </ShadcnButton>
-                          <ShadcnButton variant="destructive">
-                            Destructive
-                          </ShadcnButton>
+                        <div className="flex flex-wrap gap-3 justify-center items-center min-h-[120px]">
+                          {(() => {
+                            if (selectedComponentId) {
+                              const PreviewComponent = componentPreviews[selectedComponentId];
+                              if (PreviewComponent) {
+                                return <PreviewComponent />;
+                              }
+                            }
+                            return <p className="text-sm text-muted-foreground">미리보기를 사용할 수 없습니다.</p>;
+                          })()}
                         </div>
                       </div>
                     </div>

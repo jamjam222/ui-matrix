@@ -355,7 +355,7 @@ export default function UIMatrix() {
   );
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("by-component");
+  const [activeTab, setActiveTab] = useState("gallery");
 
   // 탭 변경 시 스크롤을 맨 위로
   const handleTabChange = (value: string) => {

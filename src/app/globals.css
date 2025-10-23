@@ -1,0 +1,683 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Force scroll to top on page load */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Smooth scrolling for anchor links (but not on page load) */
+html.smooth-scroll {
+  scroll-behavior: smooth !important;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Mobile Optimization & UX Improvements
+   ============================================ */
+
+/* Better touch targets for mobile (minimum 44x44px) */
+@media (max-width: 768px) {
+  button, a[role="button"], [role="tab"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Mobile header adjustments */
+  header {
+    padding: 1rem !important;
+  }
+
+  /* Mobile typography */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Mobile container padding */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Mobile filter buttons */
+  .component-catalog__section button {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Mobile card spacing */
+  .component-catalog__grid {
+    gap: 1rem !important;
+  }
+}
+
+/* Touch gesture optimization */
+.swipeable {
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent pull-to-refresh on scroll containers */
+.no-overscroll {
+  overscroll-behavior: contain;
+}
+
+/* Smooth momentum scrolling for touch devices */
+.smooth-scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   Animation Keyframes (중복 제거 및 통합)
+   ============================================ */
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+@keyframes rippling {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+@keyframes gradient {
+  to {
+    background-position: var(--bg-size, 300%) 0;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Animation Utility Classes
+   ============================================ */
+/* Scroll-triggered animations - 더 빠르고 부드럽게 */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.scroll-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Initial state for cards - 빠른 애니메이션 */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.35s ease-out forwards;
+}
+
+/* Stagger animation for cards - 짧은 delay로 빠른 느낌 */
+.component-catalog__grid > .animate-fade-in-up:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.component-catalog__grid > .animate-fade-in-up:nth-child(2) {
+  animation-delay: 0.03s;
+}
+
+.component-catalog__grid > .animate-fade-in-up:nth-child(3) {
+  animation-delay: 0.06s;
+}
+
+.component-catalog__grid > .animate-fade-in-up:nth-child(4) {
+  animation-delay: 0.09s;
+}
+
+.component-catalog__grid > .animate-fade-in-up:nth-child(5) {
+  animation-delay: 0.12s;
+}
+
+.component-catalog__grid > .animate-fade-in-up:nth-child(6) {
+  animation-delay: 0.15s;
+}
+
+/* For cards beyond 6, use a general delay */
+.component-catalog__grid > .animate-fade-in-up:nth-child(n+7) {
+  animation-delay: 0.18s;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade-in,
+  .animate-fade-in-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ============================================
+   Theme Inline (애니메이션 변수 정의만)
+   ============================================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+  --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+  --color-color-5: var(--color-5);
+  --color-color-4: var(--color-4);
+  --color-color-3: var(--color-3);
+  --color-color-2: var(--color-2);
+  --color-color-1: var(--color-1);
+  --animate-rippling: rippling var(--duration) ease-out;
+  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-gradient: gradient 8s linear infinite;
+  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.98 0.005 264); /* 약간 푸른 느낌의 배경 */
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0 / 0.7); /* 반투명 카드 */
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0 / 0.8);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.5 0.2 264); /* 생생한 블루 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.92 0.01 264 / 0.8);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.95 0.005 264 / 0.6);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.92 0.01 280 / 0.7);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(1 0 0 / 0.2); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.3);
+  --ring: oklch(0.5 0.2 264 / 0.5);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0 / 0.8);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.5 0.2 264);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.92 0.01 264 / 0.8);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.2);
+  --sidebar-ring: oklch(0.5 0.2 264 / 0.5);
+  --color-1: oklch(66.2% 0.225 25.9);
+  --color-2: oklch(60.4% 0.26 302);
+  --color-3: oklch(69.6% 0.165 251);
+  --color-4: oklch(80.2% 0.134 225);
+  --color-5: oklch(90.7% 0.231 133);
+}
+
+.dark {
+  --background: oklch(0.15 0.01 264); /* 약간 푸른 느낌의 다크 배경 */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.22 0.01 264 / 0.6); /* 반투명 다크 카드 */
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.22 0.01 264 / 0.8);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.65 0.25 264); /* 밝은 블루 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.3 0.01 264 / 0.7);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.28 0.01 264 / 0.5);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.3 0.02 280 / 0.6);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 0.15); /* 반투명 보더 */
+  --input: oklch(1 0 0 / 0.2);
+  --ring: oklch(0.65 0.25 264 / 0.6);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.22 0.01 264 / 0.7);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.65 0.25 264);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.3 0.01 264 / 0.7);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.15);
+  --sidebar-ring: oklch(0.65 0.25 264 / 0.6);
+  --color-1: oklch(66.2% 0.225 25.9);
+  --color-2: oklch(60.4% 0.26 302);
+  --color-3: oklch(69.6% 0.165 251);
+  --color-4: oklch(80.2% 0.134 225);
+  --color-5: oklch(90.7% 0.231 133);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground relative;
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.7 0.15 264 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.7 0.15 280 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.7 0.12 300 / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.7 0.1 240 / 0.08) 0px, transparent 50%);
+  }
+  body.dark {
+    background-image: 
+      radial-gradient(at 0% 0%, oklch(0.35 0.2 264 / 0.2) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.35 0.18 280 / 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, oklch(0.35 0.15 300 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.35 0.12 240 / 0.1) 0px, transparent 50%);
+  }
+}
+
+/* ============================================
+   Component Styles (BEM 네이밍 준수)
+   ============================================ */
+@layer components {
+  .component-catalog__grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  /* Base card style with enhanced animations - 빠른 반응 */
+  .component-card {
+    @apply relative rounded-xl border border-border bg-card/70 backdrop-blur-xl p-6 
+           shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] 
+           transition-all duration-300 ease-out
+           hover:shadow-[0_12px_40px_0_rgba(31,38,135,0.25)] 
+           hover:-translate-y-1 hover:bg-card/80
+           active:translate-y-0 active:shadow-[0_6px_24px_0_rgba(31,38,135,0.12)];
+    /* Smooth touch feedback for mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    /* 글래스모피즘 효과 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .dark .component-card {
+    @apply bg-card/50 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  .dark .component-card:hover {
+    @apply bg-card/60;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  /* GPU 가속은 호버 시에만 적용 (성능 최적화) */
+  .component-card:hover {
+    will-change: transform, box-shadow;
+  }
+
+  /* Touch device optimization - apply active state on touch */
+  @media (hover: none) and (pointer: coarse) {
+    .component-card:active {
+      @apply -translate-y-0.5 shadow-[4px_4px_0_0_hsl(var(--foreground)/0.12)];
+    }
+  }
+  
+  /* Gradient overlay on hover */
+  .component-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300
+           bg-gradient-to-br from-primary/5 via-transparent to-accent/5;
+  }
+  
+  .component-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Library-based color accents - By Component 탭과 동일한 색상 */
+  .component-card[data-library="shadcn"] {
+    border: 2px solid rgb(191 219 254) !important; /* blue-200 */
+  }
+  
+  .component-card[data-library="shadcn"]:is(.dark *) {
+    border: 2px solid rgb(30 64 175) !important; /* blue-800 */
+  }
+  
+  .component-card[data-library="aceternity"] {
+    border: 2px solid rgb(233 213 255) !important; /* purple-200 */
+  }
+  
+  .component-card[data-library="aceternity"]:is(.dark *) {
+    border: 2px solid rgb(107 33 168) !important; /* purple-800 */
+  }
+  
+  .component-card[data-library="magicui"] {
+    border: 2px solid rgb(251 207 232) !important; /* pink-200 */
+  }
+  
+  .component-card[data-library="magicui"]:is(.dark *) {
+    border: 2px solid rgb(157 23 77) !important; /* pink-800 */
+  }
+  
+  .component-card[data-library="originui"] {
+    border: 2px solid rgb(254 215 170) !important; /* orange-200 */
+  }
+  
+  .component-card[data-library="originui"]:is(.dark *) {
+    border: 2px solid rgb(154 52 18) !important; /* orange-800 */
+  }
+  
+  /* Ripple Effect - Apply to all interactive buttons */
+  .component-card button,
+  button[title="즐겨찾기"],
+  button[title="코드 복사"] {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .component-card button::after,
+  button[title="즐겨찾기"]::after,
+  button[title="코드 복사"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(var(--primary-rgb, 59 130 246), 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s, opacity 0.6s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .component-card button:active::after,
+  button[title="즐겨찾기"]:active::after,
+  button[title="코드 복사"]:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: width 0s, height 0s, opacity 0.3s;
+  }
+  
+  /* Card variants */
+  .component-card--glass {
+    @apply bg-background/60 backdrop-blur-md border-white/20 dark:border-white/10;
+  }
+  
+  .component-card--elevated {
+    @apply shadow-lg hover:shadow-2xl;
+  }
+  
+  .component-card__header {
+    @apply flex items-start justify-between mb-4 pb-3 border-b border-border/50
+           transition-colors duration-200;
+  }
+  
+  .component-card:hover .component-card__header {
+    @apply border-primary/30;
+  }
+  
+  .component-card__title {
+    @apply text-sm font-bold transition-colors duration-200;
+  }
+  
+  .component-card:hover .component-card__title {
+    @apply text-primary;
+  }
+  
+  .component-card__body {
+    @apply flex items-center justify-center min-h-[120px];
+  }
+  
+  /* Fade-in animation */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  /* Stagger animation delays */
+  .component-card:nth-child(1) { animation-delay: 0s; }
+  .component-card:nth-child(2) { animation-delay: 0.05s; }
+  .component-card:nth-child(3) { animation-delay: 0.1s; }
+  .component-card:nth-child(4) { animation-delay: 0.15s; }
+  .component-card:nth-child(5) { animation-delay: 0.2s; }
+  .component-card:nth-child(6) { animation-delay: 0.25s; }
+  .component-card:nth-child(7) { animation-delay: 0.3s; }
+  .component-card:nth-child(8) { animation-delay: 0.35s; }
+}
+
+/* ============================================
+   Keyboard Navigation & Accessibility
+   ============================================ */
+
+/* Skip to main content link */
+.skip-to-content {
+  position: fixed;
+  left: 50%;
+  top: -200px;
+  transform: translateX(-50%);
+  z-index: 99999;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 1rem 2rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+  transition: top 0.2s ease-out;
+  white-space: nowrap;
+}
+
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  top: 1rem;
+  outline: 4px solid hsl(var(--ring));
+  outline-offset: 4px;
+}
+
+/* Enhanced focus visible styles */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Button focus styles */
+button:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Input focus styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Link focus styles */
+a:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Keyboard navigation helper text (sr-only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Remove default focus styles when using focus-visible */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   Glassmorphism Utility Classes
+   ============================================ */
+.glass {
+  @apply bg-background/70 backdrop-blur-xl border border-white/20;
+}
+
+.dark .glass {
+  @apply bg-background/50 backdrop-blur-xl border-white/10;
+}
+
+.glass--strong {
+  @apply bg-background/80 backdrop-blur-2xl border border-white/25;
+}
+
+.dark .glass--strong {
+  @apply bg-background/60 backdrop-blur-2xl border-white/15;
+}
+
+.glass--subtle {
+  @apply bg-background/50 backdrop-blur-lg border border-white/15;
+}
+
+.dark .glass--subtle {
+  @apply bg-background/30 backdrop-blur-lg border-white/8;
+}
+
+/* ============================================
+   Compare Table Styles - 이제 Tailwind 클래스로 대체됨
+   ============================================ */
+/* 더 이상 필요 없음 - Tailwind utility classes 사용 */

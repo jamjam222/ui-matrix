@@ -1,0 +1,45 @@
+/* Design Tokens - Neobrutalism Light + Modern Glass */
+:root {
+  /* radii */
+  --card-radius: 16px;
+  --section-radius: 20px;
+
+  /* Neobrutalism borders & shadows */
+  --card-border-width: 2.5px;
+  --card-border: hsl(0 0% 20%);
+  --card-shadow-offset: 5px;
+  --card-shadow: var(--card-shadow-offset) var(--card-shadow-offset) 0 0 hsl(0 0% 0% / 0.12);
+  --card-shadow-hover: 7px 7px 0 0 hsl(0 0% 0% / 0.18);
+  
+  /* Modern Glass effect */
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-hover: rgba(255, 255, 255, 0.95);
+  --glass-blur: 12px;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  
+  /* Enhanced colors */
+  --accent-gradient: linear-gradient(135deg, hsl(220 100% 55%) 0%, hsl(280 100% 65%) 100%);
+  --section-border: hsl(0 0% 90%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --card-border: hsl(0 0% 15%);
+    --card-shadow: var(--card-shadow-offset) var(--card-shadow-offset) 0 0 hsl(0 0% 0% / 0.08);
+    --card-shadow-hover: 7px 7px 0 0 hsl(0 0% 0% / 0.14);
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --card-bg-hover: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --section-border: hsl(0 0% 85%);
+  }
+}
+
+.dark {
+  --card-border: hsl(0 0% 85%);
+  --card-shadow: var(--card-shadow-offset) var(--card-shadow-offset) 0 0 hsl(0 0% 100% / 0.08);
+  --card-shadow-hover: 7px 7px 0 0 hsl(0 0% 100% / 0.12);
+  --card-bg: rgba(20, 20, 20, 0.85);
+  --card-bg-hover: rgba(30, 30, 30, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --section-border: hsl(0 0% 25%);
+}

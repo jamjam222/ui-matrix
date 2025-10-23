@@ -1454,48 +1454,59 @@ export function AlertDemo() {
     };
   }, []);
 
-  // "By Component" 탭을 위한 데이터 재구성
-  const componentGroups = Object.values(componentDetailsData).reduce<{
-    name: string;
-    category: string;
-    variants: {
-      shadcn: { count: number; component: React.ReactNode };
-      aceternity: { count: number; component: React.ReactNode };
-      magicui: { count: number; component: React.ReactNode };
-      originui: { count: number; component: React.ReactNode };
-    };
-  }[]>((acc, component) => {
-    // Badge와 같이 여러 변형이 있는 컴포넌트의 기본 이름 추출 (예: "Badge (Default)" -> "Badge")
-    const baseName = component.name.replace(/ \(.*\)/, "");
-
-    let group = acc.find((g) => g.name === baseName);
-
-    if (!group) {
-      group = {
-        name: baseName,
-        category: component.category, // 대표 카테고리로 첫 번째 컴포넌트의 것을 사용
-        variants: {
-          shadcn: { count: 0, component: null },
-          aceternity: { count: 0, component: null },
-          magicui: { count: 0, component: null },
-          originui: { count: 0, component: null },
-        },
+  // "By Component" 탭을 위한 데이터 재구성 및 정렬
+  const componentGroups = Object.values(componentDetailsData)
+    .reduce<{
+      name: string;
+      variants: {
+        shadcn: { count: number; components: { name: string; preview: React.ReactNode }[] };
+        aceternity: { count: number; components: { name: string; preview: React.ReactNode }[] };
+        magicui: { count: number; components: { name: string; preview: React.ReactNode }[] };
+        originui: { count: number; components: { name: string; preview: React.ReactNode }[] };
       };
-      acc.push(group);
-    }
+      totalCount: number;
+    }[]>((acc, component) => {
+      const categoryMap: { [key: string]: string } = {
+        button: "Button",
+        animation: "Animation",
+        input: "Input & Form",
+        form: "Input & Form",
+        display: "Data Display",
+        "data display": "Data Display",
+        feedback: "Feedback & Overlay",
+        overlay: "Feedback & Overlay",
+        layout: "Layout & Navigation",
+        navigation: "Layout & Navigation",
+        card: "Layout & Navigation",
+      };
+      const groupName = categoryMap[component.category.toLowerCase()] || "Etc";
 
-    // 라이브러리에 해당하는 컴포넌트 미리보기를 추가
-    // 이미 해당 라이브러리에 컴포넌트가 추가된 경우, count만 증가시키고 component는 덮어쓰지 않음 (주로 첫 번째 변형을 대표로 보여줌)
-    if (group.variants[component.library as keyof typeof group.variants]) {
-      const variant = group.variants[component.library as keyof typeof group.variants];
-      if (variant.component === null) {
-        variant.component = component.preview;
+      let group = acc.find((g) => g.name === groupName);
+
+      if (!group) {
+        group = {
+          name: groupName,
+          variants: {
+            shadcn: { count: 0, components: [] },
+            aceternity: { count: 0, components: [] },
+            magicui: { count: 0, components: [] },
+            originui: { count: 0, components: [] },
+          },
+          totalCount: 0,
+        };
+        acc.push(group);
       }
-      variant.count += 1;
-    }
 
-    return acc;
-  }, []);
+      const libraryKey = component.library as keyof typeof group.variants;
+      if (group.variants[libraryKey]) {
+        group.variants[libraryKey].components.push({ name: component.name, preview: component.preview });
+        group.variants[libraryKey].count++;
+        group.totalCount++;
+      }
+
+      return acc;
+    }, [])
+    .sort((a, b) => b.totalCount - a.totalCount);
 
   // 로딩 중일 때 로딩 화면 표시
   if (isLoading) {
@@ -8346,82 +8357,98 @@ export function AlertDemo() {
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-6 pt-2">
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-                            {/* shadcn/ui */}
-                            <Card className="bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-blue-600 dark:text-blue-400">
-                                    <Palette className="h-4 w-4" />
-                                  </span>
-                                  shadcn/ui
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.shadcn.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
+                          <div className="space-y-8 mt-4">
+                            <div>
+                              <h4 className="text-sm font-semibold flex items-center gap-2 mb-3">
+                                <span className="text-blue-600 dark:text-blue-400"><Palette className="h-4 w-4" /></span>
+                                shadcn/ui ({group.variants.shadcn.count})
+                              </h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                {group.variants.shadcn.components.length > 0 ? (
+                                  group.variants.shadcn.components.map((comp) => (
+                                    <Card key={comp.name} className="overflow-hidden max-w-full bg-blue-50/30 dark:bg-blue-950/10 border-blue-200/20 dark:border-blue-800/20">
+                                      <CardHeader className="p-3 bg-blue-100/20 dark:bg-blue-900/10 border-b border-blue-200/20 dark:border-blue-800/20">
+                                        <CardTitle className="text-xs font-medium truncate">{comp.name}</CardTitle>
+                                      </CardHeader>
+                                      <CardContent className="p-4 flex items-center justify-center min-h-[120px]">
+                                        {comp.preview}
+                                      </CardContent>
+                                    </Card>
+                                  ))
+                                ) : (
+                                  <p className="text-xs text-muted-foreground col-span-full">-</p>
                                 )}
-                              </CardContent>
-                            </Card>
+                              </div>
+                            </div>
 
-                            {/* Aceternity */}
-                            <Card className="bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-purple-600 dark:text-purple-400">
-                                    <Zap className="h-4 w-4" />
-                                  </span>
-                                  Aceternity
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.aceternity.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
+                            <div>
+                              <h4 className="text-sm font-semibold flex items-center gap-2 mb-3">
+                                <span className="text-purple-600 dark:text-purple-400"><Zap className="h-4 w-4" /></span>
+                                Aceternity ({group.variants.aceternity.count})
+                              </h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                {group.variants.aceternity.components.length > 0 ? (
+                                  group.variants.aceternity.components.map((comp) => (
+                                    <Card key={comp.name} className="overflow-hidden max-w-full bg-purple-50/30 dark:bg-purple-950/10 border-purple-200/20 dark:border-purple-800/20">
+                                      <CardHeader className="p-3 bg-purple-100/20 dark:bg-purple-900/10 border-b border-purple-200/20 dark:border-purple-800/20">
+                                        <CardTitle className="text-xs font-medium truncate">{comp.name}</CardTitle>
+                                      </CardHeader>
+                                      <CardContent className="p-4 flex items-center justify-center min-h-[120px]">
+                                        {comp.preview}
+                                      </CardContent>
+                                    </Card>
+                                  ))
+                                ) : (
+                                  <p className="text-xs text-muted-foreground col-span-full">-</p>
                                 )}
-                              </CardContent>
-                            </Card>
+                              </div>
+                            </div>
 
-                            {/* Magic UI */}
-                            <Card className="bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-pink-600 dark:text-pink-400">
-                                    <Sparkles className="h-4 w-4" />
-                                  </span>
-                                  Magic UI
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.magicui.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
+                            <div>
+                              <h4 className="text-sm font-semibold flex items-center gap-2 mb-3">
+                                <span className="text-pink-600 dark:text-pink-400"><Sparkles className="h-4 w-4" /></span>
+                                Magic UI ({group.variants.magicui.count})
+                              </h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                {group.variants.magicui.components.length > 0 ? (
+                                  group.variants.magicui.components.map((comp) => (
+                                    <Card key={comp.name} className="overflow-hidden max-w-full bg-pink-50/30 dark:bg-pink-950/10 border-pink-200/20 dark:border-pink-800/20">
+                                      <CardHeader className="p-3 bg-pink-100/20 dark:bg-pink-900/10 border-b border-pink-200/20 dark:border-pink-800/20">
+                                        <CardTitle className="text-xs font-medium truncate">{comp.name}</CardTitle>
+                                      </CardHeader>
+                                      <CardContent className="p-4 flex items-center justify-center min-h-[120px]">
+                                        {comp.preview}
+                                      </CardContent>
+                                    </Card>
+                                  ))
+                                ) : (
+                                  <p className="text-xs text-muted-foreground col-span-full">-</p>
                                 )}
-                              </CardContent>
-                            </Card>
+                              </div>
+                            </div>
 
-                            {/* Origin UI */}
-                            <Card className="bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-orange-600 dark:text-orange-400">
-                                    <Target className="h-4 w-4" />
-                                  </span>
-                                  Origin UI
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.originui.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
+                            <div>
+                              <h4 className="text-sm font-semibold flex items-center gap-2 mb-3">
+                                <span className="text-orange-600 dark:text-orange-400"><Target className="h-4 w-4" /></span>
+                                Origin UI ({group.variants.originui.count})
+                              </h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                {group.variants.originui.components.length > 0 ? (
+                                  group.variants.originui.components.map((comp) => (
+                                    <Card key={comp.name} className="overflow-hidden max-w-full bg-orange-50/30 dark:bg-orange-950/10 border-orange-200/20 dark:border-orange-800/20">
+                                      <CardHeader className="p-3 bg-orange-100/20 dark:bg-orange-900/10 border-b border-orange-200/20 dark:border-orange-800/20">
+                                        <CardTitle className="text-xs font-medium truncate">{comp.name}</CardTitle>
+                                      </CardHeader>
+                                      <CardContent className="p-4 flex items-center justify-center min-h-[120px]">
+                                        {comp.preview}
+                                      </CardContent>
+                                    </Card>
+                                  ))
+                                ) : (
+                                  <p className="text-xs text-muted-foreground col-span-full">-</p>
                                 )}
-                              </CardContent>
-                            </Card>
+                              </div>
+                            </div>
                           </div>
                         </AccordionContent>
                       </AccordionItem>

@@ -73,6 +73,8 @@ import { Button as ShadcnButton } from "@/components/ui/shadcn/button";
 import {
   Card,
   CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/shadcn/card";
@@ -1454,273 +1456,12 @@ export function AlertDemo() {
     };
 
     window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
-  // Component groups for "By Component" tab
-  const componentGroups = [
-    {
-      name: "Button",
-      category: "button",
-      variants: {
-        shadcn: {
-          count: 2,
-          component: (
-            <>
-              <ShadcnButton>Default</ShadcnButton>
-              <ShadcnButton variant="outline">Outline</ShadcnButton>
-            </>
-          ),
-        },
-        aceternity: {
-          count: 1,
-          component: <AceternityButton>Stateful</AceternityButton>,
-        },
-        magicui: {
-          count: 3,
-          component: (
-            <div className="space-y-2">
-              <MagicButton>Shimmer</MagicButton>
-              <RainbowButton>Rainbow</RainbowButton>
-              <ShinyButton>Shiny</ShinyButton>
-            </div>
-          ),
-        },
-        originui: { count: 0, component: null },
-      }
-    },
-    {
-      name: "Input",
-      category: "input",
-      variants: {
-        shadcn: { count: 1, component: <Input placeholder="Type here..." /> },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: {
-          count: 1,
-          component: <OriginInput placeholder="Email..." />,
-        },
-      }
-    },
-    {
-      name: "Select",
-      category: "input",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">Option 1</SelectItem>
-              </SelectContent>
-            </Select>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginSelectExample /> },
-      }
-    },
-    {
-      name: "Checkbox",
-      category: "input",
-      variants: {
-        shadcn: { count: 1, component: <Checkbox /> },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginCheckboxExample /> },
-      }
-    },
-    {
-      name: "Radio",
-      category: "input",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <RadioGroup defaultValue="1">
-              <RadioGroupItem value="1" />
-            </RadioGroup>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginRadioExample /> },
-      }
-    },
-    {
-      name: "Switch",
-      category: "input",
-      variants: {
-        shadcn: { count: 1, component: <Switch /> },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginSwitchExample /> },
-      }
-    },
-    {
-      name: "Slider",
-      category: "input",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <Slider defaultValue={[50]} max={100} step={1} className="w-48" />
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginSliderExample /> },
-      }
-    },
-    {
-      name: "Avatar",
-      category: "layout",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: {
-          count: 1,
-          component: (
-            <Link href="" className="text-sm text-muted-foreground">
-              +3 avatars
-            </Link>
-          ),
-        },
-        originui: { count: 1, component: <OriginAvatarExample /> },
-      }
-    },
-    {
-      name: "Badge",
-      category: "layout",
-      variants: {
-        shadcn: { count: 1, component: <Badge>New</Badge> },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginBadgeExample /> },
-      }
-    },
-    {
-      name: "Dialog",
-      category: "feedback",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <Dialog>
-              <DialogTrigger asChild>
-                <ShadcnButton size="sm">Open</ShadcnButton>
-              </DialogTrigger>
-              <DialogContent>
-                <div className="p-4">Dialog Content</div>
-              </DialogContent>
-            </Dialog>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginDialogExample /> },
-      }
-    },
-    {
-      name: "Dropdown",
-      category: "navigation",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <ShadcnButton size="sm">Menu</ShadcnButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>Item 1</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginDropdownExample /> },
-      }
-    },
-    {
-      name: "Tooltip",
-      category: "feedback",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <ShadcnButton size="sm">Hover</ShadcnButton>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Tooltip</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          ),
-        },
-        aceternity: {
-          count: 1,
-          component: (
-            <AnimatedTooltip
-              items={[
-                {
-                  id: 1,
-                  name: "User",
-                  designation: "Dev",
-                  image: "https://github.com/shadcn.png",
-                },
-              ]}
-            />
-          ),
-        },
-        magicui: { count: 0, component: null },
-        originui: {
-          count: 1,
-          component: (
-            <div className="text-sm text-muted-foreground">
-              Tooltip with table
-            </div>
-          ),
-        },
-      }
-    },
-    {
-      name: "Accordion",
-      category: "layout",
-      variants: {
-        shadcn: {
-          count: 1,
-          component: (
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="1">
-                <AccordionTrigger>Item 1</AccordionTrigger>
-                <AccordionContent>Content</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ),
-        },
-        aceternity: { count: 0, component: null },
-        magicui: { count: 0, component: null },
-        originui: { count: 1, component: <OriginAccordionExample /> },
-      }
-    },
-  ];
 
   // 로딩 중일 때 로딩 화면 표시
   if (isLoading) {
@@ -1823,7 +1564,7 @@ export function AlertDemo() {
             <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
               <TabsTrigger value="compare">Compare</TabsTrigger>
-              <TabsTrigger value="by-component">By Component</TabsTrigger>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="stats" className="gap-2">
                 <BarChart3 className="w-4 h-4" />
                 통계
@@ -8443,119 +8184,103 @@ export function AlertDemo() {
               </div>
             </TabsContent>
 
-            {/* By Component Tab */}
-            <TabsContent value="by-component">
-              <div className="space-y-6">
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="w-full space-y-4"
-                >
-                  {componentGroups.map((group) => {
-                    const totalVariants = Object.values(group.variants).filter(
-                      (v) => v.count > 0
-                    ).length;
 
-                    return (
-                      <AccordionItem
-                        key={group.name}
-                        value={group.name}
-                        className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]"
-                      >
-                        <AccordionTrigger className="px-6 py-4 hover:bg-background/70 transition-all duration-300 hover:no-underline">
-                          <div className="flex items-center gap-3 w-full">
-                            <span className="text-lg font-bold">
-                              {group.name}
-                            </span>
-                            <Badge variant="secondary" className="ml-auto mr-2">
-                              {totalVariants}{" "}
-                              {totalVariants === 1 ? "library" : "libraries"}
-                            </Badge>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="px-6 pb-6 pt-2">
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-                            {/* shadcn/ui */}
-                            <Card className="bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-blue-600 dark:text-blue-400">
-                                    <Palette className="h-4 w-4" />
-                                  </span>
-                                  shadcn/ui
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.shadcn.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
-                                )}
-                              </CardContent>
-                            </Card>
+            <TabsContent value="overview">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                {/* shadcn/ui Card */}
+                <Card className="bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Palette className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                      shadcn/ui
+                    </CardTitle>
+                    <CardDescription>애플리케이션 구축을 위한 재사용 가능한 컴포넌트입니다.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">20+</strong> Components | <strong className="text-foreground">6</strong> Categories
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary">Button</Badge>
+                      <Badge variant="secondary">Input</Badge>
+                      <Badge variant="secondary">Display</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <ShadcnButton onClick={() => handleTabChange("gallery", "shadcn")} className="w-full">Gallery에서 보기</ShadcnButton>
+                  </CardFooter>
+                </Card>
 
-                            {/* Aceternity */}
-                            <Card className="bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-purple-600 dark:text-purple-400">
-                                    <Zap className="h-4 w-4" />
-                                  </span>
-                                  Aceternity
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.aceternity.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
-                                )}
-                              </CardContent>
-                            </Card>
+                {/* Aceternity UI Card */}
+                <Card className="bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                      Aceternity UI
+                    </CardTitle>
+                    <CardDescription>시선을 사로잡는 복사-붙여넣기 애니메이션 컴포넌트입니다.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">10+</strong> Components | <strong className="text-foreground">4</strong> Categories
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary">Animation</Badge>
+                      <Badge variant="secondary">Button</Badge>
+                      <Badge variant="secondary">Card</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <ShadcnButton onClick={() => handleTabChange("gallery", "aceternity")} className="w-full">Gallery에서 보기</ShadcnButton>
+                  </CardFooter>
+                </Card>
 
-                            {/* Magic UI */}
-                            <Card className="bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-pink-600 dark:text-pink-400">
-                                    <Sparkles className="h-4 w-4" />
-                                  </span>
-                                  Magic UI
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.magicui.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
-                                )}
-                              </CardContent>
-                            </Card>
+                {/* Magic UI Card */}
+                <Card className="bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-pink-600 dark:text-pink-400" />
+                      Magic UI
+                    </CardTitle>
+                    <CardDescription>마법 같은 효과를 더해주는 애니메이션 컴포넌트 모음입니다.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">15+</strong> Components | <strong className="text-foreground">2</strong> Categories
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary">Animation</Badge>
+                      <Badge variant="secondary">Button</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <ShadcnButton onClick={() => handleTabChange("gallery", "magicui")} className="w-full">Gallery에서 보기</ShadcnButton>
+                  </CardFooter>
+                </Card>
 
-                            {/* Origin UI */}
-                            <Card className="bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30">
-                              <CardHeader className="pb-3">
-                                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                                  <span className="text-orange-600 dark:text-orange-400">
-                                    <Target className="h-4 w-4" />
-                                  </span>
-                                  Origin UI
-                                </CardTitle>
-                              </CardHeader>
-                              <CardContent className="min-h-[100px] flex items-center justify-center">
-                                {group.variants.originui.component || (
-                                  <span className="text-muted-foreground text-sm">
-                                    -
-                                  </span>
-                                )}
-                              </CardContent>
-                            </Card>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    );
-                  })}
-                </Accordion>
+                {/* Origin UI Card */}
+                <Card className="bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Target className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                      Origin UI
+                    </CardTitle>
+                    <CardDescription>실용적이고 직관적인 기본 UI 컴포넌트 라이브러리입니다.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">12+</strong> Components | <strong className="text-foreground">4</strong> Categories
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="secondary">Form</Badge>
+                      <Badge variant="secondary">Overlay</Badge>
+                      <Badge variant="secondary">Layout</Badge>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <ShadcnButton onClick={() => handleTabChange("gallery", "originui")} className="w-full">Gallery에서 보기</ShadcnButton>
+                  </CardFooter>
+                </Card>
               </div>
             </TabsContent>
 

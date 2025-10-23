@@ -7297,7 +7297,7 @@ export function AlertDemo() {
               </div>
             </TabsContent>
             <TabsContent value="compare">
-              <div className="overflow-x-auto rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+              <div className="overflow-auto max-h-[70vh] rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                 <table className="w-full border-collapse">
                   <thead className="sticky top-0 z-10 bg-muted/80 backdrop-blur-sm">
                     <tr className="border-b border-gray-200 dark:border-gray-700">

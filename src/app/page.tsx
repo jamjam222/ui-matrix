@@ -126,6 +126,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/shadcn/dialog";
 import {
@@ -1591,7 +1592,7 @@ export function AlertDemo() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                 />
               </svg>
@@ -8471,6 +8472,7 @@ export function AlertDemo() {
           }}
         >
           <DialogContent className="max-w-4xl max-h-[85vh] overflow-hidden p-0 gap-0 bg-gradient-to-br from-background/95 via-background/98 to-muted/95 backdrop-blur-xl border-2 border-gray-200 dark:border-gray-700/50 shadow-2xl">
+            <DialogTitle className="sr-only">{selectedComponent?.name || 'Component Details'}</DialogTitle>
             {/* 헤더 - 그라데이션 글래스 효과 */}
             <div className="px-8 pt-8 pb-6 bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 backdrop-blur-md border-b border-gray-200 dark:border-gray-700/50 relative">
               {/* 백그라운드 글로우 */}

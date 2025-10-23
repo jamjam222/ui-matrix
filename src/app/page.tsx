@@ -178,31 +178,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
+  Github,
+  ExternalLink,
   Search,
   Star,
   Copy,
   Info,
-  Package,
-  Code2,
-  ExternalLink,
-  Github,
-  Lightbulb,
   Sparkles,
-  BarChart3,
+  Code2,
+  Package,
+  Palette,
+  Zap,
+  Target,
   Home,
   Settings,
   PartyPopper,
-  Palette,
-  Target,
-  BookOpen,
-  Tag,
   Check,
-  Zap,
-  Circle,
-  FileText,
-  Layout,
-  Compass,
-  MessageSquare,
+  Lightbulb,
 } from "lucide-react";
 
 // UI 라이브러리 컴포넌트 - 기본만 eager loading
@@ -1462,6 +1454,184 @@ export function AlertDemo() {
     };
   }, []);
 
+  // Component groups for "By Component" tab
+  const componentGroups = [
+    {
+      name: "Button",
+      category: "button",
+      variants: {
+        shadcn: {
+          count: 2,
+          component: (
+            <>
+              <ShadcnButton>Default</ShadcnButton>
+              <ShadcnButton variant="outline">Outline</ShadcnButton>
+            </>
+          ),
+        },
+        aceternity: {
+          count: 1,
+          component: <AceternityButton>Stateful</AceternityButton>,
+        },
+        magicui: {
+          count: 3,
+          component: (
+            <>
+              <MagicShimmerButtonPreview />
+              <MagicRainbowButtonPreview />
+              <MagicPulsatingButtonPreview />
+            </>
+          ),
+        },
+        originui: {
+          count: 1,
+          component: <OriginButtonExample />,
+        },
+      },
+    },
+    {
+      name: "Input",
+      category: "input",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <Input placeholder="Email..." />,
+        },
+        aceternity: {
+          count: 0,
+          component: null,
+        },
+        magicui: {
+          count: 0,
+          component: null,
+        },
+        originui: {
+          count: 1,
+          component: <OriginInput placeholder="Email..." />,
+        },
+      },
+    },
+    {
+      name: "Select",
+      category: "input",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnSelectPreview />,
+        },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginSelectExample /> },
+      }
+    },
+    {
+      name: "Checkbox",
+      category: "input",
+      variants: {
+        shadcn: { count: 1, component: <ShadcnCheckboxPreview /> },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginCheckboxExample /> },
+      }
+    },
+    {
+      name: "Radio Group",
+      category: "input",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnRadioGroupPreview />,
+        },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginRadioExample /> },
+      }
+    },
+    {
+      name: "Switch",
+      category: "input",
+      variants: {
+        shadcn: { count: 1, component: <ShadcnSwitchPreview /> },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginSwitchExample /> },
+      }
+    },
+    {
+      name: "Slider",
+      category: "input",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnSliderPreview />,
+        },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginSliderExample /> },
+      }
+    },
+    {
+      name: "Textarea",
+      category: "input",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnTextareaPreview />,
+        },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginTextareaExample /> },
+      }
+    },
+    {
+      name: "Card",
+      category: "layout",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnCardPreview />,
+        },
+        aceternity: {
+          count: 1,
+          component: <Aceternity3dCardPreview />,
+        },
+        magicui: {
+          count: 1,
+          component: <MagicCardPreview />,
+        },
+        originui: { count: 0, component: null },
+      }
+    },
+    {
+      name: "Accordion",
+      category: "layout",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnAccordionPreview />,
+        },
+        aceternity: { count: 0, component: null },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginAccordionExample /> },
+      }
+    },
+    {
+      name: "Tabs",
+      category: "navigation",
+      variants: {
+        shadcn: {
+          count: 1,
+          component: <ShadcnTabsPreview />,
+        },
+        aceternity: {
+          count: 1,
+          component: <AceternityTabsPreview />,
+        },
+        magicui: { count: 0, component: null },
+        originui: { count: 1, component: <OriginTabsExample currentPage={1} totalPages={5} /> },
+      }
+    },
+  ];
 
   // 로딩 중일 때 로딩 화면 표시
   if (isLoading) {
@@ -1564,11 +1734,8 @@ export function AlertDemo() {
             <TabsList className="grid w-full grid-cols-4 bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 p-1 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
               <TabsTrigger value="gallery">Gallery</TabsTrigger>
               <TabsTrigger value="compare">Compare</TabsTrigger>
+              <TabsTrigger value="by-component">By Component</TabsTrigger>
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="stats" className="gap-2">
-                <BarChart3 className="w-4 h-4" />
-                통계
-              </TabsTrigger>
             </TabsList>
 
             {/* Search & Filter Bar */}
@@ -8284,154 +8451,6 @@ export function AlertDemo() {
               </div>
             </TabsContent>
 
-            {/* 통계 탭 */}
-            <TabsContent value="stats">
-              <div className="mt-8 space-y-6">
-                {/* 전체 통계 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
-                  <CardHeader>
-                    <CardTitle>전체 통계</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
-                        <div className="text-3xl font-bold">
-                          {favorites.size}
-                        </div>
-                        <div className="text-sm text-muted-foreground mt-2">
-                          <Star className="h-4 w-4 inline mr-1" /> 즐겨찾기
-                        </div>
-                      </div>
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
-                        <div className="text-3xl font-bold">4</div>
-                        <div className="text-sm text-muted-foreground mt-2">
-                          <BookOpen className="h-4 w-4 inline mr-1" />{" "}
-                          라이브러리
-                        </div>
-                      </div>
-                      <div className="text-center p-4 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg">
-                        <div className="text-3xl font-bold">6</div>
-                        <div className="text-sm text-muted-foreground mt-2">
-                          <Tag className="h-4 w-4 inline mr-1" /> 카테고리
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* 라이브러리별 분포 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
-                  <CardHeader>
-                    <CardTitle>라이브러리별 컴포넌트</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-blue-50/60 dark:bg-blue-950/30 backdrop-blur-lg border border-blue-200/40 dark:border-blue-800/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span className="text-blue-600 dark:text-blue-400">
-                            <Palette className="h-5 w-5" />
-                          </span>
-                          <span className="font-semibold">shadcn/ui</span>
-                        </div>
-                        <Badge variant="secondary">20+ 컴포넌트</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-purple-50/60 dark:bg-purple-950/30 backdrop-blur-lg border border-purple-200/40 dark:border-purple-800/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span className="text-purple-600 dark:text-purple-400">
-                            <Zap className="h-5 w-5" />
-                          </span>
-                          <span className="font-semibold">Aceternity UI</span>
-                        </div>
-                        <Badge variant="secondary">10+ 컴포넌트</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-pink-50/60 dark:bg-pink-950/30 backdrop-blur-lg border border-pink-200/40 dark:border-pink-800/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span className="text-pink-600 dark:text-pink-400">
-                            <Sparkles className="h-5 w-5" />
-                          </span>
-                          <span className="font-semibold">Magic UI</span>
-                        </div>
-                        <Badge variant="secondary">15+ 컴포넌트</Badge>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-orange-50/60 dark:bg-orange-950/30 backdrop-blur-lg border border-orange-200/40 dark:border-orange-800/30 rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span className="text-orange-600 dark:text-orange-400">
-                            <Target className="h-5 w-5" />
-                          </span>
-                          <span className="font-semibold">Origin UI</span>
-                        </div>
-                        <Badge variant="secondary">12+ 컴포넌트</Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* 카테고리별 분포 */}
-                <Card className="bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
-                  <CardHeader>
-                    <CardTitle>카테고리별 컴포넌트</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <Circle className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Button</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          5개
-                        </div>
-                      </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <FileText className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Input</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          8개
-                        </div>
-                      </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <Layout className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Layout</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          6개
-                        </div>
-                      </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <Sparkles className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Animation</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          12개
-                        </div>
-                      </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <Compass className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Navigation</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          4개
-                        </div>
-                      </div>
-                      <div className="p-3 bg-background/50 backdrop-blur-lg border border-white/15 dark:border-white/8 rounded-lg text-center">
-                        <div className="text-2xl mb-1">
-                          <MessageSquare className="h-6 w-6 mx-auto" />
-                        </div>
-                        <div className="font-semibold text-sm">Feedback</div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          5개
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
           </Tabs>
         </section>
 

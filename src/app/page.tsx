@@ -7299,41 +7299,33 @@ export function AlertDemo() {
             <TabsContent value="compare">
               <div className="overflow-x-auto rounded-2xl bg-background/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                 <table className="w-full border-collapse">
-                  <thead className="bg-muted/50 backdrop-blur-sm">
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
+                  <thead className="sticky top-0 z-10 bg-muted/80 backdrop-blur-sm">
+                    <tr className="border-b border-gray-200 dark:border-gray-700">
+                      <th className="sticky left-0 bg-muted/80 p-4 font-bold text-center">
                         Component
                       </th>
-                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
-                        shadcn
-                      </th>
-                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
-                        Aceternity
-                      </th>
-                      <th className="border-b-2 border-r-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
-                        Magic UI
-                      </th>
-                      <th className="border-b-2 border-gray-200 dark:border-gray-700 p-4 font-bold text-center">
-                        Origin UI
-                      </th>
+                      <th className="p-4 font-bold text-center">shadcn</th>
+                      <th className="p-4 font-bold text-center">Aceternity</th>
+                      <th className="p-4 font-bold text-center">Magic UI</th>
+                      <th className="p-4 font-bold text-center">Origin UI</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Button
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <ShadcnButton>Click</ShadcnButton>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <AceternityButton>Click</AceternityButton>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--flex">
                           <MagicButton className="shadow-sm text-xs px-2">
                             Shimmer
@@ -7346,27 +7338,27 @@ export function AlertDemo() {
                           </ShinyButton>
                         </div>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Input
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Input
                           placeholder="Type here..."
                           className="max-w-[200px] mx-auto"
                         />
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <OriginInput
                           placeholder="Email..."
                           type="email"
@@ -7374,11 +7366,11 @@ export function AlertDemo() {
                         />
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Select
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Select>
                           <SelectTrigger className="w-[180px] mx-auto">
                             <SelectValue placeholder="Select" />
@@ -7389,79 +7381,79 @@ export function AlertDemo() {
                           </SelectContent>
                         </Select>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Checkbox
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <Checkbox id="shadcn-check" />
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Badge
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <Badge>New</Badge>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Textarea
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Textarea
                           placeholder="Type here..."
                           className="max-w-[200px] mx-auto"
                         />
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Radio
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <RadioGroup defaultValue="option1">
                             <div className="flex items-center space-x-2">
@@ -7470,40 +7462,40 @@ export function AlertDemo() {
                           </RadioGroup>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Switch
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <Switch />
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Slider
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Slider
                           defaultValue={[50]}
                           max={100}
@@ -7511,21 +7503,21 @@ export function AlertDemo() {
                           className="w-[160px] mx-auto"
                         />
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Avatar
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" />
@@ -7533,78 +7525,78 @@ export function AlertDemo() {
                           </Avatar>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <AvatarCircles numPeople={3} avatarUrls={[]} />
                         </div>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Alert
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Alert className="max-w-[200px] mx-auto">
                           <AlertDescription>Alert message</AlertDescription>
                         </Alert>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Progress
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Progress value={60} className="w-[160px] mx-auto" />
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Separator
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--flex">
                           <Separator className="w-[160px]" />
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Accordion
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Accordion
                           type="single"
                           collapsible
@@ -7616,21 +7608,21 @@ export function AlertDemo() {
                           </AccordionItem>
                         </Accordion>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Table
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <Table className="w-[200px]">
                           <TableHeader>
@@ -7646,21 +7638,21 @@ export function AlertDemo() {
                         </Table>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Dialog
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Dialog>
                           <DialogTrigger asChild>
                             <ShadcnButton variant="outline">Open</ShadcnButton>
@@ -7668,23 +7660,23 @@ export function AlertDemo() {
                           <DialogContent>Dialog Content</DialogContent>
                         </Dialog>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Modal <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Tooltip
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <TooltipProvider>
                             <Tooltip>
@@ -7698,7 +7690,7 @@ export function AlertDemo() {
                           </TooltipProvider>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <AnimatedTooltip
                             items={[
@@ -7712,23 +7704,23 @@ export function AlertDemo() {
                           />
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Tabs
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-sm">
                           Current Tab <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <AceternityTabs
                           tabs={[
                             {
@@ -7746,18 +7738,18 @@ export function AlertDemo() {
                           contentClassName="hidden"
                         />
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Dropdown
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <ShadcnButton variant="outline">Menu</ShadcnButton>
@@ -7767,27 +7759,27 @@ export function AlertDemo() {
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Animated Text
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--flex">
                           <AnimatedGradientText>Gradient</AnimatedGradientText>
                           <SparklesText>
@@ -7796,23 +7788,23 @@ export function AlertDemo() {
                           </SparklesText>
                         </div>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Bento Grid
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Layout <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Layout <Check className="h-3 w-3 inline" />
                         </span>
@@ -7821,19 +7813,19 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Background Effects
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Beams <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Particles/Meteors <Check className="h-3 w-3 inline" />
                         </span>
@@ -7842,14 +7834,14 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Moving Border
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <MovingBorderButton
                           duration={3000}
                           className="text-sm px-3 py-1"
@@ -7857,7 +7849,7 @@ export function AlertDemo() {
                           Border
                         </MovingBorderButton>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Border Beam <Check className="h-3 w-3 inline" />
                         </span>
@@ -7866,14 +7858,14 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Hover Border Gradient
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="component-showcase component-showcase--inline">
                           <HoverBorderGradient
                             containerClassName="rounded-md"
@@ -7883,24 +7875,24 @@ export function AlertDemo() {
                           </HoverBorderGradient>
                         </div>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Ripple Effect
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="relative w-32 h-32 flex items-center justify-center mx-auto">
                           <Ripple />
                         </div>
@@ -7909,93 +7901,93 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Marquee
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Marquee className="max-w-[200px] mx-auto">
                           <span className="text-sm">Scrolling Text</span>
                         </Marquee>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Number Animation
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <NumberTicker value={100} />
                       </td>
                       <td className="border-b  border-gray-200 dark:border-gray-700 p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Timeline
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Animated List
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Floating Dock
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Dock <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Dock <Check className="h-3 w-3 inline" />
                         </span>
@@ -8004,93 +7996,93 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Floating Navbar
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Floating Navbar <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Sidebar
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Sidebar <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Text Reveal
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Text Reveal <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Animated Beam
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">
                           Animated Beam <Check className="h-3 w-3 inline" />
                         </span>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Blur Fade
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <BlurFade delay={0.1} inView>
                           <div className="text-sm">Fade In</div>
                         </BlurFade>
@@ -8099,17 +8091,17 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Confetti
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Suspense fallback={<ComponentLoader />}>
                           <ConfettiButton className="text-xs px-3 py-1">
                             <PartyPopper className="h-3 w-3 inline mr-1" />{" "}
@@ -8117,21 +8109,21 @@ export function AlertDemo() {
                           </ConfettiButton>
                         </Suspense>
                       </td>
-                      <td className="border-b border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Cool Mode
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <Suspense fallback={<ComponentLoader />}>
                           <CoolMode>
                             <ShadcnButton size="sm" className="text-xs">
@@ -8144,17 +8136,17 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Globe
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="w-32 h-32 relative mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <Globe />
@@ -8165,17 +8157,17 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Icon Cloud
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="w-32 h-32 mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <IconCloud width={128} height={128} />
@@ -8186,17 +8178,17 @@ export function AlertDemo() {
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
                     </tr>
-                    <tr className="transition-colors hover:bg-muted/30">
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 font-semibold text-center">
+                    <tr className="border-b border-gray-200 dark:border-gray-700 even:bg-muted/30 transition-colors hover:bg-muted/50">
+                      <td className="sticky left-0 bg-background/60 backdrop-blur-xl p-4 font-semibold text-center">
                         Orbiting Circles
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <span className="text-muted-foreground text-sm">-</span>
                       </td>
-                      <td className="border-b border-r-2 border-gray-200 dark:border-gray-700 p-4 text-center">
+                      <td className="p-4 text-center">
                         <div className="relative w-32 h-32 flex items-center justify-center mx-auto">
                           <Suspense fallback={<ComponentLoader />}>
                             <OrbitingCircles

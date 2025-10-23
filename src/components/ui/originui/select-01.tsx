@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/originui/popover"
 import { Textarea } from "@/components/ui/originui/textarea"
 
-export default function Component() {
+export function OriginSelectExample() {
   return (
     <div className="flex flex-col gap-4">
       <Popover>

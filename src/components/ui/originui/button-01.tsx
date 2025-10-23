@@ -6,7 +6,7 @@ import { OTPInput, SlotProps } from "input-otp"
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/originui/label"
 
-export default function Component() {
+export function OriginButtonExample() {
   const id = useId()
   return (
     <div className="*:not-first:mt-2">

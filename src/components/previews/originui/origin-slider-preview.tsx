@@ -1,9 +1,5 @@
-// import { Slider } from "@/components/ui/originui/slider-01";
-
-// export function OriginSliderPreview() {
-//   return <Slider label="Volume" defaultValue={50} />;
-// }
+import Slider from "@/components/ui/originui/slider-01";
 
 export function OriginSliderPreview() {
-  return <div>Preview not available</div>;
+  return <Slider defaultValue={[50]} />; 
 }

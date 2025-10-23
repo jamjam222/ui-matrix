@@ -5,7 +5,7 @@ import { Label } from "react-aria-components"
 
 import { DateInput, TimeField } from "@/components/ui/originui/datefield-rac"
 
-export default function Component() {
+export function OriginBadgeExample() {
   return (
     <TimeField className="*:not-first:mt-2">
       <Label className="text-sm font-medium text-foreground">

@@ -18,7 +18,7 @@ type PaginationProps = {
   paginationItemsToDisplay?: number
 }
 
-export default function Component({
+export function OriginTabsExample({
   currentPage,
   totalPages,
   paginationItemsToDisplay = 5,

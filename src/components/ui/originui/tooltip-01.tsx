@@ -131,7 +131,7 @@ const items = [
   },
 ]
 
-export default function Component() {
+export function OriginTooltipExample() {
   return (
     <div>
       <div className="[&>div]:max-h-96">

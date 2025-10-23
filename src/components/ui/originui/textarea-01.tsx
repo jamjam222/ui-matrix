@@ -54,7 +54,7 @@ const items = [
   },
 ]
 
-export default function Component() {
+export function OriginTextareaExample() {
   return (
     <div>
       <Table>

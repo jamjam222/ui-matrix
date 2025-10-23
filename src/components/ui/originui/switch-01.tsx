@@ -5,7 +5,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/originui/tabs"
 
-export default function Component() {
+export function OriginSwitchExample() {
   return (
     <Tabs
       defaultValue="tab-1"

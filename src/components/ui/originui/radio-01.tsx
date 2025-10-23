@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/originui/dropdown-menu"
 
-export default function Component() {
+export function OriginRadioExample() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

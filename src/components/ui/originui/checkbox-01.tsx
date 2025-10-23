@@ -7,7 +7,7 @@ import {
 
 import { Button } from "@/components/ui/originui/button"
 
-export default function Component() {
+export function OriginCheckboxExample() {
   return (
     <div className="inline-flex flex-wrap gap-2">
       <Button variant="outline" aria-label="Login with Google" size="icon">

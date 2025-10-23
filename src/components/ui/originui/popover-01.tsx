@@ -32,7 +32,7 @@ const items = [
   },
 ]
 
-export default function Component() {
+export function OriginPopoverExample() {
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold">Table w/ chevron</h2>

@@ -6,7 +6,7 @@ import { MoonIcon, SunIcon } from "lucide-react"
 import { Label } from "@/components/ui/originui/label"
 import { Switch } from "@/components/ui/originui/switch"
 
-export default function Component() {
+export function OriginDropdownExample() {
   const id = useId()
   const [checked, setChecked] = useState<boolean>(true)
 

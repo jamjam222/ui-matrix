@@ -1,18 +1,23 @@
-import { useId } from "react"
+import * as React from "react";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
-import { Input } from "@/components/ui/originui/input"
-import { Label } from "@/components/ui/originui/label"
+import { cn } from "@/lib/utils";
 
-export default function Component() {
-  const id = useId()
-  return (
-    <div className="*:not-first:mt-2">
-      <Label htmlFor={id}>File input</Label>
-      <Input
-        id={id}
-        className="p-0 pe-3 file:me-3 file:border-0 file:border-e"
-        type="file"
-      />
-    </div>
-  )
-}
+export const OriginAvatarExample = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & { src?: string }
+>(({ className, src, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      className
+    )}
+    {...props}
+  >
+    {src && <AvatarPrimitive.Image src={src} alt="Avatar" />}
+    <AvatarPrimitive.Fallback>CN</AvatarPrimitive.Fallback>
+  </AvatarPrimitive.Root>
+));
+OriginAvatarExample.displayName = AvatarPrimitive.Root.displayName;
+

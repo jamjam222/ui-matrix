@@ -22,7 +22,10 @@ import { ShadcnSelectPreview } from "@/components/previews/shadcn/shadcn-select-
 import { ShadcnSwitchPreview } from "@/components/previews/shadcn/shadcn-switch-preview";
 import { ShadcnSliderPreview } from "@/components/previews/shadcn/shadcn-slider-preview";
 import { ShadcnAvatarPreview } from "@/components/previews/shadcn/shadcn-avatar-preview";
-import { ShadcnBadgePreview } from "@/components/previews/shadcn/shadcn-badge-preview";
+import { ShadcnBadgeDefaultPreview } from "@/components/previews/shadcn/shadcn-badge-default-preview";
+import { ShadcnBadgeSecondaryPreview } from "@/components/previews/shadcn/shadcn-badge-secondary-preview";
+import { ShadcnBadgeDestructivePreview } from "@/components/previews/shadcn/shadcn-badge-destructive-preview";
+import { ShadcnBadgeOutlinePreview } from "@/components/previews/shadcn/shadcn-badge-outline-preview";
 import { ShadcnAlertPreview } from "@/components/previews/shadcn/shadcn-alert-preview";
 import { ShadcnProgressPreview } from "@/components/previews/shadcn/shadcn-progress-preview";
 import { ShadcnSeparatorPreview } from "@/components/previews/shadcn/shadcn-separator-preview";
@@ -76,21 +79,21 @@ import {
 import { Badge } from "@/components/ui/shadcn/badge";
 import { Input } from "@/components/ui/shadcn/input";
 import { Input as OriginInput } from "@/components/ui/originui/input";
-import OriginButtonExample from "@/components/ui/originui/button-01";
-import OriginCheckboxExample from "@/components/ui/originui/checkbox-01";
-import OriginRadioExample from "@/components/ui/originui/radio-01";
-import OriginSelectExample from "@/components/ui/originui/select-01";
-import OriginSliderExample from "@/components/ui/originui/slider-01";
-import OriginSwitchExample from "@/components/ui/originui/switch-01";
-import OriginAccordionExample from "@/components/ui/originui/accordion-01";
-import OriginAvatarExample from "@/components/ui/originui/avatar-01";
-import OriginBadgeExample from "@/components/ui/originui/badge-01";
-import OriginDialogExample from "@/components/ui/originui/dialog-01";
-import OriginDropdownExample from "@/components/ui/originui/dropdown-01";
-import OriginPopoverExample from "@/components/ui/originui/popover-01";
-import OriginTooltipExample from "@/components/ui/originui/tooltip-01";
-import OriginTabsExample from "@/components/ui/originui/tabs-01";
-import OriginTextareaExample from "@/components/ui/originui/textarea-01";
+import { OriginButtonExample } from "@/components/ui/originui/button-01";
+import { OriginCheckboxExample } from "@/components/ui/originui/checkbox-01";
+import { OriginRadioExample } from "@/components/ui/originui/radio-01";
+import { OriginSelectExample } from "@/components/ui/originui/select-01";
+import { OriginSliderExample } from "@/components/ui/originui/slider-01";
+import { OriginSwitchExample } from "@/components/ui/originui/switch-01";
+import { OriginAccordionExample } from "@/components/ui/originui/accordion-01";
+import { OriginAvatarExample } from "@/components/ui/originui/avatar-01";
+import { OriginBadgeExample } from "@/components/ui/originui/badge-01";
+import { OriginDialogExample } from "@/components/ui/originui/dialog-01";
+import { OriginDropdownExample } from "@/components/ui/originui/dropdown-01";
+import { OriginPopoverExample } from "@/components/ui/originui/popover-01";
+import { OriginTooltipExample } from "@/components/ui/originui/tooltip-01";
+import { OriginTabsExample } from "@/components/ui/originui/tabs-01";
+import { OriginTextareaExample } from "@/components/ui/originui/textarea-01";
 import { Textarea } from "@/components/ui/shadcn/textarea";
 import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/shadcn/radio-group";
@@ -621,16 +624,18 @@ export default function UIMatrix() {
   );
 
   // 컴포넌트 상세 정보 데이터
-  const componentDetailsData: Record<string, {
+  type ComponentDetails = {
     name: string;
-    library: string;
+    library: "shadcn" | "magicui" | "originui" | "aceternity";
     category: string;
     description: string;
+    preview: React.ReactNode;
     code: string;
     installCommand: string;
     docs: string;
-    preview?: React.ReactNode;
-  }> = {
+  };
+
+  const componentDetailsData: Record<string, ComponentDetails> = {
     "magic-shimmer-button": {
       name: "Shimmer Button",
       library: "magicui",
@@ -908,7 +913,8 @@ export default function UIMatrix() {
       description: "다양한 형태와 상호작용을 지원하는 기본 버튼입니다.",
       code: `import { Button } from "@/components/ui/origin/button";\n\nexport function ButtonDemo() {\n  return <Button>Click Me</Button>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/button"
+      docs: "https://www.origin-ui.com/components/button",
+      preview: <OriginButtonExample />
     },
     "origin-input": {
       name: "Input",
@@ -917,7 +923,8 @@ export default function UIMatrix() {
       description: "사용자 입력을 받기 위한 기본적인 텍스트 필드입니다.",
       code: `import { Input } from "@/components/ui/origin/input";\n\nexport function InputDemo() {\n  return <Input placeholder=\"Enter text...\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/input"
+      docs: "https://www.origin-ui.com/components/input",
+      preview: <OriginInput />
     },
     "origin-checkbox": {
       name: "Checkbox",
@@ -926,7 +933,8 @@ export default function UIMatrix() {
       description: "단일 또는 다중 선택이 가능한 체크박스입니다.",
       code: `import { Checkbox } from "@/components/ui/origin/checkbox";\n\nexport function CheckboxDemo() {\n  return <Checkbox label=\"Accept terms\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/checkbox"
+      docs: "https://www.origin-ui.com/components/checkbox",
+      preview: <OriginCheckboxExample />
     },
     "origin-radio": {
       name: "Radio",
@@ -935,7 +943,8 @@ export default function UIMatrix() {
       description: "여러 옵션 중 하나만 선택할 수 있는 라디오 버튼 그룹입니다.",
       code: `import { RadioGroup, Radio } from "@/components/ui/origin/radio";\n\nexport function RadioDemo() {\n  return <RadioGroup label=\"Options\"><Radio value=\"1\">Option 1</Radio></RadioGroup>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/radio"
+      docs: "https://www.origin-ui.com/components/radio",
+      preview: <OriginRadioExample />
     },
     "origin-select": {
       name: "Select",
@@ -944,7 +953,8 @@ export default function UIMatrix() {
       description: "드롭다운 목록에서 하나의 값을 선택하는 컴포넌트입니다.",
       code: `import { Select, SelectItem } from "@/components/ui/origin/select";\n\nexport function SelectDemo() {\n  return <Select label=\"Select an option\"><SelectItem>Option 1</SelectItem></Select>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/select"
+      docs: "https://www.origin-ui.com/components/select",
+      preview: <OriginSelectExample />
     },
     "origin-slider": {
       name: "Slider",
@@ -953,7 +963,8 @@ export default function UIMatrix() {
       description: "지정된 범위 내에서 값을 조절하는 슬라이더입니다.",
       code: `import { Slider } from "@/components/ui/origin/slider";\n\nexport function SliderDemo() {\n  return <Slider label=\"Volume\" defaultValue={50} />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/slider"
+      docs: "https://www.origin-ui.com/components/slider",
+      preview: <OriginSliderExample />
     },
     "origin-switch": {
       name: "Switch",
@@ -962,7 +973,8 @@ export default function UIMatrix() {
       description: "On/Off 상태를 전환하는 스위치입니다.",
       code: `import { Switch } from "@/components/ui/origin/switch";\n\nexport function SwitchDemo() {\n  return <Switch label=\"Enable notifications\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/switch"
+      docs: "https://www.origin-ui.com/components/switch",
+      preview: <OriginSwitchExample />
     },
     "origin-textarea": {
       name: "Textarea",
@@ -971,7 +983,8 @@ export default function UIMatrix() {
       description: "여러 줄의 텍스트를 입력받는 필드입니다.",
       code: `import { Textarea } from "@/components/ui/origin/textarea";\n\nexport function TextareaDemo() {\n  return <Textarea placeholder=\"Enter long text...\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/textarea"
+      docs: "https://www.origin-ui.com/components/textarea",
+      preview: <OriginTextareaExample />
     },
     "origin-accordion": {
       name: "Accordion",
@@ -980,7 +993,8 @@ export default function UIMatrix() {
       description: "콘텐츠를 접고 펼 수 있는 아코디언 컴포넌트입니다.",
       code: `import { Accordion, AccordionItem } from "@/components/ui/origin/accordion";\n\nexport function AccordionDemo() {\n  return <Accordion><AccordionItem title=\"Section 1\">Content 1</AccordionItem></Accordion>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/accordion"
+      docs: "https://www.origin-ui.com/components/accordion",
+      preview: <OriginAccordionExample />
     },
     "origin-avatar": {
       name: "Avatar",
@@ -989,7 +1003,8 @@ export default function UIMatrix() {
       description: "사용자 프로필 이미지나 이니셜을 표시하는 아바타입니다.",
       code: `import { Avatar } from "@/components/ui/origin/avatar";\n\nexport function AvatarDemo() {\n  return <Avatar src=\"https://i.pravatar.cc/150?u=a042581f4e29026024d\" />;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/avatar"
+      docs: "https://www.origin-ui.com/components/avatar",
+      preview: <OriginAvatarExample />
     },
     "origin-badge": {
       name: "Badge",
@@ -998,7 +1013,8 @@ export default function UIMatrix() {
       description: "상태나 정보를 강조하는 작은 배지입니다.",
       code: `import { Badge } from "@/components/ui/origin/badge";\n\nexport function BadgeDemo() {\n  return <Badge>New</Badge>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/badge"
+      docs: "https://www.origin-ui.com/components/badge",
+      preview: <OriginBadgeExample />
     },
     "origin-dialog": {
       name: "Dialog",
@@ -1007,7 +1023,8 @@ export default function UIMatrix() {
       description: "사용자에게 중요한 정보를 알리거나 추가 입력을 요구하는 모달 창입니다.",
       code: `import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/origin/dialog";\n\nexport function DialogDemo() {\n  return <Dialog><DialogTrigger>Open</DialogTrigger><DialogContent>Dialog Content</DialogContent></Dialog>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/dialog"
+      docs: "https://www.origin-ui.com/components/dialog",
+      preview: <OriginDialogExample />
     },
     "origin-dropdown": {
       name: "Dropdown",
@@ -1016,7 +1033,8 @@ export default function UIMatrix() {
       description: "클릭 시 메뉴나 옵션 목록을 보여주는 드롭다운입니다.",
       code: `import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@/components/ui/origin/dropdown";\n\nexport function DropdownDemo() {\n  return <Dropdown><DropdownTrigger>Open</DropdownTrigger><DropdownMenu><DropdownItem>Item 1</DropdownItem></DropdownMenu></Dropdown>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/dropdown"
+      docs: "https://www.origin-ui.com/components/dropdown",
+      preview: <OriginDropdownExample />
     },
     "origin-popover": {
       name: "Popover",
@@ -1025,7 +1043,8 @@ export default function UIMatrix() {
       description: "특정 요소 근처에 추가 정보를 표시하는 팝오버입니다.",
       code: `import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/origin/popover";\n\nexport function PopoverDemo() {\n  return <Popover><PopoverTrigger>Open</PopoverTrigger><PopoverContent>Popover Content</PopoverContent></Popover>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/popover"
+      docs: "https://www.origin-ui.com/components/popover",
+      preview: <OriginPopoverExample />
     },
     "origin-tooltip": {
       name: "Tooltip",
@@ -1034,7 +1053,8 @@ export default function UIMatrix() {
       description: "마우스를 올렸을 때 간단한 정보를 보여주는 툴팁입니다.",
       code: `import { Tooltip } from "@/components/ui/origin/tooltip";\n\nexport function TooltipDemo() {\n  return <Tooltip content=\"Tooltip message\"><button>Hover me</button></Tooltip>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/tooltip"
+      docs: "https://www.origin-ui.com/components/tooltip",
+      preview: <OriginTooltipExample />
     },
     "origin-tabs": {
       name: "Tabs",
@@ -1043,11 +1063,12 @@ export default function UIMatrix() {
       description: "여러 콘텐츠 패널을 전환할 수 있는 탭 인터페이스입니다.",
       code: `import { Tabs, Tab } from "@/components/ui/origin/tabs";\n\nexport function TabsDemo() {\n  return <Tabs><Tab title=\"Tab 1\">Content 1</Tab></Tabs>;\n}`,
       installCommand: "npm install @origin-ui/react",
-      docs: "https://www.origin-ui.com/components/tabs"
+      docs: "https://www.origin-ui.com/components/tabs",
+      preview: <OriginTabsExample currentPage={1} totalPages={5} />
     },
     "shadcn-button": {
       name: "Button",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "button",
       description: "다양한 스타일과 크기를 지원하는 버튼 컴포넌트입니다. <br />접근성과 사용자 경험을 고려하여 디자인되었습니다.",
       code: `import { Button } from "@/components/ui/button"
@@ -1070,7 +1091,7 @@ export function ButtonDemo() {
     },
     "shadcn-input": {
       name: "Input",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "사용자 입력을 받기 위한 텍스트 필드 컴포넌트입니다. <br />다양한 타입과 스타일을 지원합니다.",
       code: `import { Input } from "@/components/ui/input"
@@ -1090,7 +1111,7 @@ export function InputDemo() {
     },
     "shadcn-checkbox": {
       name: "Checkbox",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "여러 옵션 중 하나 이상을 선택할 수 있는 체크박스 컴포넌트입니다.",
       code: `import { Checkbox } from "@/components/ui/checkbox"
@@ -1109,7 +1130,7 @@ export function CheckboxDemo() {
     },
     "shadcn-radio": {
       name: "Radio Group",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "여러 옵션 중 하나만 선택할 수 있는 라디오 버튼 그룹입니다.",
       code: `import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -1134,7 +1155,7 @@ export function RadioDemo() {
     },
     "shadcn-select": {
       name: "Select",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "드롭다운에서 옵션을 선택할 수 있는 셀렉트 컴포넌트입니다.",
       code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"\n\nexport function SelectDemo() {\n  return (\n    <Select>\n      <SelectTrigger className=\"w-[180px]\">\n        <SelectValue placeholder=\"Theme\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"option1\">Option 1</SelectItem>\n        <SelectItem value=\"option2\">Option 2</SelectItem>\n        <SelectItem value=\"option3\">Option 3</SelectItem>\n      </SelectContent>\n    </Select>\n  )\n}`,
@@ -1144,7 +1165,7 @@ export function RadioDemo() {
     },
     "shadcn-switch": {
       name: "Switch",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "On/Off 상태를 토글할 수 있는 스위치 컴포넌트입니다.",
       code: `import { Switch } from "@/components/ui/switch"\n\nexport function SwitchDemo() {\n  return (\n    <div className=\"flex items-center space-x-2\">\n      <Switch id=\"airplane-mode\" />\n      <label htmlFor=\"airplane-mode\">Airplane Mode</label>\n    </div>\n  )\n}`,
@@ -1154,7 +1175,7 @@ export function RadioDemo() {
     },
     "shadcn-slider": {
       name: "Slider",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "범위 내에서 값을 선택할 수 있는 슬라이더 컴포넌트입니다.",
       code: `import { Slider } from "@/components/ui/slider"\n\nexport function SliderDemo() {\n  return (\n    <Slider\n      defaultValue={[50]}\n      max={100}\n      step={1}\n      className=\"w-[60%]\"\n    />\n  )\n}`,
@@ -1164,7 +1185,7 @@ export function RadioDemo() {
     },
     "shadcn-avatar": {
       name: "Avatar",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "display",
       description: "사용자 프로필 이미지를 표시하는 아바타 컴포넌트입니다.",
       code: `import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -1181,30 +1202,49 @@ export function AvatarDemo() {
       docs: "https://ui.shadcn.com/docs/components/avatar",
       preview: <ShadcnAvatarPreview />
     },
-    "shadcn-badge": {
-      name: "Badge",
-      library: "shadcn/ui",
+    "shadcn-badge-default": {
+      name: "Badge (Default)",
+      library: "shadcn",
       category: "feedback",
       description: "상태나 카테고리를 표시하는 뱃지 컴포넌트입니다.",
-      code: `import { Badge } from "@/components/ui/badge"
-
-export function BadgeDemo() {
-  return (
-    <>
-      <Badge>Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
-    </>
-  )
-}`,
+      code: `import { Badge } from "@/components/ui/badge"\n\nexport function BadgeDemo() {\n  return <Badge>Default</Badge>\n}`,
       installCommand: "npx shadcn-ui@latest add badge",
       docs: "https://ui.shadcn.com/docs/components/badge",
-      preview: <ShadcnBadgePreview />
+      preview: <ShadcnBadgeDefaultPreview />
+    },
+    "shadcn-badge-secondary": {
+      name: "Badge (Secondary)",
+      library: "shadcn",
+      category: "feedback",
+      description: "상태나 카테고리를 표시하는 뱃지 컴포넌트입니다.",
+      code: `import { Badge } from "@/components/ui/badge"\n\nexport function BadgeDemo() {\n  return <Badge variant=\"secondary\">Secondary</Badge>\n}`,
+      installCommand: "npx shadcn-ui@latest add badge",
+      docs: "https://ui.shadcn.com/docs/components/badge",
+      preview: <ShadcnBadgeSecondaryPreview />
+    },
+    "shadcn-badge-destructive": {
+      name: "Badge (Destructive)",
+      library: "shadcn",
+      category: "feedback",
+      description: "상태나 카테고리를 표시하는 뱃지 컴포넌트입니다.",
+      code: `import { Badge } from "@/components/ui/badge"\n\nexport function BadgeDemo() {\n  return <Badge variant=\"destructive\">Destructive</Badge>\n}`,
+      installCommand: "npx shadcn-ui@latest add badge",
+      docs: "https://ui.shadcn.com/docs/components/badge",
+      preview: <ShadcnBadgeDestructivePreview />
+    },
+    "shadcn-badge-outline": {
+      name: "Badge (Outline)",
+      library: "shadcn",
+      category: "feedback",
+      description: "상태나 카테고리를 표시하는 뱃지 컴포넌트입니다.",
+      code: `import { Badge } from "@/components/ui/badge"\n\nexport function BadgeDemo() {\n  return <Badge variant=\"outline\">Outline</Badge>\n}`,
+      installCommand: "npx shadcn-ui@latest add badge",
+      docs: "https://ui.shadcn.com/docs/components/badge",
+      preview: <ShadcnBadgeOutlinePreview />
     },
     "shadcn-alert": {
       name: "Alert",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "사용자에게 중요한 메시지를 표시하는 알림 컴포넌트입니다.",
       code: `import { Github, ExternalLink, Search, Star, Copy, Code, Info, Sparkles, X, ChevronDown, ChevronUp, Filter, Heart, Code2, Package, Terminal } from "lucide-react";
@@ -1226,7 +1266,7 @@ export function AlertDemo() {
     },
     "shadcn-progress": {
       name: "Progress",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "data display",
       description: "작업의 진행 상태를 시각적으로 표시하는 프로그레스 바입니다.",
       code: `import { Progress } from "@/components/ui/progress";\n\nexport function ProgressDemo() {\n  return <Progress value={33} />;\n}`,
@@ -1236,7 +1276,7 @@ export function AlertDemo() {
     },
     "shadcn-separator": {
       name: "Separator",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "layout",
       description: "콘텐츠를 시각적으로 구분하는 구분선 컴포넌트입니다.",
       code: `import { Separator } from "@/components/ui/separator"\n\nexport function SeparatorDemo() {\n  return (\n    <div>\n      <div className=\"space-y-1\">\n        <h4 className=\"text-sm font-medium\">Radix Primitives</h4>\n        <p className=\"text-sm text-muted-foreground\">\n          An open-source UI component library.\n        </p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"flex h-5 items-center space-x-4 text-sm\">\n        <div>Blog</div>\n        <Separator orientation=\"vertical\" />\n        <div>Docs</div>\n      </div>\n    </div>\n  )\n}`,
@@ -1246,7 +1286,7 @@ export function AlertDemo() {
     },
     "shadcn-accordion": {
       name: "Accordion",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "layout",
       description: "콘텐츠를 접고 펼칠 수 있는 아코디언 컴포넌트입니다.",
       code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"\n\nexport function AccordionDemo() {\n  return (\n    <Accordion type=\"single\" collapsible>\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>Is it accessible?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It adheres to the WAI-ARIA design pattern.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>Is it styled?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It comes with default styles that matches the other components' aesthetic.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-3\">\n        <AccordionTrigger>Is it animated?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It's animated by default, but you can disable it if you prefer.\n        </AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  )\n}`,
@@ -1256,7 +1296,7 @@ export function AlertDemo() {
     },
     "shadcn-card": {
       name: "Card",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "layout",
       description: "관련된 콘텐츠를 그룹화하는 카드 컴포넌트입니다.",
       code: `import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"\n\nexport function CardDemo() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Card Title</CardTitle>\n        <CardDescription>Card Description</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <p>Card Content</p>\n      </CardContent>\n      <CardFooter>\n        <p>Card Footer</p>\n      </CardFooter>\n    </Card>\n  )\n}`,
@@ -1266,7 +1306,7 @@ export function AlertDemo() {
     },
     "shadcn-table": {
       name: "Table",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "layout",
       description: "데이터를 표 형식으로 표시하는 테이블 컴포넌트입니다.",
       code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"\n\nexport function TableDemo() {\n  return (\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableHead>Name</TableHead>\n          <TableHead>Status</TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        <TableRow>\n          <TableCell>Item 1</TableCell>\n          <TableCell>Active</TableCell>\n        </TableRow>\n        <TableRow>\n          <TableCell>Item 2</TableCell>\n          <TableCell>Inactive</TableCell>\n        </TableRow>\n      </TableBody>\n    </Table>\n  )\n}`,
@@ -1276,7 +1316,7 @@ export function AlertDemo() {
     },
     "shadcn-textarea": {
       name: "Textarea",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "여러 줄의 텍스트 입력을 받는 텍스트 영역 컴포넌트입니다.",
       code: `import { Textarea } from "@/components/ui/textarea"\n\nexport function TextareaDemo() {\n  return (\n    <Textarea placeholder=\"Type your message here.\" />\n  )\n}`,
@@ -1286,7 +1326,7 @@ export function AlertDemo() {
     },
     "shadcn-tabs": {
       name: "Tabs",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "navigation",
       description: "콘텐츠를 탭으로 구분하여 표시하는 탭 컴포넌트입니다.",
       code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"\n\nexport function TabsDemo() {\n  return (\n    <Tabs defaultValue=\"account\">\n      <TabsList>\n        <TabsTrigger value=\"account\">Account</TabsTrigger>\n        <TabsTrigger value=\"password\">Password</TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"account\">\n        Make changes to your account here.\n      </TabsContent>\n      <TabsContent value=\"password\">\n        Change your password here.\n      </TabsContent>\n    </Tabs>\n  )\n}`,
@@ -1296,7 +1336,7 @@ export function AlertDemo() {
     },
     "shadcn-tooltip": {
       name: "Tooltip",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "요소에 마우스를 올렸을 때 추가 정보를 표시하는 툴팁 컴포넌트입니다.",
       code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"\n\nexport function TooltipDemo() {\n  return (\n    <TooltipProvider>\n      <Tooltip>\n        <TooltipTrigger>Hover me</TooltipTrigger>\n        <TooltipContent>\n          <p>This is a tooltip</p>\n        </TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  )\n}`,
@@ -1306,7 +1346,7 @@ export function AlertDemo() {
     },
     "shadcn-dialog": {
       name: "Dialog",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "모달 형식으로 콘텐츠를 표시하는 다이얼로그 컴포넌트입니다.",
       code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"\n\nexport function DialogDemo() {\n  return (\n    <Dialog>\n      <DialogTrigger>Open</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Are you sure?</DialogTitle>\n          <DialogDescription>\n            This action cannot be undone.\n          </DialogDescription>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  )\n}`,
@@ -1316,7 +1356,7 @@ export function AlertDemo() {
     },
     "shadcn-dropdown": {
       name: "Dropdown Menu",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "navigation",
       description: "메뉴 옵션을 드롭다운으로 표시하는 컴포넌트입니다.",
       code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"\n\nexport function DropdownDemo() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem>Profile</DropdownMenuItem>\n        <DropdownMenuItem>Settings</DropdownMenuItem>\n        <DropdownMenuItem>Logout</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}`,
@@ -1326,7 +1366,7 @@ export function AlertDemo() {
     },
     "shadcn-popover": {
       name: "Popover",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "요소 주변에 팝업 콘텐츠를 표시하는 팝오버 컴포넌트입니다.",
       code: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"\n\nexport function PopoverDemo() {\n  return (\n    <Popover>\n      <PopoverTrigger>Open</PopoverTrigger>\n      <PopoverContent>\n        Place content for the popover here.\n      </PopoverContent>\n    </Popover>\n  )\n}`,
@@ -1336,7 +1376,7 @@ export function AlertDemo() {
     },
     "shadcn-toggle": {
       name: "Toggle",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "input",
       description: "On/Off 상태를 전환할 수 있는 토글 버튼 컴포넌트입니다.",
       code: `import { Toggle } from "@/components/ui/toggle"\n\nexport function ToggleDemo() {\n  return (\n    <>\n      <Toggle>Toggle</Toggle>\n      <Toggle variant=\"outline\">Toggle Outline</Toggle>\n    </>\n  )\n}`,
@@ -1346,7 +1386,7 @@ export function AlertDemo() {
     },
     "shadcn-skeleton": {
       name: "Skeleton",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "콘텐츠 로딩 중 플레이스홀더를 표시하는 스켈레톤 컴포넌트입니다.",
       code: `import { Skeleton } from "@/components/ui/skeleton"\n\nexport function SkeletonDemo() {\n  return (\n    <div className=\"space-y-2\">\n      <Skeleton className=\"h-4 w-[250px]\" />\n      <Skeleton className=\"h-4 w-[200px]\" />\n      <Skeleton className=\"h-4 w-[150px]\" />\n    </div>\n  )\n}`,
@@ -1356,7 +1396,7 @@ export function AlertDemo() {
     },
     "shadcn-command": {
       name: "Command",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "navigation",
       description: "명령 팔레트를 구현하는 커맨드 메뉴 컴포넌트입니다.",
       code: `import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"\n\nexport function CommandDemo() {\n  return (\n    <Command>\n      <CommandInput placeholder=\"Type a command or search...\" />\n      <CommandList>\n        <CommandEmpty>No results found.</CommandEmpty>\n        <CommandGroup heading=\"Suggestions\">\n          <CommandItem>Calendar</CommandItem>\n          <CommandItem>Search Emoji</CommandItem>\n          <CommandItem>Calculator</CommandItem>\n        </CommandGroup>\n      </CommandList>\n    </Command>\n  )\n}`,
@@ -1366,7 +1406,7 @@ export function AlertDemo() {
     },
     "shadcn-drawer": {
       name: "Drawer",
-      library: "shadcn/ui",
+      library: "shadcn",
       category: "feedback",
       description: "화면 측면에서 슬라이드되는 드로어 컴포넌트입니다.",
       code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"\n\nexport function DrawerDemo() {\n  return (\n    <Drawer>\n      <DrawerTrigger>Open</DrawerTrigger>\n      <DrawerContent>\n        <DrawerHeader>\n          <DrawerTitle>Are you sure?</DrawerTitle>\n          <DrawerDescription>This action cannot be undone.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerFooter>\n          <DrawerClose>Cancel</DrawerClose>\n        </DrawerFooter>\n      </DrawerContent>\n    </Drawer>\n  )\n}`,
@@ -1791,87 +1831,89 @@ export function AlertDemo() {
             </TabsList>
 
             {/* Search & Filter Bar */}
-            <div className="mt-6 mb-8 space-y-4">
-              {/* Search Input */}
-              <div className="flex-1 relative">
-                <label htmlFor="component-search" className="sr-only">
-                  컴포넌트 검색
-                </label>
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-                  aria-hidden="true"
-                />
-                <Input
-                  id="component-search"
-                  type="text"
-                  placeholder="컴포넌트 검색... (예: Button, Input)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background/70 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] focus:shadow-[0_6px_20px_0_rgba(31,38,135,0.2)] focus:bg-background/80 transition-all duration-300"
-                  aria-label="컴포넌트 검색"
-                  autoComplete="off"
-                  spellCheck="false"
-                />
-              </div>
-
-              {/* Library Filter */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1">
-                  <div className="text-xs font-semibold text-muted-foreground mb-2">
-                    라이브러리
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    {libraries.map((lib) => (
-                      <button
-                        key={lib}
-                        type="button"
-                        onClick={() => handleLibraryChange(lib)}
-                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                          selectedLibrary === lib
-                            ? "bg-primary/90 text-primary-foreground backdrop-blur-lg border border-primary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
-                            : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
-                        }`}
-                      >
-                        {lib === "all" ? (
-                          "전체"
-                        ) : lib === "favorites" ? (
-                          <>
-                            <Star className="h-4 w-4 inline mr-1" /> 즐겨찾기
-                          </>
-                        ) : (
-                          lib.charAt(0).toUpperCase() + lib.slice(1)
-                        )}
-                      </button>
-                    ))}
-                  </div>
+            {activeTab === 'gallery' && (
+              <div className="mt-6 mb-8 space-y-4">
+                {/* Search Input */}
+                <div className="flex-1 relative">
+                  <label htmlFor="component-search" className="sr-only">
+                    컴포넌트 검색
+                  </label>
+                  <Search
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                  <Input
+                    id="component-search"
+                    type="text"
+                    placeholder="컴포넌트 검색... (예: Button, Input)"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 bg-background/70 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] focus:shadow-[0_6px_20px_0_rgba(31,38,135,0.2)] focus:bg-background/80 transition-all duration-300"
+                    aria-label="컴포넌트 검색"
+                    autoComplete="off"
+                    spellCheck="false"
+                  />
                 </div>
 
-                {/* Category Filter */}
-                <div className="flex-1">
-                  <div className="text-xs font-semibold text-muted-foreground mb-2">
-                    카테고리
+                {/* Library Filter */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex-1">
+                    <div className="text-xs font-semibold text-muted-foreground mb-2">
+                      라이브러리
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      {libraries.map((lib) => (
+                        <button
+                          key={lib}
+                          type="button"
+                          onClick={() => handleLibraryChange(lib)}
+                          className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                            selectedLibrary === lib
+                              ? "bg-primary/90 text-primary-foreground backdrop-blur-lg border border-primary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
+                              : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
+                          }`}
+                        >
+                          {lib === "all" ? (
+                            "전체"
+                          ) : lib === "favorites" ? (
+                            <>
+                              <Star className="h-4 w-4 inline mr-1" /> 즐겨찾기
+                            </>
+                          ) : (
+                            lib.charAt(0).toUpperCase() + lib.slice(1)
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex gap-2 flex-wrap">
-                    {categories.map((cat) => (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => handleCategoryChange(cat)}
-                        className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                          selectedCategory === cat
-                            ? "bg-secondary/90 text-secondary-foreground backdrop-blur-lg border border-secondary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
-                            : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
-                        }`}
-                      >
-                        {cat === "all"
-                          ? "전체"
-                          : cat.charAt(0).toUpperCase() + cat.slice(1)}
-                      </button>
-                    ))}
+
+                  {/* Category Filter */}
+                  <div className="flex-1">
+                    <div className="text-xs font-semibold text-muted-foreground mb-2">
+                      카테고리
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      {categories.map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => handleCategoryChange(cat)}
+                          className={`px-3 py-2 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                            selectedCategory === cat
+                              ? "bg-secondary/90 text-secondary-foreground backdrop-blur-lg border border-secondary/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.25)]"
+                              : "bg-background/60 backdrop-blur-lg border border-white/20 dark:border-white/10 hover:bg-background/80 shadow-[0_2px_8px_0_rgba(31,38,135,0.1)] hover:shadow-[0_4px_12px_0_rgba(31,38,135,0.15)]"
+                          }`}
+                        >
+                          {cat === "all"
+                            ? "전체"
+                            : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <TabsContent value="gallery">
               <div className="space-y-16">
@@ -2614,84 +2656,222 @@ export function AlertDemo() {
                           </article>
                         )}
 
-                      {matchesSearch("Badge") &&
+                      {matchesSearch("Badge (Default)", "shadcn-badge-default") &&
                         matchesCategory("feedback") && (
                           <article
                             className="component-card animate-fade-in-up"
-                            data-component="shadcn-badge"
+                            data-component="shadcn-badge-default"
                             data-library="shadcn"
                           >
                             <div className="component-card__header">
                               <div className="component-card__title">
                                 <Link
-                                  href="https://ui.shadcn.com/docs/components/badge"
+                                  href={componentDetailsData["shadcn-badge-default"].docs}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
                                 >
-                                  <span>Badge</span>
-                                  <svg
-                                    className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                                    />
-                                  </svg>
+                                  <span>{componentDetailsData["shadcn-badge-default"].name}</span>
+                                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
                                 </Link>
                               </div>
                               <div className="flex gap-1">
                                 <button
-                                  onClick={() => openDetailModal("shadcn-badge")}
+                                  onClick={() => openDetailModal("shadcn-badge-default")}
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="상세 보기"
-                                  aria-label="Badge 상세 보기"
                                 >
                                   <Search className="w-4 h-4" />
                                 </button>
                                 <button
-                                  onClick={() => toggleFavorite("shadcn-badge")}
-                                  className="p-1 hover:bg-muted rounded transition-colors"
-                                  title="즐겨찾기"
-                                  aria-label={
-                                    favorites.has("shadcn-badge")
-                                      ? "즐겨찾기 제거"
-                                      : "즐겨찾기 추가"
-                                  }
-                                >
-                                  <Star
-                                    className={`w-4 h-4 ${
-                                      favorites.has("shadcn-badge")
-                                        ? "fill-yellow-400 text-yellow-400"
-                                        : ""
-                                    }`}
-                                  />
-                                </button>
-                                <button
-                                  onClick={() =>
-                                    copyCode(
-                                      '<Badge>Default</Badge>\n<Badge variant="secondary">Secondary</Badge>',
-                                      "Badge"
-                                    )
-                                  }
+                                  onClick={() => copyCode(componentDetailsData["shadcn-badge-default"].code, componentDetailsData["shadcn-badge-default"].name)}
                                   className="p-1 hover:bg-muted rounded transition-colors"
                                   title="코드 복사"
-                                  aria-label="Badge 코드 복사"
                                 >
                                   <Copy className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-badge-default")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-badge-default")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  />
                                 </button>
                               </div>
                             </div>
                             <div className="component-card__body">
-                              <div className="flex gap-2">
-                                <Badge>Default</Badge>
-                                <Badge variant="secondary">Secondary</Badge>
+                              {componentDetailsData["shadcn-badge-default"].preview}
+                            </div>
+                          </article>
+                        )}
+
+                      {matchesSearch("Badge (Secondary)", "shadcn-badge-secondary") &&
+                        matchesCategory("feedback") && (
+                          <article
+                            className="component-card animate-fade-in-up"
+                            data-component="shadcn-badge-secondary"
+                            data-library="shadcn"
+                          >
+                            <div className="component-card__header">
+                              <div className="component-card__title">
+                                <Link
+                                  href={componentDetailsData["shadcn-badge-secondary"].docs}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
+                                >
+                                  <span>{componentDetailsData["shadcn-badge-secondary"].name}</span>
+                                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                </Link>
                               </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-badge-secondary")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => copyCode(componentDetailsData["shadcn-badge-secondary"].code, componentDetailsData["shadcn-badge-secondary"].name)}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-badge-secondary")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-badge-secondary")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="component-card__body">
+                              {componentDetailsData["shadcn-badge-secondary"].preview}
+                            </div>
+                          </article>
+                        )}
+
+                      {matchesSearch("Badge (Destructive)", "shadcn-badge-destructive") &&
+                        matchesCategory("feedback") && (
+                          <article
+                            className="component-card animate-fade-in-up"
+                            data-component="shadcn-badge-destructive"
+                            data-library="shadcn"
+                          >
+                            <div className="component-card__header">
+                              <div className="component-card__title">
+                                <Link
+                                  href={componentDetailsData["shadcn-badge-destructive"].docs}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
+                                >
+                                  <span>{componentDetailsData["shadcn-badge-destructive"].name}</span>
+                                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-badge-destructive")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => copyCode(componentDetailsData["shadcn-badge-destructive"].code, componentDetailsData["shadcn-badge-destructive"].name)}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-badge-destructive")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-badge-destructive")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="component-card__body">
+                              {componentDetailsData["shadcn-badge-destructive"].preview}
+                            </div>
+                          </article>
+                        )}
+
+                      {matchesSearch("Badge (Outline)", "shadcn-badge-outline") &&
+                        matchesCategory("feedback") && (
+                          <article
+                            className="component-card animate-fade-in-up"
+                            data-component="shadcn-badge-outline"
+                            data-library="shadcn"
+                          >
+                            <div className="component-card__header">
+                              <div className="component-card__title">
+                                <Link
+                                  href={componentDetailsData["shadcn-badge-outline"].docs}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline transition-colors group"
+                                >
+                                  <span>{componentDetailsData["shadcn-badge-outline"].name}</span>
+                                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                </Link>
+                              </div>
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => openDetailModal("shadcn-badge-outline")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="상세 보기"
+                                >
+                                  <Search className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => copyCode(componentDetailsData["shadcn-badge-outline"].code, componentDetailsData["shadcn-badge-outline"].name)}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="코드 복사"
+                                >
+                                  <Copy className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => toggleFavorite("shadcn-badge-outline")}
+                                  className="p-1 hover:bg-muted rounded transition-colors"
+                                  title="즐겨찾기"
+                                >
+                                  <Star
+                                    className={`h-4 w-4 ${
+                                      favorites.has("shadcn-badge-outline")
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  />
+                                </button>
+                              </div>
+                            </div>
+                            <div className="component-card__body">
+                              {componentDetailsData["shadcn-badge-outline"].preview}
                             </div>
                           </article>
                         )}
@@ -7268,7 +7448,7 @@ export function AlertDemo() {
                               </div>
                             </div>
                             <div className="component-card__body">
-                              <OriginTabsExample />
+                              <OriginTabsExample currentPage={1} totalPages={5} />
                             </div>
                           </article>
                         )}

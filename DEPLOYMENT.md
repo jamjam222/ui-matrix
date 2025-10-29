@@ -10,7 +10,7 @@
    ```
 
 2. **로그인**
-   ```bash
+   ```bash 
    vercel login
    ```
 

@@ -12,7 +12,7 @@
 *.md text eol=lf
 
 # Documentation
-*.markdown text eol=lf
+*.markdown text eol=lf 
 *.mdx text eol=lf
 *.txt text eol=lf
 

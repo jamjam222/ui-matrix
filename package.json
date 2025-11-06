@@ -22,7 +22,7 @@
   ],
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --port 3020 --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
